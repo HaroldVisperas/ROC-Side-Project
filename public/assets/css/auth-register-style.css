@@ -1,0 +1,192 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-y: hidden;
+    background-image: linear-gradient(90deg, #008EC2, #7ACBE8 48%, white 48%, white 51%);
+}
+
+.left-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.left-side img {
+    width: 80%;
+    height: 80%;
+}
+
+.divider-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.divider-section {
+    width: 30px;
+    height: 100vh; 
+    margin: 0 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.orange {
+    background-color: #F38C1E;
+}
+
+.red {
+    background-color: #D23426;
+}
+
+.green {
+    background-color: #84C148;
+}
+
+.right-side {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+}
+
+.right-side img {
+    max-width: 20%;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin: 20px 0;
+    font-weight: 800;
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 35px; 
+    margin-top: -15px;
+}
+
+form {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    align-items: center;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+    color: #008EC2;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 3px solid #008EC2;
+    border-radius: 10px;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3) inset;
+}
+
+form input[type="tel"] {
+    width: 100%;
+    margin-right: 140px!important;
+    padding: 15px;
+    border: 3px solid #008EC2;
+    border-radius: 10px;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3) inset;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #008EC2;
+    color: #fff;
+    border: 3px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.remember-forgot-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.remember-me, .forgot-password {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.forgot-password {
+    margin-left: auto;
+}
+
+.text {
+    font-style: italic;
+    font-size: 15px;
+    text-align: left;
+    width: 100%;
+}
+
+.form-check {
+    margin-bottom: 20px;
+}
+
+.forgot-password-link {
+    text-decoration: underline;
+    color: #008EC2;
+    font-size: 14px;
+}
+
+@media (max-width: 757px) and (max-height: 608px) {
+    .divider-section {
+        display: none;
+    }
+}
+
+.remember-me input[type="checkbox"] {
+    display: none; 
+}
+
+.checkbox-label {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #008EC2;
+    border-radius: 50%; /* Make it circular */
+    margin-right: 10px;
+    position: relative;
+    color: #008EC2;
+}
+
+.checkbox-label::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #008EC2;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Initially hidden */
+    transition: transform 0.3s ease-in-out; /* Add smooth transition */
+}
+
+.remember-me input[type="checkbox"]:checked + .checkbox-label::after {
+    transform: translate(-50%, -50%) scale(1); /* Show when checked */
+}
+
+.register-link{
+    text-decoration: none;
+    color: #008EC2;
+    font-size: 14px;
+}
