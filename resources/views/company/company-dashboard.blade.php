@@ -180,7 +180,7 @@
                     <div class="row">
                         <div class="col text-center availedSubsBot mt-3">
                             <div class="fw-bold  text-lowercase">
-                                <h3 style="color:rgb(22, 14, 101)">bearbrand</h3>
+                                <h3 class="ttaskorange">bearbrand</h3>
                             </div>
                             <div class="fw-normal tblack availedSubsBot-2 ">Brand Name</div>
                         </div>
@@ -276,28 +276,33 @@
                     <div class="row">
                         <div class="mt-2 col-md-12">
                             <div class="row justify-content-center">
-                                <div class="mb-3 col-md-10 recentTasksBox blue">
-                                    <div class="fw-bold text-start text-white">
-                                        <h3>Added To-do</h3>
+                                @foreach ($tasks as $task)
+                                    <div class="mb-3 col-md-10 recentTasksBox blue">
+                                        <div class="fw-bold text-start text-white">
+                                            <h3>{{ $task->title }}</h3>
+                                        </div>
+                                        <div class="fw-normal actSubsP tblack text-start">Status: 
+                                            @if ($task->status == 'todo')
+                                                <span class="text-uppercase ttaskgray" style="font-weight: 800">{{ $task->status }}</span>
+                                            @elseif ($task->status == 'working')
+                                                <span class="text-uppercase ttaskyellow" style="font-weight: 800">{{ $task->status }}</span>
+                                            @elseif ($task->status == 'approval')
+                                                <span class="text-uppercase ttaskred" style="font-weight: 800">For {{ $task->status }}</span>
+                                            @elseif ($task->status == 'done')
+                                                <span class="text-uppercase ttaskgreen" style="font-weight: 800">{{ $task->status }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="fw-normal actSubsP tblack text-start">Company Name: 
+                                            <span style="color:white; font-weight: 800">Amazon Prime</span>
+                                        </div>
+                                        <div class="fw-normal actSubsP tblack text-start">Brand Name: 
+                                            <span style="color:white; font-weight: 800">Nike</span>
+                                        </div>
+                                        <div class="fw-normal actSubsP tblack text-start">Ticket No.: 
+                                            <span style="color:white; font-weight: 800">{{ sprintf('%05d', $task->id) }}</span>
+                                        </div>
                                     </div>
-                                    <div class="fw-normal actSubsP tblack text-start">Company Name: <span
-                                            style="color:white; font-weight: 800">Amazon Prime</span></div>
-                                    <div class="fw-normal actSubsP tblack text-start">Brand Name: <span
-                                            style="color:white; font-weight: 800">Nike</span></div>
-                                    <div class="fw-normal actSubsP tblack text-start">Ticket No.: <span
-                                            style="color:white; font-weight: 800">359875</span></div>
-                                </div>
-                                <div class="mb-3 col-md-10 recentTasksBox blue">
-                                    <div class="fw-bold text-start text-white">
-                                        <h3>Move to Done</h3>
-                                    </div>
-                                    <div class="fw-normal actSubsP tblack text-start">Company Name: <span
-                                            style="color:white; font-weight: 800">Amazon Prime</span></div>
-                                    <div class="fw-normal actSubsP tblack text-start">Brand Name: <span
-                                            style="color:white; font-weight: 800">Nike</span></div>
-                                    <div class="fw-normal actSubsP tblack text-start">Ticket No.: <span
-                                            style="color:white; font-weight: 800">359875</span></div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

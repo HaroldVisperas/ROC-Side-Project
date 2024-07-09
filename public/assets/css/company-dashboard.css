@@ -266,6 +266,30 @@
         color: #534B4B;
     }
 
+    .ttaskgray {
+        color: #666a70;
+    }
+
+    .ttaskblue {
+        color: #008ec2;
+    }
+
+    .ttaskred {
+        color: #d23426;
+    }
+
+    .ttaskgreen {
+        color: #84c148;
+    }
+
+    .ttaskyellow {
+        color: #fffb1a;
+    }
+
+    .ttaskorange {
+        color: #f38c1e;
+    }
+
     .borderleft {
         border-left: white 5px solid;
     }

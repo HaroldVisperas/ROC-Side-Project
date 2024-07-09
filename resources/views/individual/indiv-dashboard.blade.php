@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/individual-dashboard.css') }}">
 </head>
 
 <body class="maxwidth">
@@ -96,9 +96,13 @@
                     establish a company account with our platform. <br>
                     This initial step of setting up a business profile will <br>
                     allow you to access the necessary tools and <br>
-                    features to proceed with the next stages.</p>
+                    features to proceed with the next stages.
+                </p>
                 <div>
-                    <button class="row click_create_company">Create Company</button>
+                    <form method="GET" action="{{ route('individual.company.create') }}">
+                        @csrf
+                        <button type="submit" class="row click_create_company">Create Company</button>
+                    </form>
                 </div>
             </div>
             <div class="col-md-4 officebuilding">
