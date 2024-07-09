@@ -8,7 +8,7 @@
     <!-- <link rel="stylesheet" href="path/to/your/css/file.css"> -->
 </head>
 <body>
-    <h1>Dashboard</h1>
+    <h1>MOCKUP AREA</h1>
     <div>
         <h1>Welcome, {{ auth()->user()->firstname }} {{ auth()->user()->middlename }} {{ auth()->user()->lastname }}</h1>
     </div>
@@ -16,8 +16,7 @@
         <h3>Hope you have a good day!!!</h3>
     </div>
     <div>
-        <p> This is the expected dashboard page where users will land after a successful login depending on their role.<br>
-            This is only a sample dashboard page. A better webpage is currently in development<br>
+        <p> This is where backenders create mockup modules for future integration with frontend design<br>
             <b>Fighting developers!!</b>
         </p>
     </div>
@@ -33,7 +32,7 @@
         @endforeach
     @endif
 
-    <form method="POST" action="{{ route('mockup.company.post') }}">
+    <form method="POST" action="{{ route('mockup.company.store') }}">
         @csrf
         <h1>----------------------------</h1>
         <label for="affiliation">Company Name:</label>

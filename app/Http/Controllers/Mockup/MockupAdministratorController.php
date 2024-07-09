@@ -14,7 +14,7 @@ class MockupAdministratorController extends Controller
         return view('mockup.admin.mockup-addannouncement', compact('announcements'));
     }
 
-    public function post_announcement(Request $request)
+    public function store_announcement(Request $request)
     {
         $request->validate([
             'title' => 'required',

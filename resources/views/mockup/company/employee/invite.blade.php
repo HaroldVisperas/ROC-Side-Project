@@ -24,7 +24,7 @@
 
     <div>
         <h2>Invite Company Employees</h2>
-        <form method="POST" action="{{ route('mockup.employees.post.invite') }}">
+        <form method="POST" action="{{ route('mockup.employees.store.invite') }}">
             @csrf
             <div>
                 <label for="email">Email Address:</label>

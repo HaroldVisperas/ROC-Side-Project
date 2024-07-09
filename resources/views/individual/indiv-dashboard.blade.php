@@ -13,6 +13,15 @@
 </head>
 
 <body class="maxwidth">
+
+    @if (auth()->user()->role == 'ceo')
+        <script>window.location.href = "{{ route('company.dashboard.create') }}";</script>
+    @elseif (auth()->user()->role == 'employee')
+        <script>window.location.href = "{{ route('company.dashboard.create') }}";</script>
+    @elseif (auth()->user()->role == 'administrator')
+        <script>window.location.href = "{{ route('mockup.dashboard.create') }}";</script>
+    @endif
+
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg blue borderbottom">
         <div class="container-fluid">
@@ -38,23 +47,23 @@
                             </div>
                             <div>
                                 <div class="text-white fs-2 fw-bold text-uppercase">{{ auth()->user()->firstname }} {{ auth()->user()->middlename }} {{ auth()->user()->lastname }}</div>
-                                <div class="text-white fs-6 text-end neg10">
-                                    @if (auth()->user()->role == 'individual_client')
-                                        Individual Account
-                                    @elseif (auth()->user()->role == 'ceo')
-                                        CEO Account
-                                    @elseif (auth()->user()->role == 'employee')
-                                        Employee account
-                                    @else
-                                        Administrator Account
-                                    @endif
-                                </div>
+                                <div class="text-white fs-6 text-end neg10">Individual Account</div>
                             </div>
                         </div>
                         <a class="nav-link dropdown-toggle text-white ms-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-person-check fs-5 me-2"></i>My Profile</a></li>
+                            <form id="profile-form" method="GET" action="{{ route('company.profile.create') }}">
+                                @csrf
+                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
+                                    <i class="bi bi-gear fs-5 me-2"></i>My Profile</a></li>
+                                <input type="hidden" name="user_timezone" value="{{ auth()->user()->timezone }}">
+                            </form>
+                            <form id="task-form" method="GET" action="{{ route('brand.tasks.create') }}">
+                                @csrf
+                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('task-form').submit();">
+                                    <i class="bi bi-gear fs-5 me-2"></i>Tasks</a></li>
+                            </form>
                             <form id="mockup-form" method="GET" action="{{ route('mockup.dashboard.create') }}">
                                 @csrf
                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('mockup-form').submit();">

@@ -19,7 +19,7 @@ class MockupDashboardController extends Controller
         return view('mockup.individual.mockup-dashboard', compact('latestAnnouncements'));
     }
 
-    public function post_company(Request $request)
+    public function store_company(Request $request)
     {
         $request->validate([
             'affiliation' => 'required|string|max:255',

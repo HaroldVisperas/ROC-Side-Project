@@ -1,0 +1,73 @@
+.kanban-space {
+    background-color: #e1e1e1;
+    border: 2px solid #008ec2 !important;
+    padding: 10px;
+}
+
+.upperDashboard {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.upperDashboard h1 {
+    text-align: center;
+}
+
+.todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.todo .btn-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.bg-todo {
+    background-color: #666a70;
+}
+
+.bg-working {
+    background-color: #008ec2;
+}
+
+.bg-approval {
+    background-color: #d23426;
+}
+
+.bg-done {
+    background-color: #84c148;
+}
+
+.text-light {
+    color: #dedede;
+}
+
+#todoSubmit {
+    background-color: #84c148;
+}
+
+.col.kanban {
+    color: #008ec2;
+}
+
+.btn-custom-color {
+    background-color: #939393;
+}
+
+.btn-custom-color:hover {
+    background-color: #666a70;
+}
+
+.kanban-space {
+    background-color: #e1e1e1;
+}
+
+#kanban-table .kanban,
+#kanban-table .kanban-space {
+    border-color: #008ec2 !important;
+}

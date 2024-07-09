@@ -19,7 +19,7 @@
         </p>
     </div>
     
-    <form method="POST" action="{{ route('mockup.administrator.post.announcement') }}">
+    <form method="POST" action="{{ route('mockup.administrator.store.announcement') }}">
         @csrf
         <div>
             <label for="title">Announcement Title:</label>

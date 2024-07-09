@@ -22,7 +22,7 @@ class MockupEmployeeController extends Controller
         return view('mockup.company.employee.invite');
     }
 
-    public function post_invitation(Request $request)
+    public function store_invitation(Request $request)
     {
         $request->validate([
             'email' => 'required|email',

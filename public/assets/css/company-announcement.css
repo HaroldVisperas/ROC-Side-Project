@@ -1,0 +1,175 @@
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* navbar */
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: #fff;
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: #ccc;
+    }
+
+    .dropdown-menu {
+        background-color: #84c148;
+        border-color: #84c148;
+    }
+
+    .dropdown-item {
+        color: #fff;
+    }
+
+    .dropdown-item:hover {
+        background-color: #178325;
+        color: #fff;
+    }
+
+    .navbar-brand img {
+        max-height: 90px;
+    }
+
+    .accountName {
+        color: #fff;
+        width: 140%;
+    }
+
+    /* SideBar */
+
+    .nav-link {
+        color: #fff;
+        margin-left: 15px;
+    }
+
+    :root {
+        --offcanvas-width: 270px;
+        --topNavbarHeight: 121px;
+    }
+
+    .sidebar-nav {
+        width: var(--offcanvas-width);
+    }
+
+    @media (min-width: 992px) {
+        body {
+            overflow: auto !important;
+        }
+
+        .offcanvas-backdrop::before {
+            display: none !important;
+        }
+
+        .main {
+            margin-left: var(--offcanvas-width);
+        }
+
+        .sidebar-nav {
+            transform: none;
+            visibility: visible !important;
+            top: var(--topNavbarHeight);
+            height: calc(100vh - var(--topNavbarHeight));
+        }
+    }
+
+    /* Override the offcanvas backdrop color */
+    .offcanvas-backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Adjust opacity as needed */
+    }
+
+    /* Override the offcanvas background color */
+    .offcanvas {
+        background-color: #fff;
+        /* Set your desired background color */
+    }
+
+    /* Stripes */
+
+    .stripe {
+        height: 15px;
+        /* Adjust the height as needed */
+        max-width: 100.8%;
+    }
+
+    /* Announcement Page */
+
+    .announcementParagraph {
+        font-size: 15px;
+        padding: 20px;
+        padding-top: 30px;
+        color: #000;
+        background-color: #F4F4F6;
+        border-radius: 10px;
+    }
+
+
+    /* ROC COLOR */
+
+    .blue {
+        background-color: #008ec2;
+    }
+
+    .orange {
+        background-color: #f38c1e;
+    }
+
+    .red {
+        background-color: #d23426;
+    }
+
+    .green {
+        background-color: #84c148;
+    }
+
+    .twhite {
+        color: #ffffff;
+    }
+
+    .tblack {
+        color: #000000;
+    }
+
+    .tgray {
+        color: #534B4B;
+    }
+
+    .tgreen {
+        color: #84c148;
+    }
+
+    .tblue {
+        color: #008ec2;
+    }
+
+    .borderleft {
+        border-left: white 5px solid;
+    }
+
+    .borderbottom {
+        border-bottom: rgb(255, 255, 255) 5px solid;
+    }
+
+    .borderbottom2 {
+        border-bottom: rgb(0, 0, 0) 2px solid;
+    }
+
+    .vh10 {
+        height: 2vh;
+    }
+
+    .neg10 {
+        margin-top: -10px;
+    }
+
+    .neg20 {
+        margin-top: -20px;
+    }
+
+    .maxwidth {
+        max-width: 100%;
+    }
+
+    .center {
+        text-align: center;
+    }
