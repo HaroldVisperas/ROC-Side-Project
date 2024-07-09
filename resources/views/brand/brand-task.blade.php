@@ -91,7 +91,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('brand.tasks.store') }}">
+                    <form method="GET" action="{{ route('brand.tasks.create') }}">
                         @csrf
                         <input type="text" id="todoInput" name="title" class="form-control mb-3"
                             placeholder="Enter your task" required>

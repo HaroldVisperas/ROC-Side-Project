@@ -1,5 +1,6 @@
 <?php
 
+// BrandTaskController.php
 namespace App\Http\Controllers\Brand;
 
 use App\Http\Controllers\Controller;
@@ -20,12 +21,12 @@ class BrandTaskController extends Controller
             'title' => 'required|string|max:255',
         ]);
 
-        Task::create([
+        $task = Task::create([
             'title' => $request->title,
             'status' => 'todo',
         ]);
 
-        return redirect()->back();
+        return response()->json(['success' => true, 'task' => $task]);
     }
 
     public function update(Request $request, Task $task)
@@ -38,12 +39,12 @@ class BrandTaskController extends Controller
             'status' => $request->status,
         ]);
 
-        return response()->json(['message' => 'Task updated successfully!']);
+        return response()->json(['success' => true, 'message' => 'Task updated successfully!']);
     }
 
     public function delete(Task $task)
     {
         $task->delete();
-        return response()->json(['message' => 'Task deleted successfully!']);
+        return response()->json(['success' => true, 'message' => 'Task deleted successfully!']);
     }
 }
