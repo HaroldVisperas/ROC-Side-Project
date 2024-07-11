@@ -26,7 +26,7 @@ class MockupDashboardController extends Controller
         ]);
 
         $user = User::find($request->user_id);
-        $user->role = "ceo";
+        $user->role = "company_owner";
         $user->save();
 
         $employee = new Employee();

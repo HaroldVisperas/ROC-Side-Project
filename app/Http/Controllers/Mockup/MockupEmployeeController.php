@@ -11,8 +11,8 @@ class MockupEmployeeController extends Controller
 {
     public function create(Request $request)
     {
-        $administrators = Employee::where('affiliation', $request->affiliation)->where('role', 'administrator')->get();
-        $employees = Employee::where('affiliation', $request->affiliation)->where('role', 'employee')->get();
+        $administrators = Employee::where('affiliation', $request->affiliation)->where('role', 'brand_owner')->get();
+        $employees = Employee::where('affiliation', $request->affiliation)->where('role', 'member')->get();
 
         return view('mockup.company.employee.index', compact('administrators', 'employees'));
     }
@@ -26,7 +26,7 @@ class MockupEmployeeController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'role' => 'required|in:administrator,employee',
+            'role' => 'required|in:brand_owner,member',
         ]);
 
         $invitation = new Invitation();

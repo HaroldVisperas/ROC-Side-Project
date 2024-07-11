@@ -5,6 +5,16 @@
     /* Background */
 
     /* navbar */
+    .fixed-top {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    .navbarName {
+        margin-left: 15px;
+    }
+
 
     .navbar-dark .navbar-nav .nav-link {
         color: #fff;
@@ -37,13 +47,21 @@
         width: 140%;
     }
 
-
-
     /* SideBar */
 
     .nav-link {
         color: #fff;
         margin-left: 15px;
+        position: relative;
+    }
+
+    .nav-link:hover {
+        color: #fff; /* Change the text color on hover */
+        text-decoration: none; /* Remove underline on hover */
+        margin-left: -10px;
+        padding-left: 20px;
+        border-left: solid 2px #fff;
+        transition: 0.6s;
     }
 
     :root {
@@ -55,44 +73,54 @@
         width: var(--offcanvas-width);
     }
 
+    .sidebar-link {
+        display: flex;
+        align-items: center;
+    }
+
+    .sidebar-link .right-icon {
+        display: inline-flex;
+    }
+
+    .sidebar-link[aria-expanded="true"] .right-icon {
+        transform: rotate(180deg);
+    }
+
     @media (min-width: 992px) {
         body {
             overflow: auto !important;
         }
 
-        .offcanvas-backdrop::before {
-            display: none !important;
-        }
-
-        .main {
+        main {
             margin-left: var(--offcanvas-width);
         }
 
+        /* this is to remove the backdrop */
+        .offcanvas-backdrop::before {
+            display: none;
+        }
+
         .sidebar-nav {
+            -webkit-transform: none;
             transform: none;
             visibility: visible !important;
+            height: calc(100% - var(--topNavbarHeight));
             top: var(--topNavbarHeight);
-            height: calc(100vh - var(--topNavbarHeight));
         }
     }
 
-    /* Override the offcanvas backdrop color */
     .offcanvas-backdrop {
         background-color: rgba(0, 0, 0, 0.5);
-        /* Adjust opacity as needed */
     }
 
-    /* Override the offcanvas background color */
     .offcanvas {
         background-color: #fff;
-        /* Set your desired background color */
     }
 
     /* Main */
 
     .main {
         max-width: 100%;
-        margin-top: 20px;
     }
 
     .mainP {
@@ -103,14 +131,22 @@
         margin-left: -10px;
     }
 
-
+    .contents {
+        margin-top: 180px;
+    }
 
     /* Stripes */
 
     .stripe {
         height: 15px;
-        /* Adjust the height as needed */
         max-width: 100.8%;
+    }
+
+    .stripes {
+        margin-top: 120px;
+        position: fixed;
+        top: 0;
+        width: 100%;
     }
 
     /* Profile Page */
@@ -143,7 +179,7 @@
     }
 
     .basicInfo h3,
-    .contactInfo h3{
+    .contactInfo h3 {
         padding-left: 30px;
     }
 
@@ -152,6 +188,10 @@
         width: 90%;
         margin-left: 5%;
         border: 2px solid #008EC2;
+    }
+
+    .nowrap {
+        white-space: nowrap;
     }
 
 

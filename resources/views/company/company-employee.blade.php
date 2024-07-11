@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Brand Account</title>
+    <title>ROCPH Digital Marketing Services</title>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/brand-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/company-employees.css') }}">
 </head>
 
 <body>
@@ -45,8 +45,6 @@
                                         Company Owner Account
                                     @elseif (auth()->user()->role == 'brand_owner')
                                         Brand Owner Account
-                                    @elseif (auth()->user()->role == 'member')
-                                        Member Account
                                     @endif
                                 </div>
                             </div>
@@ -79,7 +77,7 @@
                                 <i class="bi bi-box-arrow-right fs-5 me-2"></i>Logout</a></li>
                         </form>
                     </ul>
-                </ul>
+                    </ulx>
             </div>
         </div>
     </nav>
@@ -98,7 +96,7 @@
             <nav class="navbar-dark">
                 <ul class="navbar-nav">
                     <li>
-                    <form id="dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                        <form id="dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
                             @csrf
                             <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('dashboard-link').submit();">
                                 <i class="bi bi-microsoft fs-5 me-2"></i>
@@ -139,118 +137,133 @@
     <main class="mt-2 text-start tblack main" data-bs-spy="noscroll">
         <div class="container-fluid">
             <div class="row justify-content-center contents">
-                <div class="m-2 col-lg-6 fw-bold announcementCol">
-                    <h1 class="text-center mt-4 fw-bold tgray">Announcement</h1>
-                    <div class="row justify-content-center">
-                        <div class="col-md-10">
-                            <div class="row mt-3 justify-content-center">
-                                <div class="col-sm-auto me-4">
-                                    <div class="fs-5 fw-bold text-start tblack">New Announcement</div>
-                                </div>
-                                <div class="col-sm-auto text-end mt-2">
-                                    <div class="fw-normal announcementName-2">January 05, 2024 | <span style="color:green">
-                                            10:24 AM </span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-3 justify-content-center">
-                        <div class="col-md-10">
-                            <div class="fw-normal announcementP lh-sm fw-lighter">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                                    nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec
-                                    purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui.
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                                    nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec
-                                    purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. <span href="#"
-                                        style="color:green">
-                                        Read More...</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-lg-10 borderbottom2">
+                    <h3 class="text-center tblack fw-bold">Employee List</h3>
                 </div>
-                <div class="m-2 col-lg-5 blue currentSubCol text-white">
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="text-center twhite">Current Subscription</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col text-center availedSubsTop">
-                            <div class=" fw-bold text-uppercase">
-                                <h1>Enterprise</h1>
-                            </div>
-                            <div class="fw-normal tblack availedSubsTop-2">Availed Subscription</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col text-center availedSubsBot mt-3">
-                            <div class="fw-bold  text-lowercase">
-                                <h3 style="color:rgb(22, 14, 101)">bearbrand</h3>
-                            </div>
-                            <div class="fw-normal tblack availedSubsBot-2 ">Brand Name</div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center text-center mt-3 subsDate">
-                        <div class="col-4 text-center subsDateTop">
-                            <div class="fw-bold">
-                                <h6>June 01, 2024</h6>
-                            </div>
-                            <div class="fw-normal tblack subsDateTop-2 ">Start Date</div>
-                        </div>
-                        <div class="col-4 text-center subsDateBot">
-                            <div class="fw-bold">
-                                <h6>August 01, 2023</h6>
-                            </div>
-                            <div class="fw-normal tblack subsDateBot-2">Billing Date</div>
-                        </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-10 d-flex justify-content-end">
+                    <form class="d-flex w-20" role="search">
+                        <input class="form-control border border-2 me-2 search-input" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn green twhite me-2 btn-sm" type="submit">Search</button>
+                        <button type="button" class="btn blue twhite invite-button btn-sm inviteEmployee"
+                            data-bs-toggle="modal" data-bs-target="#inviteEmployeeModal">
+                            Invite Employee
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="mt-4 row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered">
+                            <thead>
+                                <tr class="fs-6">
+                                    <th class="employeeID">Employee ID</th>
+                                    <th class="employeeName">Employee Name</th>
+                                    <th class="position">Position</th>
+                                    <th class="affiliation">Affiliation</th>
+                                    <th class="actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($companyowners as $companyowner)
+                                    <tr>
+                                        <td>{{ $companyowner->employee_id }}</td>
+                                        <td>{{ $companyowner->firstname }} {{ $companyowner->middlename }} {{ $companyowner->lastname }}</td>
+                                        <td>Company Owner</td>
+                                        <td>{{ $companyowner->affiliation }}</td>
+                                        <td>
+                                            <button type="button" class="btn green twhite btn-sm"
+                                                onclick="makeEditable(this)">Edit</button>
+                                            <button type="button" class="btn blue twhite btn-sm">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @foreach($brandowners as $brandowner)
+                                    <tr>
+                                        <td>{{ $brandowner->employee_id }}</td>
+                                        <td>{{ $brandowner->firstname }} {{ $brandowner->middlename }} {{ $brandowner->lastname }}</td>
+                                        <td>Brand Owner</td>
+                                        <td>{{ $brandowner->affiliation }}</td>
+                                        <td>
+                                            <button type="button" class="btn green twhite btn-sm"
+                                                onclick="makeEditable(this)">Edit</button>
+                                            <button type="button" class="btn blue twhite btn-sm">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @foreach($members as $member)
+                                    <tr>
+                                        <td>{{ $member->employee_id }}</td>
+                                        <td>{{ $member->firstname }} {{ $member->middlename }} {{ $member->lastname }}</td>
+                                        <td>Member</td>
+                                        <td>{{ $member->affiliation }}</td>
+                                        <td>
+                                            <button type="button" class="btn green twhite btn-sm"
+                                                onclick="makeEditable(this)">Edit</button>
+                                            <button type="button" class="btn blue twhite btn-sm">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
 
-    <main class="mt-1 text-start tblack main" data-bs-spy="noscroll">
-        <div class="container-fluid">
-            <div class="row justify-content-center mt-2">
-                <div class="col-md-11 recentTasks">
-                    <div class="row justify-content-center">
-                        <div class="col">
-                            <h3 class="text-center fw-bold tgray mt-3">Recent Tasks
-                                <a href="your-target-url.html" class="btn"
-                                    style="background-color: #84c148; color: white; border: solid 2px black;">View</a>
-                            </h3>
-                        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="inviteEmployeeModal" tabindex="-1" aria-labelledby="inviteEmployeeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inviteEmployeeModalLabel">Invite Company Employees</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-
-                    <div class="row justify-content-center actSubsTop">
-                        <div class="m-3 col-sm-5 actSubBox1 blue">
-                            <div class="fw-bold text-uppercase">
-                                <h3 class="text-white text-center"><span class="tblack">"Added To-do"</span></h3>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('company.employee.invite.store') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address:</label>
+                                <input type="email" name="email" id="email" class="form-control" required>
                             </div>
-                            <div class="fw-normal actSubsP tblack text-center">Company Name: <span
-                                    style="color:white; font-weight: 800">Amazon Prime</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Brand Name: <span
-                                    style="color:white; font-weight: 800">Nike</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Ticket No.: <span
-                                    style="color:white; font-weight: 800">359875</span></div>
-                        </div>
-                        <div class="m-3 col-sm-5 actSubBox2 blue">
-                            <div class="fw-bold text-uppercase">
-                                <h3 class="text-white text-center"><span class="tblack">"Added To-do"</span></h3>
+                            <div class="mb-3">
+                                <label for="employee_id" class="form-label">Employee ID:</label>
+                                <input type="number" name="employee_id" id="employee_id" class="form-control" required>
                             </div>
-                            <div class="fw-normal actSubsP tblack text-center">Company Name: <span
-                                    style="color:white; font-weight: 800">Amazon Prime</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Brand Name: <span
-                                    style="color:white; font-weight: 800">Nike</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Ticket No.: <span
-                                    style="color:white; font-weight: 800">359875</span></div>
-                        </div>
+                            <div class="mb-3">
+                                <label for="role" class="form-label">Position:</label>
+                                <select name="role" id="role" class="form-select" required>
+                                    <option value="company_owner">Company Owner</option>
+                                    <option value="brand_owner">Brand Owner</option>
+                                    <option value="member">Member</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="affiliation" value="Universal Studios">
+                            <input type="hidden" name="user_email" value="{{ auth()->user()->email }}">
+                            <div class="modal-footer">
+                                <button type="button" class="btn text-white blue" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn text-white green">Invite</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
     </main>
 
+    <script src="{{ asset('assets/js/editableEmployeeList.js') }}"></script>
+    <script src="{{ asset('assets/js/contenteditable.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>

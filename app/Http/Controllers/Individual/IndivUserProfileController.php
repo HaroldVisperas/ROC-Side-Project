@@ -1,66 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Individual;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
-use DateTimeZone;
 
-class ProfileController extends Controller
+class IndivUserProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+    public function create(Request $request)
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }
+        $currentTimeZone = $request->timezone;
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
-    }
-
-    public function create_mockup()
-    {
         $timezones = array(
             'Pacific/Midway'       => "(GMT-11:00) Midway Island",
             'US/Samoa'             => "(GMT-11:00) Samoa",
@@ -176,23 +126,15 @@ class ProfileController extends Controller
             'Pacific/Fiji'         => "(GMT+12:00) Fiji",
         );
 
-        return view('mockup.profile.mockup-timezone', compact('timezones'));
+        return view('individual.indiv-user-profile', compact('timezones'));
     }
 
-    public function update_timezone(Request $request)
+    public function update(Request $request)
     {
         $user = auth()->user();
         $user->timezone = $request->timezone;
         $user->save();
 
-        return redirect()->route('profile.create_mockup')->with('success', 'Timezone updated successfully.');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/login');
+        return redirect()->route('individual.profile.create')->with('success', 'Profile updated successfully.');
     }
 }

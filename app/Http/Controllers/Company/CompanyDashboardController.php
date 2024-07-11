@@ -14,8 +14,8 @@ class CompanyDashboardController extends Controller
         $latestAnnouncements = Announcement::orderBy('updated_at', 'desc')->first();
         $latestAnnouncements = $latestAnnouncements ? collect([$latestAnnouncements]) : collect([]);
 
-        $tasks = Task::orderBy('updated_at', 'desc')->limit(2)->get();
+        $recenttasks = Task::orderBy('updated_at', 'desc')->limit(2)->get();
 
-        return view('company.company-dashboard', compact('latestAnnouncements', 'tasks'));
+        return view('company.company-dashboard', compact('latestAnnouncements', 'recenttasks'));
     }
 }

@@ -16,7 +16,7 @@
 <body>
 
     <!-- Start of NavBar -->
-    <nav class="navbar navbar-expand-lg blue borderbottom {border-bottom: white 5px solid;}">
+    <nav class="navbar navbar-expand-lg blue borderbottom fixed-top {border-bottom: white 5px solid;}">
         <div class="container-fluid">
 
             <!-- Start of offcanvas trigger -->
@@ -39,16 +39,15 @@
                     <li class="nav-item dropdown ">
                         <div class="d-flex align-items-center my-2">
                             <div class="rounded-4 me-3"
-                                style="width: 50px; height: 50px; background-image: url('{{ asset('assets/images/icon.png') }}'); background-size: cover;">
+                                style="width: 50px; height: 50px; background-image: url('{{ asset('assets/images/Default.png') }}'); background-size: cover;">
                             </div>
                             <div>
                                 <div class="text-white fs-2 fw-bold text-uppercase">{{ auth()->user()->firstname }} {{ auth()->user()->middlename }} {{ auth()->user()->lastname }}</div>
                                 <div class="text-white fs-6 text-end neg10">
-                                <div class="text-white fs-6 text-end neg10">
-                                    @if (auth()->user()->role == 'ceo')
-                                        CEO Account
-                                    @elseif (auth()->user()->role == 'administrator')
-                                        Administrator Account
+                                    @if (auth()->user()->role == 'company_owner')
+                                        Company Owner Account
+                                    @elseif (auth()->user()->role == 'brand_owner')
+                                        Brand Owner Account
                                     @endif
                                 </div>
                             </div>
@@ -57,13 +56,13 @@
                             <li><a class="dropdown-item" href="#">My Profile</a></li>
                         </ul>
                     </li>
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="True"></a>
+                    <a class="navbarName dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="true"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <form id="profile-form" method="GET" action="{{ route('company.profile.create') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>My Profile</a></li>
+                                <i class="bi bi-person-check fs-5 me-2"></i>My Profile</a></li>
                         </form>
                         <form id="task-form" method="GET" action="{{ route('brand.tasks.create') }}">
                             @csrf
@@ -78,7 +77,7 @@
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Logout</a></li>
+                                <i class="bi bi-box-arrow-right fs-5 me-2"></i>Logout</a></li>
                         </form>
                     </ul>
                 </ul>
@@ -89,7 +88,7 @@
 
     <!-- Start of Stripes -->
     <div class="container-fluid">
-        <div class="row">
+        <div class="row stripes">
             <div class="col-12 stripe borderbottom orange"></div>
             <div class="col-12 stripe borderbottom red"></div>
             <div class="col-12 stripe borderbottom green"></div>
@@ -119,26 +118,21 @@
                                 <span class="text-uppercase fw-bold fs-5">Create Brand</span>
                             </a>
                         </form>
-                        <a class="nav-link pt-3 sidebar-link text-start" data-bs-toggle="collapse"
-                            href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <span><i class="bi bi-bag-heart-fill fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Brand</span>
-                            <span><i class="bi bi-chevron-down"></i></span>
-                        </a>
-                        <div class="collapse" id="collapseExample">
-                            <div>
-                                <ul class="navbar-nav ps-3">
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-3">
-                                            <span><i class="bi bi-ticket-detailed fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-5">Tickets</span>
-                                        </a></li>
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-3">
-                                            <span><i class="bi bi-cart4 fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-5">Services</span>
-                                        </a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <form id="brands-link" method="GET" action="{{ route('company.brands.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brands-link').submit();">
+                                <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Brands</span>
+                            </a>
+                        </form>
+                        <form id="employees-link" method="GET" action="{{ route('company.employee.create') }}">
+                            @csrf
+                            <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('employees-link').submit();">
+                                <i class="bi bi-person-hearts fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Employees</span>
+                            </a>
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -148,8 +142,8 @@
 
     <!-- Start of Main -->
     <main class="mt-3 tblack main" data-bs-spy="noscroll">
-        <div class="container-fluid neg20">
-            <div class="row justify-content-center">
+        <div class="container-fluid">
+            <div class="row justify-content-center contents">
                 <div class="col-lg-12">
                     <form id="return-form" method="GET" action="{{ route('company.dashboard.create') }}">
                         @csrf
@@ -166,11 +160,13 @@
                 </div>
             </div>
             @foreach($announcements as $announcement)
-                <div class="row justify-content-center mt-3">
-                    <div class="col-9">
-                        <div class="row">
-                            <div class="col-sm-5 m-1">
-                                <div class="fs-5 fw-bold tblack">{{ $announcement->title }}</div>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-11">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-6">
+                                <div class="fs-5 fw-bold tblue">{{ $announcement->title }}</div>
+                            </div>
+                            <div class="col-sm-5 text-end">
                                 <div class="fw-normal announcementName-2">{{ $announcement->updated_at->format('F j, Y') }} | 
                                     <span style="color:green">{{ $announcement->updated_at->format('g:i A') }}</span>
                                 </div>

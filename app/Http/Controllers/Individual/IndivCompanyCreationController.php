@@ -29,7 +29,7 @@ class IndivCompanyCreationController extends Controller
         $company->save();
 
         $user = User::find($request->user_id);
-        $user->role = "ceo";
+        $user->role = "company_owner";
         $user->save();
 
         $employee = new Employee();

@@ -3,6 +3,15 @@
     }
 
     /* navbar */
+    .fixed-top {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    .navbarName {
+        margin-left: 15px;
+    }
 
     .navbar-dark .navbar-nav .nav-link {
         color: #fff;
@@ -40,6 +49,16 @@
     .nav-link {
         color: #fff;
         margin-left: 15px;
+        position: relative;
+    }
+
+    .nav-link:hover {
+        color: #fff; /* Change the text color on hover */
+        text-decoration: none; /* Remove underline on hover */
+        margin-left: -10px;
+        padding-left: 20px;
+        border-left: solid 2px #fff;
+        transition: 0.6s;
     }
 
     :root {
@@ -84,13 +103,26 @@
         /* Set your desired background color */
     }
 
+    /* Main */
+    .contents {
+        margin-top: 150px;
+    }
+
     /* Stripes */
 
     .stripe {
         height: 15px;
-        /* Adjust the height as needed */
-        max-width: 100.8%;
     }
+
+    .stripes {
+        margin-top: 120px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    
 
     /* Announcement Page */
 

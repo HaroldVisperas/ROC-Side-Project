@@ -41,10 +41,10 @@
                             <div>
                                 <div class="text-white fs-2 fw-bold text-uppercase">{{ auth()->user()->firstname }} {{ auth()->user()->middlename }} {{ auth()->user()->lastname }}</div>
                                 <div class="text-white fs-6 text-end neg10">
-                                    @if (auth()->user()->role == 'ceo')
-                                        CEO Account
-                                    @elseif (auth()->user()->role == 'administrator')
-                                        Administrator Account
+                                    @if (auth()->user()->role == 'company_owner')
+                                        Company Owner Account
+                                    @elseif (auth()->user()->role == 'brand_owner')
+                                        Brand Owner Account
                                     @endif
                                 </div>
                             </div>
@@ -93,36 +93,35 @@
         <div class="offcanvas-body">
             <nav class="navbar-dark">
                 <ul class="navbar-nav">
-                    <li>
-                        <form id="dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('dashboard-link').submit();">
-                                <i class="bi bi-microsoft fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Dashboard</span>
-                            </a>
-                        </form>
-                    </li>
-                    <li>
-                        <form id="brand-create-link" method="GET" action="{{ route('company.brand.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
-                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Create Brand</span>
-                            </a>
-                        </form>
-                    </li>
-                    <li>
-                    <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-bag-heart-fill fs-5 me-2"></i></span>
+                    <form id="dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                        @csrf
+                        <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('dashboard-link').submit();">
+                            <i class="bi bi-microsoft fs-5 me-2"></i>
+                            <span class="text-uppercase fw-bold fs-5">Dashboard</span>
+                        </a>
+                    </form>
+                    <form id="brand-create-link" method="GET" action="{{ route('company.brand.create') }}">
+                        @csrf
+                        <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
+                            <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                            <span class="text-uppercase fw-bold fs-5">Create Brand</span>
+                        </a>
+                    </form>
+                    <form id="brands-link" method="GET" action="{{ route('company.brands.create') }}">
+                        @csrf
+                        <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brands-link').submit();">
+                            <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
                             <span class="text-uppercase fw-bold fs-5">Brands</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-person-hearts fs-5 me-2"></i></span>
+                    </form>
+                    <form id="employees-link" method="GET" action="{{ route('company.employee.create') }}">
+                        @csrf
+                        <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+                        <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('employees-link').submit();">
+                            <i class="bi bi-person-hearts fs-5 me-2"></i>
                             <span class="text-uppercase fw-bold fs-5">Employees</span>
                         </a>
-                    </li>
+                    </form>
                 </ul>
             </nav>
         </div>
