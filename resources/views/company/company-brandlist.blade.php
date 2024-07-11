@@ -146,9 +146,9 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- foreach -->
-                <form id="brand-dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
-                    @csrf
-                    <div class="col-md-3 pt-3">
+                <div class="col-md-3 pt-3">
+                    <form id="brand-dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
+                        @csrf
                         <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('brand-dashboard-link').submit();">
                             <div class="card custom-card text-center">
                                 <div class="card-body p-0">
@@ -161,12 +161,12 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
-                </form>
+                    </form>
+                </div>
                 <!-- foreach -->
-                <form id="brand-dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
-                    @csrf
-                    <div class="col-md-3 pt-3">
+                <div class="col-md-3 pt-3">
+                    <form id="brand-dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
+                        @csrf
                         <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('brand-dashboard-link').submit();">
                             <div class="card custom-card text-center">
                                 <div class="card-body p-0">
@@ -179,8 +179,8 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
-                </form>
+                    </form>
+                </div>
                 <div class="col-md-3 pt-3">
                     <a href="Sample.html" class="card-link">
                         <div class="card custom-card text-center">
