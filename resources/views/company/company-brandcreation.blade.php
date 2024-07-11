@@ -5,27 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROCPH Digital Marketing Services</title>
+    <title>Brand Details</title>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/company-announcement.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/company-brand-create.css') }}">
 </head>
 
-<body>
-
-    <!-- Start of NavBar -->
+<body class="maxwidth">
+    <!-- NavBar -->
     <nav class="navbar navbar-expand-lg blue borderbottom {border-bottom: white 5px solid;}">
         <div class="container-fluid">
-
-            <!-- Start of offcanvas trigger -->
+            <!-- offcanvas trigger -->
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon" data-bs-target="#offcanvasExample"></span>
             </button>
-            <!-- End of offcanvas trigger -->
-
+            <!-- offcanvas trigger -->
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('assets/images/logo.png') }}" class="logo" alt="ROCPH">
             </a>
@@ -38,12 +35,11 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown ">
                         <div class="d-flex align-items-center my-2">
-                            <div class="rounded-4 me-3"
-                                style="width: 50px; height: 50px; background-image: url('{{ asset('assets/images/icon.png') }}'); background-size: cover;">
-                            </div>
+                        <div class="rounded-4 me-3"
+                            style="width: 50px; height: 50px; background-image: url('{{ asset('assets/images/icon.png') }}'); background-size: cover;">
+                        </div>
                             <div>
                                 <div class="text-white fs-2 fw-bold text-uppercase">{{ auth()->user()->firstname }} {{ auth()->user()->middlename }} {{ auth()->user()->lastname }}</div>
-                                <div class="text-white fs-6 text-end neg10">
                                 <div class="text-white fs-6 text-end neg10">
                                     @if (auth()->user()->role == 'ceo')
                                         CEO Account
@@ -85,20 +81,13 @@
             </div>
         </div>
     </nav>
-    <!-- End of NavBar -->
-
-    <!-- Start of Stripes -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 stripe borderbottom orange"></div>
-            <div class="col-12 stripe borderbottom red"></div>
-            <div class="col-12 stripe borderbottom green"></div>
-        </div>
+    <!-- NavBar -->
+    <div class="container-fluid p-0 maxwidth">
+        <div class="row stripe borderbottom orange">i</div>
+        <div class="row stripe borderbottom red">i</div>
+        <div class="row stripe borderbottom green">i</div>
     </div>
-    <!-- End of Stripes -->
-
-
-    <!-- Start of SideBar -->
+    <!-- SideBar -->
     <div class="offcanvas offcanvas-start blue text-white sidebar-nav " tabindex="-1" id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-body">
@@ -112,6 +101,8 @@
                                 <span class="text-uppercase fw-bold fs-5">Dashboard</span>
                             </a>
                         </form>
+                    </li>
+                    <li>
                         <form id="brand-create-link" method="GET" action="{{ route('company.brand.create') }}">
                             @csrf
                             <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
@@ -119,92 +110,69 @@
                                 <span class="text-uppercase fw-bold fs-5">Create Brand</span>
                             </a>
                         </form>
-                        <a class="nav-link pt-3 sidebar-link text-start" data-bs-toggle="collapse"
-                            href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    </li>
+                    <li>
+                    <a href="Sample.html" class="nav-link text-white text-start pt-3">
                             <span><i class="bi bi-bag-heart-fill fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Brand</span>
-                            <span><i class="bi bi-chevron-down"></i></span>
+                            <span class="text-uppercase fw-bold fs-5">Brands</span>
                         </a>
-                        <div class="collapse" id="collapseExample">
-                            <div>
-                                <ul class="navbar-nav ps-3">
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-3">
-                                            <span><i class="bi bi-ticket-detailed fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-5">Tickets</span>
-                                        </a></li>
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-3">
-                                            <span><i class="bi bi-cart4 fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-5">Services</span>
-                                        </a></li>
-                                </ul>
-                            </div>
-                        </div>
+                    </li>
+                    <li>
+                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
+                            <span><i class="bi bi-person-hearts fs-5 me-2"></i></span>
+                            <span class="text-uppercase fw-bold fs-5">Employees</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
         </div>
     </div>
-    <!-- End of SideBar -->
+    <!-- SideBar -->
 
-    <!-- Start of Main -->
-    <main class="mt-3 tblack main" data-bs-spy="noscroll">
-        <div class="container-fluid neg20">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <form id="return-form" method="GET" action="{{ route('company.dashboard.create') }}">
-                        @csrf
-                        <a class="nav-link tblue text-end pt-3" href="#" onclick="event.preventDefault(); document.getElementById('return-form').submit();">
-                            <span class="text-uppercase fw-bold fs-5">X</span>
-                        </a>
-                    </form>
-                </div>
-                <div class="col-lg-12">
-                    <h2 class="text-center tblue fw-bold">Announcement</h2>
-                </div>
-                <div class="col-lg-10">
-                    <h6 class="text-start borderbottom2 tblack fw-normal">Recent Feeds</h6>
-                </div>
-            </div>
-            @foreach($announcements as $announcement)
-                <div class="row justify-content-center mt-3">
-                    <div class="col-9">
-                        <div class="row">
-                            <div class="col-sm-5 m-1">
-                                <div class="fs-5 fw-bold tblack">{{ $announcement->title }}</div>
-                                <div class="fw-normal announcementName-2">{{ $announcement->updated_at->format('F j, Y') }} | 
-                                    <span style="color:green">{{ $announcement->updated_at->format('g:i A') }}</span>
-                                </div>
-                            </div>
-                        </div>
+    <!-- Upload Image -->
+    <main class="mt-5 pt-1 text-start tblack main">
+        <div class="container form-container">
+        <div class="bg-image">
+            <div class="form-overlay">
+            <h2 class="text-center mb-4 custom-heading">Brand Details</h2>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                </div>
-                <div class="row justify-content-center mt-3">
-                    <div class="col-10">
-                        <div class="row">
-                            <div class="fw-normal announcementParagraph lh-sm">
-                                <p>{{ $announcement->content }}</p>
-                                <br>
-                                <p>For more information, click <a href="{{ Str::startsWith($announcement->link_url, ['http://', 'https://']) ? 
-                                    $announcement->link_url : 'http://' . $announcement->link_url }}" target="_blank">{{ $announcement->link_text }}</a>
-                                </p>
-                            </div>
-                        </div>
+                @endif
+                <form method="POST" action="{{ route('company.brand.store') }}" >
+                    @csrf
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Brand Name*</label>
+                        <input type="text" class="form-control custom-input" id="name" name="name" value="{{ old('name') }}" placeholder="Enter brand name" required>
                     </div>
-                </div>
-            @endforeach
+                    <div class="mb-3">
+                        <label for="color" class="form-label">Brand Color*</label>
+                        <input type="text" class="form-control custom-input" id="color" name="color" value="{{ old('color') }}" placeholder="Enter brand color in hex (e.g., #008EC2)" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Brand Description*</label>
+                        <textarea class="form-control custom-input" id="description" name="description" rows="3" placeholder="Enter brand description" required>{{ old('description') }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="social_media_link" class="form-label">Social Media Link</label>
+                        <input type="url" class="form-control custom-input" id="social_media_link" name="social_media_link" value="{{ old('social_media_link') }}" placeholder="Enter social media link">
+                    </div>
+                    <button type="submit" class="btn blue text-white custom-button">Create</button>
+                </form>
+            </div>  
         </div>
     </main>
 
-    <!-- End of Main -->
-
-
-    <!-- Scripts -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
 </body>
 
 </html>

@@ -104,10 +104,13 @@
                                 <span class="text-uppercase fw-bold fs-5">Dashboard</span>
                             </a>
                         </form>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-person-plus-fill fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Create Brands</span>
-                        </a>
+                        <form id="brand-create-link" method="GET" action="{{ route('company.brand.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
+                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Create Brand</span>
+                            </a>
+                        </form>
                         <a href="Sample.html" class="nav-link text-white text-start pt-3">
                             <span><i class="bi bi-bag-heart-fill fs-5 me-2"></i></span>
                             <span class="text-uppercase fw-bold fs-5">Brands</span>
