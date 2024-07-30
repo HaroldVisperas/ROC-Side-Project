@@ -14,5 +14,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/company/store', [IndivCompanyCreationController::class, 'store_company'])->name('individual.company.store');
 
     Route::get('/individual/profile', [IndivUserProfileController::class, 'create'])->name('individual.profile.create');
-    Route::post('/individual/profile/store', [IndivUserProfileController::class, 'update'])->name('individual.profile.update');
+    Route::get('/individual/profile/edit', [IndivUserProfileController::class, 'edit'])->name('individual.profile.edit');
+    Route::post('/individual/profile/update', [IndivUserProfileController::class, 'update'])->name('individual.profile.update');
+    Route::post('/individual/profile/password/update', [IndivUserProfileController::class, 'update_password'])->name('individual.profile.password.update');
 });

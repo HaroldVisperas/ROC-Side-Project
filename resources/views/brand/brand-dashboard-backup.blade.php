@@ -98,50 +98,7 @@
             <nav class="navbar-dark">
                 <ul class="navbar-nav">
                     <li>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-microsoft fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Dashboard</span>
-                        </a>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-bag-heart-fill fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Brand profile</span>
-                        </a>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-kanban fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Project</span>
-                        </a>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-ticket-detailed fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Ticket</span>
-                        </a>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-person-heart fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Employee</span>
-                        </a>
-                        <a class="nav-link pt-3 sidebar-link text-start" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <span><i class="bi bi-house-gear-fill fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Services</span>
-                            <span><i class="bi bi-chevron-down"></i></span>
-                        </a>
-                        <div class="collapse" id="collapseExample">
-                            <div>
-                                <ul class="navbar-nav ps-3">
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-1">
-                                            <span><i class="bi bi-box-fill fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-6">Subscription</span>
-                                        </a></li>
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-1">
-                                            <span><i class="bi bi-cart-plus-fill fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-6">Cart</span>
-                                        </a></li>
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-1">
-                                            <span><i class="bi bi-receipt-cutoff fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-6">Proof of Payment</span>
-                                        </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <form id="dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                    <form id="dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
                             @csrf
                             <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('dashboard-link').submit();">
                                 <i class="bi bi-microsoft fs-5 me-2"></i>

@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Individual;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Employee;
 
 class IndivUserProfileController extends Controller
 {
     public function create(Request $request)
+    {
+        return view('individual.indiv-user-profile');
+    }
+
+    public function edit(Request $request)
     {
         $currentTimeZone = $request->timezone;
 
@@ -126,15 +133,43 @@ class IndivUserProfileController extends Controller
             'Pacific/Fiji'         => "(GMT+12:00) Fiji",
         );
 
-        return view('individual.indiv-user-profile', compact('timezones'));
+        return view('individual.indiv-user-profile-edit', compact('timezones'));
     }
+
 
     public function update(Request $request)
     {
         $user = auth()->user();
+        $user->gender = $request->gender;
         $user->timezone = $request->timezone;
         $user->save();
 
         return redirect()->route('individual.profile.create')->with('success', 'Profile updated successfully.');
+    }
+
+    public function update_password(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8',
+            'confirm_password' => 'required|min:8',
+        ]);
+    
+        // Assuming you have a method to check the current password
+        if (!Hash::check($request->current_password, auth()->user()->password)) {
+            return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        }
+
+        // Update the user's password
+        if ($request->new_password != $request->confirm_password) {
+            return back()->withErrors(['new_password' => 'The new password and confirm password do not match.']);
+        } else {
+            $user = auth()->user();
+            $user->password = bcrypt($request->new_password);
+            $user->save();
+
+            return redirect()->route('individual.profile.create')->with('success', 'Password updated successfully.');
+        }
     }
 }

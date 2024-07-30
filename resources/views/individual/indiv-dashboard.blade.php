@@ -108,48 +108,47 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="notification mt-3">
-                                    <img src="{{ asset('assets/images/Default.png') }}" alt="Profile Image">
-                                    <div class="text">
-                                        <p class="fw-bold">Amazon <span style="color: #CDCDCD; font-weight: 100;">
-                                                invited you to the company </span></p>
-                                        <p class="tblack notifdate">January 05, 2024 |<span style="color: #84c148;"> 10:30 AM
-                                            </span></p>
-                                        <button class="btn text-white green accept">Accept</button>
-                                        <button class="btn text-white red decline">Decline</button>
-                                    </div>
-                                </div>
-                                @foreach($invitations as $invitation)
-                                    <div class="notification mt-3">
-                                        <img src="{{ asset('assets/images/Default.png') }}" alt="Profile Image">
-                                        <div class="text">
-                                            <p class="fw-bold">{{ $invitation->affiliation }} <span style="color: #CDCDCD; font-weight: 100;">
-                                                invited you to the company as a <span class="fw-bold">
-                                                @if ($invitation->role == 'company_owner')
-                                                    Company Owner
-                                                @elseif ($invitation->role == 'brand_owner')
-                                                    Brand Owner
-                                                @elseif ($invitation->role == 'member')
-                                                    Member
-                                                @endif
-                                            </span></span></p>
-                                            <p class="tblack notifdate">{{ $invitation->updated_at->format('F j, Y') }} |<span style="color: #84c148;"> {{ $invitation->updated_at->format('g:i A') }}</span></p>
-                                            <form method="POST" action="{{ route('individual.invitation.update') }}">
-                                                @csrf
-                                                <input type="hidden" name="email" value="{{ $invitation->email }}">
-                                                <input type="hidden" name="employee_id" value="{{ $invitation->employee_id }}">
-                                                <input type="hidden" name="affiliation" value="{{ $invitation->affiliation }}">
-                                                <input type="hidden" name="role" value="{{ $invitation->role }}">
-                                                <button type="submit" class="btn text-white green accept">Accept</button>
-                                            </form>
-                                            <form method="POST" action="{{ route('individual.invitation.delete') }}">
-                                                @csrf
-                                                <input type="hidden" name="email" value="{{ $invitation->email }}">
-                                                <button type="submit" class="btn text-white red decline">Decline</button>
-                                            </form>
+                                @if ($invitations != null && count($invitations) > 0)
+                                    @foreach($invitations as $invitation)
+                                        <div class="notification mt-3">
+                                            <img src="{{ asset('assets/images/Default.png') }}" alt="Profile Image">
+                                            <div class="text">
+                                                <p class="fw-bold">{{ $invitation->affiliation }} <span style="color: #CDCDCD; font-weight: 100;">
+                                                    invited you to the company as a <span class="fw-bold">
+                                                    @if ($invitation->role == 'company_owner')
+                                                        Company Owner
+                                                    @elseif ($invitation->role == 'brand_owner')
+                                                        Brand Owner
+                                                    @elseif ($invitation->role == 'member')
+                                                        Member
+                                                    @endif
+                                                </span></span></p>
+                                                <p class="tblack notifdate">{{ $invitation->updated_at->setTimezone(auth()->user()->timezone)->format('F j, Y') }} |<span style="color: #84c148;"> {{ $invitation->updated_at->setTimezone(auth()->user()->timezone)->format('g:i A') }}</span></p>
+                                                <div class="d-flex gap-2">
+                                                    <form method="POST" action="{{ route('individual.invitation.update') }}">
+                                                        @csrf
+                                                        <input type="hidden" name="email" value="{{ $invitation->email }}">
+                                                        <input type="hidden" name="employee_id" value="{{ $invitation->employee_id }}">
+                                                        <input type="hidden" name="affiliation" value="{{ $invitation->affiliation }}">
+                                                        <input type="hidden" name="role" value="{{ $invitation->role }}">
+                                                        <button type="submit" class="btn text-white green accept">Accept</button>
+                                                    </form>
+                                                    <form method="POST" action="{{ route('individual.invitation.delete') }}">
+                                                        @csrf
+                                                        <input type="hidden" name="email" value="{{ $invitation->email }}">
+                                                        <button type="submit" class="btn text-white red decline">Decline</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
+                                    @endforeach
+                                @else
+                                    <div class="gray recentTaskBox1">
+                                        <p class="text-white fw-bold text-center">
+                                            <span class="tblack fw-bold">No Notifications</span>
+                                        </p>
                                     </div>
-                                @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>

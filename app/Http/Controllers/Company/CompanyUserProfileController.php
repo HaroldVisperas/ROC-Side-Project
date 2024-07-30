@@ -11,8 +11,6 @@ class CompanyUserProfileController extends Controller
 {
     public function create(Request $request)
     {
-        $currentTimeZone = $request->timezone;
-
         $employeeInfo = Employee::where('email', auth()->user()->email)->first();
 
         return view('company.company-user-profile', compact('employeeInfo'));

@@ -131,79 +131,145 @@
     </main>
 
     <main class="mt-3 text-start tblack main" data-bs-spy="noscroll">
-        <div class="container-fluid">
-            <div class="row justify-content-center userInfo">
-                <div class="col-xl-5 m-2 tblue basicInfo">
-                    <h3 class="tblue fw-bold">Basic Information</h3>
-                    <div class="col">
-                        <div class="table-responsive">
-                            <table class="table mt-3 biTable">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-start nowrap">First Name</td>
-                                        <td id="firstname" name="firstname" class="text-end">{{ auth()->user()->firstname }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start">Middle Name</td>
-                                        <td id="middlename" name="middlename" class="text-end">{{ auth()->user()->middlename }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start">Last Name</td>
-                                        <td id="lastname" name="lastname" class="text-end">{{ auth()->user()->lastname }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start nowrap">Contact Number</td>
-                                        <td id="phone_num" name="phone_num" class="text-end">{{ auth()->user()->phone_num }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start">Gender</td>
-                                        <td id="gender" name="gender" class="text-end">{{ auth()->user()->gender }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start">TimeZone</td>
-                                        <td id="timezone" name="timezone" class="text-end">{{ auth()->user()->timezone }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+        <form method="POST" action="{{ route('individual.profile.update') }}">
+            @csrf
+            <div class="container-fluid">
+                <div class="row justify-content-center userInfo">
+                    <div class="col-xl-5 m-2 tblue basicInfo">
+                        <h3 class="tblue fw-bold">Basic Information</h3>
+                        <div class="col">
+                            <div class="table-responsive">
+                                <table class="table mt-3 biTable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start nowrap">First Name</td>
+                                            <td id="firstname" name="firstname" class="text-end">{{ auth()->user()->firstname }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">Middle Name</td>
+                                            <td id="middlename" name="middlename" class="text-end">{{ auth()->user()->middlename }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">Last Name</td>
+                                            <td id="lastname" name="lastname" class="text-end">{{ auth()->user()->lastname }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">Gender</td>
+                                            <td>
+                                                <select id="gender" name="gender" class="form-control text-end" required>
+                                                    <option value="Prefer not to say">Prefer not to say</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female" selected>Female</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">TimeZone</td>
+                                            <td>
+                                                <select id="timezone" name="timezone" class="form-control text-end" required>
+                                                    @foreach($timezones as $timezone => $label)
+                                                        <option value="{{ $timezone }}">{{ $label }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-xl-5 m-2 contactInfo">
-                    <h3 class="tblue fw-bold">Employee Information</h3>
-                    <div class="col tblue">
-                        <div class="table-responsive">
-                            <table class="table mt-3 ciTable">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-start nowrap">Contact Number</td>
-                                        <td id="phone_num" name="phone_num" class="text-end">{{ auth()->user()->phone_num }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start">Personal Email</td>
-                                        <td id="email" name="email" class="text-end">{{ auth()->user()->email }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start nowrap">Change Password</td>
-                                        <td id="password" class="text-end">*********************</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    
+                    <div class="col-xl-5 m-2 contactInfo">
+                        <h3 class="tblue fw-bold">Employee Information</h3>
+                        <div class="col tblue">
+                            <div class="table-responsive">
+                                <table class="table mt-3 ciTable">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start nowrap">Contact Number</td>
+                                            <td><input type="text" id="phone_num" name="phone_num" class="form-control text-end" value="{{ auth()->user()->phone_num }}" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">Personal Email</td>
+                                            <td id="email" name="email" class="text-end">{{ auth()->user()->email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start nowrap">Change Password</td>
+                                            <td id="password" class="text-end">*********************
+                                                <i class="bi bi-pencil-square" style="color: #008EC2" data-bs-toggle="modal"
+                                                    data-bs-target="#changePasswordModal">
+                                                </i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <form method="GET" action="{{ route('individual.profile.edit') }}">
             <div class="container-fluid">
                 <div class="row justify-content-center userInfo">
                     <div class="col-10 text-end">
-                        <button type="submit" class="col-xl-2 nowrap btn green twhite">Edit Profile</button>
+                        <button type="submit" class="col-xl-2 nowrap btn green twhite">Save Changes</button>
+                        <a href="#" class="col-xl-2 nowrap btn red twhite" onclick="event.preventDefault(); document.getElementById('cancel-profile-edit').submit();">
+                            <span>Cancel Changes</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </form>
+        <form id="cancel-profile-edit" method="GET" action="{{ route('individual.profile.create') }}">
+            @csrf
+        </form>
+
+        <!-- Change Password Modal -->
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="change-password-form" method="POST" action="{{ route('individual.profile.password.update') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="current_password" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="current_password" name="current_password"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new_password" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="new_password" name="new_password" minlength="8" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" minlength="8" required>
+                            </div>
+                            <button type="submit" class="btn green twhite">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="{{ asset('assets/js/contenteditable.js') }}"></script>
