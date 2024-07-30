@@ -4,10 +4,21 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Employee;
 
 class CompanyUserProfileController extends Controller
 {
     public function create(Request $request)
+    {
+        $currentTimeZone = $request->timezone;
+
+        $employeeInfo = Employee::where('email', auth()->user()->email)->first();
+
+        return view('company.company-user-profile', compact('employeeInfo'));
+    }
+
+    public function edit(Request $request)
     {
         $currentTimeZone = $request->timezone;
 
@@ -126,15 +137,45 @@ class CompanyUserProfileController extends Controller
             'Pacific/Fiji'         => "(GMT+12:00) Fiji",
         );
 
-        return view('company.company-user-profile', compact('timezones'));
+        $employeeInfo = Employee::where('email', auth()->user()->email)->first();
+
+        return view('company.company-user-profile-edit', compact('timezones', 'employeeInfo'));
     }
+
 
     public function update(Request $request)
     {
         $user = auth()->user();
+        $user->gender = $request->gender;
         $user->timezone = $request->timezone;
         $user->save();
 
         return redirect()->route('company.profile.create')->with('success', 'Profile updated successfully.');
+    }
+
+    public function update_password(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8',
+            'confirm_password' => 'required|min:8',
+        ]);
+    
+        // Assuming you have a method to check the current password
+        if (!Hash::check($request->current_password, auth()->user()->password)) {
+            return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        }
+
+        // Update the user's password
+        if ($request->new_password != $request->confirm_password) {
+            return back()->withErrors(['new_password' => 'The new password and confirm password do not match.']);
+        } else {
+            $user = auth()->user();
+            $user->password = bcrypt($request->new_password);
+            $user->save();
+
+            return redirect()->route('company.profile.create')->with('success', 'Password updated successfully.');
+        }
     }
 }

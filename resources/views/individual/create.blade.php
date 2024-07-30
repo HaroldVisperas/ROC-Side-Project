@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ asset('asset/css/company.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/css/intlTelInput.css">
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/js/intlTelInput.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets/css/individual-company-create.css') }}">
 </head>
 
 <body class="maxwidth">
@@ -26,7 +26,7 @@
             </button>
             <!-- offcanvas trigger -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/images/logo.png') }}" class="logo" alt="ROCPH">
+                <img src="{{ asset('asset/images/logo.png') }}" class="logo" alt="ROCPH">
             </a>
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -38,11 +38,11 @@
                     <li class="nav-item dropdown ">
                         <div class="d-flex align-items-center my-2">
                         <div class="rounded-4 me-3"
-                            style="width: 50px; height: 50px; background-image: url('{{ asset('assets/images/Default.png') }}'); background-size: cover;">
+                            style="width: 50px; height: 50px; background-image: url('{{ asset('asset/images/icon.png') }}'); background-size: cover;">
                         </div>
                             <div>
-                                <div class="text-white fs-2 fw-bold text-uppercase">{{ auth()->user()->firstname }} {{ auth()->user()->middlename }} {{ auth()->user()->lastname }}</div>
-                                <div class="text-white fs-6 text-end neg10">Individual Account</div>
+                                <div class="text-white fs-2 fw-bold text-uppercase">Zara Inocencio</div>
+                                <div class="text-white fs-6 text-end neg10">Company Account</div>
                             </div>
                         </div>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -51,7 +51,7 @@
                     </li>
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="True"></a>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-end">
                         <form id="profile-form" method="GET" action="{{ route('individual.profile.create') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
@@ -84,7 +84,7 @@
         <div class="offcanvas-body">
             <nav class="navbar-dark">
                 <ul class="navbar-nav">
-                    <li>
+                <li>
                         <form id="dashboard-link" method="GET" action="{{ route('individual.dashboard.create') }}">
                             @csrf
                             <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('dashboard-link').submit();">
@@ -117,21 +117,21 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <form method="POST" action="{{ route('individual.company.store') }}">
+                <form action="{{ route('company.store') }}" method="POST">
                     @csrf
                     <!-- Input fields go here -->
                     <div class="mb-3">
-                        <label for="company_name" class="form-label">Company Name</label>
-                        <input type="text" class="form-control custom-input" id="company_name" name="company_name" placeholder="Enter company name" required>
+                        <label for="companyName" class="form-label">Company Name</label>
+                        <input type="text" class="form-control custom-input" id="companyName" name="companyName" placeholder="Enter company name" required>
                     </div>
                     <div class="row mb-3">
                         <div class="col">
-                            <label for="address_line_1" class="form-label">Address Line 1</label>
-                            <input type="text" class="form-control custom-input" id="address_line_1" name="address_line_1" placeholder="Enter address line 1" required>
+                            <label for="addressLine1" class="form-label">Address Line 1</label>
+                            <input type="text" class="form-control custom-input" id="addressLine1" name="address_line_1" placeholder="Enter address line 1" required>
                         </div>
                         <div class="col">
-                            <label for="address_line_2" class="form-label">Address Line 2</label>
-                            <input type="text" class="form-control custom-input" id="address_line_2" name="address_line_2" placeholder="Enter address line 2">
+                            <label for="addressLine2" class="form-label">Address Line 2</label>
+                            <input type="text" class="form-control custom-input" id="addressLine2" name="address_line_2" placeholder="Enter address line 2">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -150,15 +150,16 @@
                             <input type="text" class="form-control custom-input" id="country" name="country" placeholder="Enter country" required>
                         </div>
                         <div class="col">
-                            <label for="mobile_number" class="form-label">Mobile Number</label>
-                            <input type="tel" class="form-control custom-input phone-number" id="mobile_number" name="mobile_number" placeholder="Enter mobile number" required>
+                            <label for="mobileNumber" class="form-label">Mobile Number</label>
+                            <br>
+                            <input type="tel" class="form-control custom-input phone-number" id="mobileNumber" name="mobileNumber" placeholder="Enter mobile number" required>
+                            <input type="hidden" id="fullMobileNumber" name="fullMobileNumber">
                         </div>
                         <div class="col">
-                            <label for="zip_code" class="form-label">Zip Code</label>
-                            <input type="number" class="form-control custom-input" id="zip_code" name="zip_code" placeholder="Enter zip code" required>
+                            <label for="zipCode" class="form-label">Zip Code</label>
+                            <input type="text" class="form-control custom-input" id="zipCode" name="zipCode" placeholder="Enter zip code" required>
                         </div>
                     </div>
-                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <button type="submit" class="btn blue text-white custom-button">Create</button>
                 </form>
 
@@ -166,13 +167,13 @@
         </div>
     </main>
 
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script> 
-    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
-    <script src="{{ asset('assets/js/register.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.5.1.js') }}"></script> 
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('asset/js/register.js') }}"></script>
 
 </body>
 </html>

@@ -172,10 +172,10 @@
                                         </div>
                                     @endforeach
                                 @else
-                                    <div class="row mt-3 justify-content-start announcementImage">
-                                        <div class="col-md-7 announcementName">
-                                            <div class="fs-5 fw-bold tblack">No Announcement</div>
-                                        </div>
+                                    <div class="col-5 gray recentTaskBox1 p-3">
+                                        <h4 class="text-white fw-bold text-center">
+                                            <span class="tblack">No Announcement</span>
+                                        </h4>
                                     </div>
                                 @endif
                             </div>
@@ -193,7 +193,7 @@
                                 </div>
                             </div>
                             <div class="row mt-4 justify-content-center">
-                                <div class="col-5 me-4 gray recentTaskBox1 p-3">
+                                <div class="col-5 gray recentTaskBox1 p-3">
                                     @if($latestAnnouncements->isNotEmpty())
                                         @foreach($recenttasks as $recenttask)
                                             <div>
