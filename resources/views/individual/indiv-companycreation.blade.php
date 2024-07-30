@@ -119,21 +119,23 @@
                 @endif
                 <form method="POST" action="{{ route('individual.company.store') }}">
                     @csrf
-                    <!-- Input fields go here -->
+                    <!-- Company Name -->
                     <div class="mb-3">
-                        <label for="company_name" class="form-label">Company Name</label>
-                        <input type="text" class="form-control custom-input" id="company_name" name="company_name" placeholder="Enter company name" required>
+                        <label for="companyName" class="form-label">Company Name</label>
+                        <input type="text" class="form-control custom-input" id="companyName" name="company_name" placeholder="Enter company name" required>
                     </div>
+                    <!-- Address Line 1 and Address Line 2 -->
                     <div class="row mb-3">
                         <div class="col">
-                            <label for="address_line_1" class="form-label">Address Line 1</label>
-                            <input type="text" class="form-control custom-input" id="address_line_1" name="address_line_1" placeholder="Enter address line 1" required>
+                            <label for="addressLine1" class="form-label">Address Line 1</label>
+                            <input type="text" class="form-control custom-input" id="addressLine1" name="address_line_1" placeholder="Enter address line 1" required>
                         </div>
                         <div class="col">
-                            <label for="address_line_2" class="form-label">Address Line 2</label>
-                            <input type="text" class="form-control custom-input" id="address_line_2" name="address_line_2" placeholder="Enter address line 2">
+                            <label for="addressLine2" class="form-label">Address Line 2</label>
+                            <input type="text" class="form-control custom-input" id="addressLine2" name="address_line_2" placeholder="Enter address line 2">
                         </div>
                     </div>
+                    <!-- City and State -->
                     <div class="row mb-3">
                         <div class="col">
                             <label for="city" class="form-label">City</label>
@@ -144,24 +146,27 @@
                             <input type="text" class="form-control custom-input" id="state" name="state" placeholder="Enter state/province" required>
                         </div>
                     </div>
+                    <!-- Country, Mobile Number, and Zip Code -->
                     <div class="row mb-3">
                         <div class="col">
                             <label for="country" class="form-label">Country</label>
                             <input type="text" class="form-control custom-input" id="country" name="country" placeholder="Enter country" required>
                         </div>
                         <div class="col">
-                            <label for="mobile_number" class="form-label">Mobile Number</label>
-                            <input type="tel" class="form-control custom-input phone-number" id="mobile_number" name="mobile_number" placeholder="Enter mobile number" required>
+                            <label for="mobileNumber" class="form-label">Mobile Number</label>
+                            <br>
+                            <input type="tel" class="form-control custom-input phone-number" id="mobileNumber" name="mobile_number" placeholder="Enter mobile number" required>
                         </div>
                         <div class="col">
-                            <label for="zip_code" class="form-label">Zip Code</label>
-                            <input type="number" class="form-control custom-input" id="zip_code" name="zip_code" placeholder="Enter zip code" required>
+                            <label for="zipCode" class="form-label">Zip Code</label>
+                            <input type="text" class="form-control custom-input" id="zipCode" name="zip_code" placeholder="Enter zip code" required>
                         </div>
                     </div>
+                    <!-- Hidden User ID Field -->
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    <!-- Submit Button -->
                     <button type="submit" class="btn blue text-white custom-button">Create</button>
                 </form>
-
             </div>
         </div>
     </main>
@@ -172,7 +177,7 @@
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
-    <script src="{{ asset('assets/js/register.js') }}"></script>
+    <script src="{{ asset('assets/js/companycreationnumber.js') }}"></script>
 
 </body>
 </html>
