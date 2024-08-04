@@ -3,6 +3,12 @@
 }
 
 /* navbar */
+.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
 .navbar-dark .navbar-nav .nav-link {
     color: #fff;
 }
@@ -77,6 +83,18 @@
 
 .main p {
     margin-left: -10px;
+}
+
+.contents {
+    margin-top: 120px;
+}
+
+.stripes {
+    margin-top: 120px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 /* Stripes */
@@ -365,6 +383,3 @@ td:last-child {
         max-width: 100%;
     }
 }
-
-
-

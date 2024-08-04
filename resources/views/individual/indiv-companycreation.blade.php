@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/individual-company-create.css') }}">
 </head>
 
-<body class="maxwidth">
+<body>
     <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg blue borderbottom {border-bottom: white 5px solid;}">
+    <nav class="navbar navbar-expand-lg blue borderbottom fixed-top {border-bottom: white 5px solid;}">
         <div class="container-fluid">
             <!-- offcanvas trigger -->
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
@@ -73,10 +73,12 @@
         </div>
     </nav>
     <!-- NavBar -->
-    <div class="container-fluid p-0 maxwidth">
-        <div class="row stripe borderbottom orange">i</div>
-        <div class="row stripe borderbottom red">i</div>
-        <div class="row stripe borderbottom green">i</div>
+    <div class="container-fluid">
+        <div class="row stripes">
+            <div class="col-12 stripe borderbottom orange"></div>
+            <div class="col-12 stripe borderbottom red"></div>
+            <div class="col-12 stripe borderbottom green"></div>
+        </div>
     </div>
     <!-- SideBar -->
     <div class="offcanvas offcanvas-start blue text-white sidebar-nav " tabindex="-1" id="offcanvasExample"
@@ -108,8 +110,9 @@
 
     <!-- Create Company Form -->
     <main class="mt-5 pt-1 text-start tblack main">
-        <div class="container form-container">
-        <div class="bg-image">
+        <div class="container-fluid form-container">
+            <div class="row justify-content-center contents">
+            <div class="bg-image">
             <div class="form-overlay">
                 <h2 class="text-center mb-4">Company Details</h2>
                 @if (session('success'))
@@ -167,6 +170,7 @@
                     <!-- Submit Button -->
                     <button type="submit" class="btn blue text-white custom-button">Create</button>
                 </form>
+            </div>  
             </div>
         </div>
     </main>

@@ -151,35 +151,6 @@
                                 </ul>
                             </div>
                         </div>
-                        <form id="dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('dashboard-link').submit();">
-                                <i class="bi bi-microsoft fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Dashboard</span>
-                            </a>
-                        </form>
-                        <form id="brand-create-link" method="GET" action="{{ route('brand.assets.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
-                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Assets</span>
-                            </a>
-                        </form>
-                        <form id="brands-link" method="GET" action="{{ route('company.brands.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brands-link').submit();">
-                                <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Brands</span>
-                            </a>
-                        </form>
-                        <form id="employees-link" method="GET" action="{{ route('company.employee.create') }}">
-                            @csrf
-                            <input type="hidden" name="email" value="{{ auth()->user()->email }}">
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('employees-link').submit();">
-                                <i class="bi bi-person-hearts fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Employees</span>
-                            </a>
-                        </form>
                     </li>
                 </ul>
             </nav>
@@ -192,117 +163,82 @@
     <main class="mt-2 text-start tblack main" data-bs-spy="noscroll">
         <div class="container-fluid">
             <div class="row justify-content-center contents">
-                <div class="m-2 col-lg-6 fw-bold announcementCol">
-                    <h1 class="text-center mt-4 fw-bold tgray">Announcement</h1>
-                    <div class="row justify-content-center">
-                        <div class="col-md-10">
-                            <div class="row mt-3 justify-content-center">
-                                <div class="col-sm-auto me-4">
-                                    <div class="fs-5 fw-bold text-start tblack">New Announcement</div>
-                                </div>
-                                <div class="col-sm-auto text-end mt-2">
-                                    <div class="fw-normal announcementName-2">January 05, 2024 | <span style="color:green">
-                                            10:24 AM </span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-3 justify-content-center">
-                        <div class="col-md-10">
-                            <div class="fw-normal announcementP lh-sm fw-lighter">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                                    nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec
-                                    purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui.
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                                    nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec
-                                    purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. <span href="#"
-                                        style="color:green">
-                                        Read More...</p>
-                            </div>
-                        </div>
+                <div class="col-md-9">
+                    <div class="card-header">Brand Colors</div>
+
+                    <div class="card-body">
                     </div>
                 </div>
-                <div class="m-2 col-lg-5 blue currentSubCol text-white">
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="text-center twhite">Current Subscription</h4>
-                        </div>
+                <div class="col-md-3">
+                    <div class="card-header">Brand Color</div>
+                    <div class="card-body">
+                        <!-- <form action="" method="POST" enctype="multipart/form-data"> -->
+                        <form method="" action="">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="color_title" class="form-label">Color Description:</label>
+                                <input type="text" class="form-control" id="color_title" name="color_title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="color" class="form-label">Color:</label>
+                                <input type="file" class="form-control" id="color" name="color">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
-                    <div class="row">
-                        <div class="col text-center availedSubsTop">
-                            <div class=" fw-bold text-uppercase">
-                                <h1>Enterprise</h1>
-                            </div>
-                            <div class="fw-normal tblack availedSubsTop-2">Availed Subscription</div>
-                        </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <main class="mt-2 text-start tblack main" data-bs-spy="noscroll">
+        <div class="container-fluid">
+            <div class="row justify-content-center contents">
+                <div class="col-md-9">
+                    <div class="card-header">Gallery</div>
+
+                    <div class="card-body">
                     </div>
-                    <div class="row">
-                        <div class="col text-center availedSubsBot mt-3">
-                            <div class="fw-bold  text-lowercase">
-                                <h3 style="color:rgb(22, 14, 101)">bearbrand</h3>
+                </div>
+                <div class="col-md-3">
+                    <div class="card-header">Add Image</div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('brand.assets.image.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="image_brand" value="{{ auth()->user()->email }}">
+                            <div class="mb-3">
+                                <label for="image_title" class="form-label">Image Title:</label>
+                                <input type="text" class="form-control" id="image_title" name="image_title">
                             </div>
-                            <div class="fw-normal tblack availedSubsBot-2 ">Brand Name</div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center text-center mt-3 subsDate">
-                        <div class="col-4 text-center subsDateTop">
-                            <div class="fw-bold">
-                                <h6>June 01, 2024</h6>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image File:</label>
+                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="image" name="image" onchange="previewImage(this)">
                             </div>
-                            <div class="fw-normal tblack subsDateTop-2 ">Start Date</div>
-                        </div>
-                        <div class="col-4 text-center subsDateBot">
-                            <div class="fw-bold">
-                                <h6>August 01, 2023</h6>
+                            <div class="mb-3">
+                                <div id="image_preview" style="width: 100px; height: 100px;"></div>
+                                <!-- <img id="image_preview" src="#" alt="Image Preview" style="width: 100px; height: 100px;"> -->
                             </div>
-                            <div class="fw-normal tblack subsDateBot-2">Billing Date</div>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <main class="mt-1 text-start tblack main" data-bs-spy="noscroll">
-        <div class="container-fluid">
-            <div class="row justify-content-center mt-2">
-                <div class="col-md-11 recentTasks">
-                    <div class="row justify-content-center">
-                        <div class="col">
-                            <h3 class="text-center fw-bold tgray mt-3">Recent Tasks
-                                <a href="your-target-url.html" class="btn"
-                                    style="background-color: #84c148; color: white; border: solid 2px black;">View</a>
-                            </h3>
-                        </div>
-                    </div>
+    <script type="text/javascript">
+        function previewImage(input) {
+            if(input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $("#image_preview").css('background-image', 'url(' + e.target.result + ')');
+                    $("#image_preview").hide();
+                    $("#image_preview").fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
-                    <div class="row justify-content-center actSubsTop">
-                        <div class="m-3 col-sm-5 actSubBox1 blue">
-                            <div class="fw-bold text-uppercase">
-                                <h3 class="text-white text-center"><span class="tblack">"Added To-do"</span></h3>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">Company Name: <span
-                                    style="color:white; font-weight: 800">Amazon Prime</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Brand Name: <span
-                                    style="color:white; font-weight: 800">Nike</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Ticket No.: <span
-                                    style="color:white; font-weight: 800">359875</span></div>
-                        </div>
-                        <div class="m-3 col-sm-5 actSubBox2 blue">
-                            <div class="fw-bold text-uppercase">
-                                <h3 class="text-white text-center"><span class="tblack">"Added To-do"</span></h3>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">Company Name: <span
-                                    style="color:white; font-weight: 800">Amazon Prime</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Brand Name: <span
-                                    style="color:white; font-weight: 800">Nike</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Ticket No.: <span
-                                    style="color:white; font-weight: 800">359875</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </main>
 
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
