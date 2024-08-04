@@ -195,8 +195,12 @@
             <div class="row justify-content-center contents">
                 <div class="col-md-9">
                     <div class="card-header">Gallery</div>
-
                     <div class="card-body">
+                        @foreach($images as $image)
+                            <div>
+                                <img src="{{ asset($image->path) }}" alt="{{ $image->title }}" style="width: 100px; height: 100px;">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-md-3">

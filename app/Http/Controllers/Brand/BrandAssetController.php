@@ -10,7 +10,8 @@ class BrandAssetController extends Controller
 {
     public function create()
     {
-        return view('brand.brand-assets');
+        $images = Image::where('brand', auth()->user()->email)->get();
+        return view('brand.brand-assets', compact('images'));
     }
 
     public function store(Request $request)
