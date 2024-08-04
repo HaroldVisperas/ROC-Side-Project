@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/brand-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/brand-assets.css') }}">
 </head>
 
 <body>
@@ -58,20 +58,10 @@
                     <a class="navbarName dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="True"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <form id="profile-form" method="GET" action="{{ route('company.profile.create') }}">
+                        <form id="profile-form" method="GET" action="{{ route('brand.user.profile.create') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
                                 <i class="bi bi-person-check fs-5 me-2"></i>My Profile</a></li>
-                        </form>
-                        <form id="task-form" method="GET" action="{{ route('brand.tasks.create') }}">
-                            @csrf
-                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('task-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Tasks</a></li>
-                        </form>
-                        <form id="mockup-form" method="GET" action="{{ route('mockup.dashboard.create') }}">
-                            @csrf
-                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('mockup-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Mock Up</a></li>
                         </form>
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -105,21 +95,27 @@
                                 <span class="text-uppercase fw-bold fs-5">Dashboard</span>
                             </a>
                         </form>
-                        <form id="brand-create-link" method="GET" action="{{ route('brand.assets.create') }}">
+                        <form id="brand-profile-link" method="GET" action="{{ route('brand.profile.create') }}">
                             @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
-                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-profile-link').submit();">
+                                <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Brand Profile</span>
+                            </a>
+                        </form>
+                        <form id="assets-link" method="GET" action="{{ route('brand.assets.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('assets-link').submit();">
+                                <i class="bi bi-image fs-5 me-2"></i>
                                 <span class="text-uppercase fw-bold fs-5">Assets</span>
                             </a>
                         </form>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-bag-heart-fill fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Brand profile</span>
-                        </a>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-kanban fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Project</span>
-                        </a>
+                        <form id="project-link" method="GET" action="{{ route('brand.tasks.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('project-link').submit();">
+                                <i class="bi bi-kanban fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Project</span>
+                            </a>
+                        </form>
                         <a href="Sample.html" class="nav-link text-white text-start pt-3">
                             <span><i class="bi bi-ticket-detailed fs-5 me-2"></i></span>
                             <span class="text-uppercase fw-bold fs-5">Ticket</span>
@@ -144,10 +140,24 @@
                                             <span><i class="bi bi-cart-plus-fill fs-5 me-2"></i></span>
                                             <span class="text-uppercase fw-bold fs-6">Cart</span>
                                         </a></li>
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-1">
-                                            <span><i class="bi bi-receipt-cutoff fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-6">Proof of Payment</span>
-                                        </a></li>
+                                    <li>
+                                        <form id="payment-method-link" method="GET" action="{{ route('brand.paymentmethod.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('payment-method-link').submit();">
+                                                <i class="bi bi-cash fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Payment Method</span>
+                                            </a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form id="proof-of-payment-link" method="GET" action="{{ route('brand.proofofpayment.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('proof-of-payment-link').submit();">
+                                                <i class="bi bi-receipt-cutoff fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Proof of Payment</span>
+                                            </a>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -164,85 +174,116 @@
         <div class="container-fluid">
             <div class="row justify-content-center contents">
                 <div class="col-md-9">
-                    <div class="card-header">Brand Colors</div>
-
-                    <div class="card-body">
+                    <div class="card-header blue twhite">Brand Colors</div>
+                    <div class="card-body gray">
+                        <div class="row justify-content-center">
+                            @foreach($colors as $color)
+                                <div class="col-3">
+                                    <div class="row justify-content-center">
+                                        <form id="delete-color-link-{{ $color->id }}" method="POST" action="{{ route('brand.assets.color.delete') }}">
+                                            @csrf
+                                            <input type="hidden" name="color_id" value="{{ $color->id }}">
+                                            <a href="#" class="btn btn-sm tgray me-1 text-start" onclick="event.preventDefault(); document.getElementById('delete-color-link-{{ $color->id }}').submit();">
+                                                <i class="bi bi-trash3-fill"></i>
+                                            </a>
+                                        </form>
+                                        <div class="col-md-12 mt-2 colorCircle" style="background-color: {{ $color->color }};"></div>
+                                        <div class="col-md-12 mt-3 text-center fw-bold">Hex: <span class="fw-light">{{ $color->color }}</span></div>
+                                        <div class="col-md-12 mt-1 text-center fw-bold">RGB: <span class="fw-light">{{ json_decode($color->rgb)->r }}, {{ json_decode($color->rgb)->g }}, {{ json_decode($color->rgb)->b }}</div>
+                                        <div class="col-md-12 mt-1 text-center fw-bold">HSL: <span class="fw-light">{{ json_decode($color->hsl)->h }}°, {{ json_decode($color->hsl)->s }}%, {{ json_decode($color->hsl)->l }}%</span></div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card-header">Brand Color</div>
-                    <div class="card-body">
-                        <!-- <form action="" method="POST" enctype="multipart/form-data"> -->
-                        <form method="" action="">
+                    <div class="card-header orange twhite">Brand Color</div>
+                    <div class="card-body gray">
+                        <form method="POST" action="{{ route('brand.assets.color.store') }}">
                             @csrf
-                            <div class="mb-3">
-                                <label for="color_title" class="form-label">Color Description:</label>
-                                <input type="text" class="form-control" id="color_title" name="color_title">
-                            </div>
+                            <input type="hidden" name="color_brand" value="{{ auth()->user()->email }}">
                             <div class="mb-3">
                                 <label for="color" class="form-label">Color:</label>
-                                <input type="file" class="form-control" id="color" name="color">
+                                <input type="color" class="form-control" id="color" name="color">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn green twhite">Submit</button>
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
-    </main>
-    <main class="mt-2 text-start tblack main" data-bs-spy="noscroll">
-        <div class="container-fluid">
-            <div class="row justify-content-center contents">
-                <div class="col-md-9">
-                    <div class="card-header">Gallery</div>
-                    <div class="card-body">
+            <div class="col-md-9 mt-3" style="z-index: -1">
+                <div class="card-header blue twhite">Gallery</div>
+                <div class="card-body gray">
+                    <div class="row justify-content-center">
                         @foreach($images as $image)
-                            <div>
-                                <img src="{{ asset($image->path) }}" alt="{{ $image->title }}" style="width: 100px; height: 100px;">
+                            <div class="col-md-4 pt-3">
+                                <a href="Sample.html" class="card-link">
+                                    <div class="card custom-card text-center">
+                                        <div class="cardheader action-buttons">
+                                            <form id="delete-image-link-{{ $image->id }}" method="POST" action="{{ route('brand.assets.image.delete') }}">
+                                                @csrf
+                                                <input type="hidden" name="image_id" value="{{ $image->id }}">
+                                            </form>
+                                            <button onclick="event.preventDefault(); document.getElementById('delete-image-link-{{ $image->id }}').submit();" class="btn btn-sm me-1"><i class="bi bi-trash3-fill"></i></button>
+                                            <a href="{{ asset($image->path) }}" download class="btn btn-sm"><i class="bi bi-download"></i></a>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="card-image">
+                                                <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $image->title }}">
+                                            </div>
+                                            <div class="card-footer blue text-white fs-6">{{ $image->title }}</div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card-header">Add Image</div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('brand.assets.image.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="image_brand" value="{{ auth()->user()->email }}">
-                            <div class="mb-3">
-                                <label for="image_title" class="form-label">Image Title:</label>
-                                <input type="text" class="form-control" id="image_title" name="image_title">
-                            </div>
-                            <div class="mb-3">
-                                <label for="image" class="form-label">Image File:</label>
-                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="image" name="image" onchange="previewImage(this)">
-                            </div>
-                            <div class="mb-3">
-                                <div id="image_preview" style="width: 100px; height: 100px;"></div>
-                                <!-- <img id="image_preview" src="#" alt="Image Preview" style="width: 100px; height: 100px;"> -->
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+            </div>
+            <div class="col-md-3 mt-3">
+                <div class="card-header orange twhite">Add Image</div>
+                <div class="card-body gray">
+                    <form method="POST" action="{{ route('brand.assets.image.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="image_brand" value="{{ auth()->user()->email }}">
+                        <div class="mb-3">
+                            <label for="image_title" class="form-label">Image Title:</label>
+                            <input type="text" class="form-control" id="image_title" name="image_title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image File:</label>
+                            <input type="file" accept=".png, .jpg, .jpeg" class="form-control" id="image" name="image" onchange="previewImage(event)">
+                        </div>
+                        <div class="mb-3">
+                            <img id="image_preview" src="#" alt="Image Preview" style="width: 100%; height: 100%; display: none;">
+                        </div>
+                        <button type="submit" class="btn green twhite">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
     </main>
 
-    <script type="text/javascript">
-        function previewImage(input) {
-            if(input.files && input.files[0]) {
-                var reader = new FileReader();
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('image_preview');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
                 reader.onload = function(e) {
-                    $("#image_preview").css('background-image', 'url(' + e.target.result + ')');
-                    $("#image_preview").hide();
-                    $("#image_preview").fadeIn(650);
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
                 }
+                
                 reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
             }
         }
     </script>
-
 
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
@@ -251,5 +292,4 @@
     <script src="{{ asset('assets/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
-
 </html>

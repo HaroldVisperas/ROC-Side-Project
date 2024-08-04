@@ -60,16 +60,7 @@
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
                                 <i class="bi bi-gear fs-5 me-2"></i>My Profile</a></li>
-                        </form>
-                        <form id="task-form" method="GET" action="{{ route('brand.tasks.create') }}">
-                            @csrf
-                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('task-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Tasks</a></li>
-                        </form>
-                        <form id="mockup-form" method="GET" action="{{ route('mockup.dashboard.create') }}">
-                            @csrf
-                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('mockup-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Mock Up</a></li>
+                            <input type="hidden" name="user_timezone" value="{{ auth()->user()->timezone }}">
                         </form>
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf

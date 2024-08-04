@@ -1,0 +1,360 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background */
+
+/* navbar */
+.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ccc;
+}
+
+.dropdown-menu {
+    background-color: #84c148;
+    border-color: #84c148;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color: #178325;
+    color: #fff;
+}
+
+.navbar-brand img {
+    max-height: 90px;
+}
+
+.accountName {
+    color: #fff;
+    width: 140%;
+}
+
+
+
+/* SideBar */
+
+.nav-link {
+    color: #fff;
+    margin-left: 15px;
+}
+
+:root {
+    --offcanvas-width: 270px;
+    --topNavbarHeight: 121px;
+}
+
+.sidebar-nav {
+    width: var(--offcanvas-width);
+}
+
+@media (min-width: 992px) {
+    body {
+        overflow: auto !important;
+    }
+
+    .offcanvas-backdrop::before {
+        display: none !important;
+    }
+
+    .main {
+        margin-left: var(--offcanvas-width);
+    }
+
+    .sidebar-nav {
+        transform: none;
+        visibility: visible !important;
+        top: var(--topNavbarHeight);
+        height: calc(100vh - var(--topNavbarHeight));
+    }
+}
+
+/* Override the offcanvas backdrop color */
+.offcanvas-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Adjust opacity as needed */
+}
+
+/* Override the offcanvas background color */
+.offcanvas {
+    background-color: #fff;
+    /* Set your desired background color */
+}
+
+/* Main */
+
+.main {
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+.mainP {
+    margin-top: -60px;
+}
+
+.main p {
+    margin-left: -10px;
+}
+
+.contents {
+    margin-top: 180px;
+}
+
+.stripes {
+    margin-top: 120px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Stripes */
+
+.stripe {
+    height: 15px;
+    /* Adjust the height as needed */
+    max-width: 100.8%;
+}
+
+
+
+/* Profile Page */
+
+.mainProfileImage img {
+    width: 25%;
+    height: 25%;
+    border: 4px solid #008ec2;
+}
+
+/* Table Styles */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    border-bottom: 2px solid #008EC2;
+    padding: 20px 20px 20px 20px;
+}
+
+td:first-child {
+    color: #666;
+    font-weight: bold;
+    width: 35%;
+}
+
+td:last-child {
+    color: #333;
+}
+
+.basicInfo h3,
+.contactInfo h3{
+    padding-left: 30px;
+}
+
+.biTable,
+.ciTable {
+    width: 90%;
+    margin-left: 5%;
+    border: 2px solid #008EC2;
+}
+
+
+/* ROC COLOR */
+
+.blue {
+    background-color: #008ec2;
+}
+
+.orange {
+    background-color: #f38c1e;
+}
+
+.red {
+    background-color: #d23426;
+}
+
+.green {
+    background-color: #84c148;
+}
+
+.twhite {
+    color: #ffffff;
+}
+
+.tblack {
+    color: #000000;
+}
+
+.tgray {
+    color: #534B4B;
+}
+
+.tblue {
+    color: #008ec2;
+}
+
+.tgreen {
+    color: #84c148;
+}
+
+.borderleft {
+    border-left: white 5px solid;
+}
+
+.borderbottom {
+    border-bottom: rgb(255, 255, 255) 5px solid;
+}
+
+.vh10 {
+    height: 2vh;
+}
+
+.neg10 {
+    margin-top: -10px;
+}
+
+.neg20 {
+    margin-top: -20px;
+}
+
+.maxwidth {
+    max-width: 100%;
+}
+
+.center {
+    text-align: center;
+}
+
+/* Ensure the form container has padding for spacing */
+.form-container {
+    padding: 1px;
+    max-width: 100%;
+}
+
+/* Styling for form controls */
+.form-control {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 5px;
+    border: 4px solid #008EC2;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Flexbox for aligning date fields */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.col-date,
+.col-year,
+.col-cvv {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.col-cvv {
+    margin-right: 0;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #008EC2;
+    border-color: #008EC2;
+    border-radius: 20px;
+    padding: 15px;
+    width: 100%;
+    font-size: x-large;
+}
+
+/* Button hover effect */
+.btn-primary:hover {
+    background-color: #00678F;
+    border-color: #00678F;
+}
+
+/* Styling for right side headers */
+.right-side h4,
+.right-side h6 {
+    font-weight: bold;
+    color: #008EC2;
+}
+
+.right-side h6 {
+    margin-top: 65px;
+    position: relative;
+}
+
+/* HR styling */
+hr {
+    border-color: #008EC2;
+    background-color: #008EC2;
+}
+
+
+/* Powered by text styling */
+.powered-by {
+    font-size: 16px;
+    color: #534B4B;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    position: relative;
+
+}
+
+/* Title styling */
+.title-pay {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #534B4B;
+    margin-top: -20px;
+}
+
+/* Placeholder text color */
+.form-control::placeholder {
+    color: #008EC2;
+}
+
+/* Blue text color */
+.blue-text {
+    color: #008EC2;
+}
+
+.float-right{
+    float: right;
+}
+
+.right-side {
+    margin-top: -40px;
+    position: relative;
+}
+
+.right-side .text-center {
+    margin-top: -125px; /* Adjust margin top as needed */
+    padding-top: 0; /* Adjust padding top as needed */
+}
+
+#payment_image {
+    display: none;
+    width: 0 300px; /* Set the width of the image */
+    height: 100px; /* Set the height of the image */
+    object-fit: contain; /* Ensure the image maintains its aspect ratio */
+    margin-left: 10px;
+}

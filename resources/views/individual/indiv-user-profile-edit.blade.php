@@ -55,11 +55,6 @@
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
                                 <i class="bi bi-person-check fs-5 me-2"></i>My Profile</a></li>
                         </form>
-                        <form id="mockup-form" method="GET" action="{{ route('mockup.dashboard.create') }}">
-                            @csrf
-                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('mockup-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Mock Up</a></li>
-                        </form>
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -96,7 +91,7 @@
                             @csrf
                             <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
                                 <i class="bi bi-building-fill-add fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Create Brand</span>
+                                <span class="text-uppercase fw-bold fs-5">Create Company</span>
                             </a>
                         </form>
                     </li>

@@ -22,7 +22,7 @@
     @elseif (auth()->user()->role == 'member')
         <script>window.location.href = "{{ route('brand.dashboard.create') }}";</script>
     @elseif (auth()->user()->role == 'roc_administrator')
-        <script>window.location.href = "{{ route('mockup.dashboard.create') }}";</script>
+        <script>window.location.href = "#";</script>
     @endif
 
     <!-- NavBar -->
@@ -59,18 +59,12 @@
                             <form id="profile-form" method="GET" action="{{ route('individual.profile.create') }}">
                                 @csrf
                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
-                                    <i class="bi bi-gear fs-5 me-2"></i>My Profile</a></li>
-                                <input type="hidden" name="user_timezone" value="{{ auth()->user()->timezone }}">
-                            </form>
-                            <form id="mockup-form" method="GET" action="{{ route('mockup.dashboard.create') }}">
-                                @csrf
-                                <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('mockup-form').submit();">
-                                    <i class="bi bi-gear fs-5 me-2"></i>Mock Up</a></li>
+                                    <i class="bi bi-person-check fs-5 me-2"></i>My Profile</a></li>
                             </form>
                             <form id="logout-form" method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="bi bi-gear fs-5 me-2"></i>Logout</a></li>
+                                    <i class="bi bi-box-arrow-right fs-5 me-2"></i>Logout</a></li>
                             </form>
                         </ul>
                     </li>

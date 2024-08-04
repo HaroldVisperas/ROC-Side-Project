@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
             $table->string('brand');
-            $table->string('title');
             $table->string('color');
+            $table->json('rgb');
+            $table->json('hsl');
             $table->timestamps();
         });
 

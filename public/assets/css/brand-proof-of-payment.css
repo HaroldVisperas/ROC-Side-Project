@@ -1,0 +1,269 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* navbar */
+.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ccc;
+}
+
+.dropdown-menu {
+    background-color: #84c148;
+    border-color: #84c148;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color: #178325;
+    color: #fff;
+}
+
+.navbar-brand img {
+    max-height: 90px;
+}
+
+.accountName {
+    color: #fff;
+    width: 140%;
+}
+
+
+
+/* SideBar */
+
+.nav-link {
+    color: #fff;
+    margin-left: 15px;
+}
+
+:root {
+    --offcanvas-width: 270px;
+    --topNavbarHeight: 121px;
+}
+
+.sidebar-nav {
+    width: var(--offcanvas-width);
+}
+
+@media (min-width: 992px) {
+    body {
+        overflow: auto !important;
+    }
+
+    .offcanvas-backdrop::before {
+        display: none !important;
+    }
+
+    .main {
+        margin-left: var(--offcanvas-width);
+    }
+
+    .sidebar-nav {
+        transform: none;
+        visibility: visible !important;
+        top: var(--topNavbarHeight);
+        height: calc(100vh - var(--topNavbarHeight));
+    }
+}
+
+/* Override the offcanvas backdrop color */
+.offcanvas-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Adjust opacity as needed */
+}
+
+/* Override the offcanvas background color */
+.offcanvas {
+    background-color: #fff;
+    /* Set your desired background color */
+}
+
+/* Main */
+
+.main {
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+.mainP {
+    margin-top: -60px;
+}
+
+.main p {
+    margin-left: -10px;
+}
+
+.contents {
+    margin-top: 180px;
+}
+
+.stripes {
+    margin-top: 120px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.stripe {
+    height: 15px;
+    /* Adjust the height as needed */
+    max-width: 100.8%;
+}
+
+/* Stripes */
+
+
+/* ROC COLOR */
+
+.blue {
+    background-color: #008ec2;
+}
+
+.orange {
+    background-color: #f38c1e;
+}
+
+.red {
+    background-color: #d23426;
+}
+
+.green {
+    background-color: #84c148;
+}
+
+.twhite {
+    color: #ffffff;
+}
+
+.tblack {
+    color: #000000;
+}
+
+.tgray {
+    color: #534B4B;
+}
+
+.tblue {
+    color: #008ec2;
+}
+
+.tgreen {
+    color: #84c148;
+}
+
+.borderleft {
+    border-left: white 5px solid;
+}
+
+.borderbottom {
+    border-bottom: rgb(255, 255, 255) 5px solid;
+}
+
+.vh10 {
+    height: 2vh;
+}
+
+.neg10 {
+    margin-top: -10px;
+}
+
+.neg20 {
+    margin-top: -20px;
+}
+
+.maxwidth {
+    max-width: 100%;
+}
+
+.center {
+    text-align: center;
+}
+
+
+
+
+
+
+ /* Main Content*/
+
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header h2 {
+    color: #534B4B;
+    margin: 0;
+    font-weight: 600; /* Bold font weight */
+}
+.search-bar {
+    max-width: 300px;
+}
+.form-group-inline {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    color: #008EC2;
+}
+.form-group-inline .form-group {
+    flex: 1;
+}
+.form-control,
+.btn {
+    background-color: transparent;
+    color: #008EC2;
+    border-color: #008EC2;
+    outline: none;
+    box-shadow: none;
+}
+.form-control:focus,
+.btn:focus {
+    border-color: #008EC2;
+    box-shadow: 0 0 0 0.2rem rgba(0, 142, 194, 0.25);
+}
+.table th, .table td {
+    vertical-align: middle;
+}
+.table thead {
+    background-color: #008EC2; /* Background color for table header row */
+    color: white; /* Text color for table header row */
+}
+.table th {
+    border: none; /* Remove borders for th elements */
+}
+.status-paid {
+    color: #84C148;
+}
+.status-processing {
+    color: #F38C1E;
+}
+.status-verified {
+    color: #00BBFF;
+}
+.status-not-verified {
+    color: #D23426;
+}
+.underline {
+    border-bottom: 2px solid #008EC2;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

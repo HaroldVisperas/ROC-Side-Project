@@ -11,7 +11,8 @@ class Color extends Model
 
     protected $fillable = [
         'brand',
-        'title',
-        'color',
+        'color_hex',
+        'color_rgb',
+        'color_hsl',
     ];
 }

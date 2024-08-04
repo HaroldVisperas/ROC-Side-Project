@@ -58,20 +58,10 @@
                     <a class="navbarName dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="True"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <form id="profile-form" method="GET" action="{{ route('company.profile.create') }}">
+                        <form id="profile-form" method="GET" action="{{ route('brand.user.profile.create') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
                                 <i class="bi bi-person-check fs-5 me-2"></i>My Profile</a></li>
-                        </form>
-                        <form id="task-form" method="GET" action="{{ route('brand.tasks.create') }}">
-                            @csrf
-                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('task-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Tasks</a></li>
-                        </form>
-                        <form id="mockup-form" method="GET" action="{{ route('mockup.dashboard.create') }}">
-                            @csrf
-                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('mockup-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Mock Up</a></li>
                         </form>
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -105,21 +95,27 @@
                                 <span class="text-uppercase fw-bold fs-5">Dashboard</span>
                             </a>
                         </form>
-                        <form id="brand-create-link" method="GET" action="{{ route('brand.assets.create') }}">
+                        <form id="brand-profile-link" method="GET" action="{{ route('brand.profile.create') }}">
                             @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
-                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-profile-link').submit();">
+                                <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Brand Profile</span>
+                            </a>
+                        </form>
+                        <form id="assets-link" method="GET" action="{{ route('brand.assets.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('assets-link').submit();">
+                                <i class="bi bi-image fs-5 me-2"></i>
                                 <span class="text-uppercase fw-bold fs-5">Assets</span>
                             </a>
                         </form>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-bag-heart-fill fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Brand profile</span>
-                        </a>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-kanban fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Project</span>
-                        </a>
+                        <form id="project-link" method="GET" action="{{ route('brand.tasks.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('project-link').submit();">
+                                <i class="bi bi-kanban fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Project</span>
+                            </a>
+                        </form>
                         <a href="Sample.html" class="nav-link text-white text-start pt-3">
                             <span><i class="bi bi-ticket-detailed fs-5 me-2"></i></span>
                             <span class="text-uppercase fw-bold fs-5">Ticket</span>
@@ -144,42 +140,27 @@
                                             <span><i class="bi bi-cart-plus-fill fs-5 me-2"></i></span>
                                             <span class="text-uppercase fw-bold fs-6">Cart</span>
                                         </a></li>
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-1">
-                                            <span><i class="bi bi-receipt-cutoff fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-6">Proof of Payment</span>
-                                        </a></li>
+                                    <li>
+                                        <form id="payment-method-link" method="GET" action="{{ route('brand.paymentmethod.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('payment-method-link').submit();">
+                                                <i class="bi bi-cash fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Payment Method</span>
+                                            </a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form id="proof-of-payment-link" method="GET" action="{{ route('brand.proofofpayment.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('proof-of-payment-link').submit();">
+                                                <i class="bi bi-receipt-cutoff fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Proof of Payment</span>
+                                            </a>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                        <form id="dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('dashboard-link').submit();">
-                                <i class="bi bi-microsoft fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Dashboard</span>
-                            </a>
-                        </form>
-                        <form id="brand-create-link" method="GET" action="{{ route('brand.assets.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
-                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Assets</span>
-                            </a>
-                        </form>
-                        <form id="brands-link" method="GET" action="{{ route('company.brands.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brands-link').submit();">
-                                <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Brands</span>
-                            </a>
-                        </form>
-                        <form id="employees-link" method="GET" action="{{ route('company.employee.create') }}">
-                            @csrf
-                            <input type="hidden" name="email" value="{{ auth()->user()->email }}">
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('employees-link').submit();">
-                                <i class="bi bi-person-hearts fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Employees</span>
-                            </a>
-                        </form>
                     </li>
                 </ul>
             </nav>

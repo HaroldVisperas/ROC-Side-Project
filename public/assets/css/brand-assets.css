@@ -1,0 +1,418 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* navbar */
+.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ccc;
+}
+
+.navbarName {
+    margin-left: 15px;
+}
+
+.dropdown-menu {
+    background-color: #84c148;
+    border-color: #84c148;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color: #1b661c;
+    color: #fff;
+}
+
+.navbar-brand img {
+    max-height: 90px;
+}
+
+.accountName {
+    color: #fff;
+    width: 140%;
+}
+
+/* SideBar */
+
+.nav-link {
+    color: #fff;
+    margin-left: 15px;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #fff; /* Change the text color on hover */
+    text-decoration: none; /* Remove underline on hover */
+    margin-left: -10px;
+    padding-left: 20px;
+    border-left: solid 2px #fff;
+    transition: 0.6s;
+}
+
+:root {
+    --offcanvas-width: 270px;
+    --topNavbarHeight: 121px;
+}
+
+.sidebar-nav {
+    width: var(--offcanvas-width);
+}
+
+@media (min-width: 992px) {
+    body {
+        overflow: auto !important;
+    }
+
+    .offcanvas-backdrop::before {
+        display: none !important;
+    }
+
+    .main {
+        margin-left: var(--offcanvas-width);
+    }
+
+    .sidebar-nav {
+        transform: none;
+        visibility: visible !important;
+        top: var(--topNavbarHeight);
+        height: calc(100vh - var(--topNavbarHeight));
+    }
+}
+
+/* Override the offcanvas backdrop color */
+.offcanvas-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Adjust opacity as needed */
+}
+
+/* Override the offcanvas background color */
+.offcanvas {
+    background-color: #fff;
+    /* Set your desired background color */
+}
+
+/* Main */
+
+.main {
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+.mainP {
+    margin-top: -60px;
+}
+
+.main p {
+    margin-left: -10px;
+}
+
+.contents {
+    margin-top: 180px;
+}
+
+/* Stripes */
+
+.stripe {
+    height: 15px;
+    /* Adjust the height as needed */
+    max-width: 100.8%;
+}
+
+.stripes {
+    margin-top: 120px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* Dashboard */
+
+.dashboardTopRow {
+    margin-top: -20px;
+    margin-left: -25px;
+}
+
+.dashboardBotRow {
+    margin-top: -20px;
+    margin-left: -25px;
+}
+
+/* Announcement */
+
+.announcementCol {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: solid 3px#008ec2;
+    border-radius: 10px;
+}
+
+.announcementName {
+    margin-left: -5px;
+    padding-top: 10px;
+}
+
+.announcementName-2 {
+    font-size: 10px;
+}
+
+.announcementP p {
+    font-size: 12px;
+    padding-left: 20px;
+    text-align: justify;
+    padding-right: 13px;
+}
+
+/* Current Subscription */
+
+.currentSubCol {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: solid 3px#000000;
+    border-radius: 10px;
+}
+
+.currentSubCol h4 {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.availedSubsTop h1 {
+    font-size: 60px;
+    font-weight: 800;
+}
+
+.availedSubsTop-2 {
+    margin-top: -20px;
+}
+
+.availedSubsBot h3 {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.availedSubsBot-2 {
+    margin-top: -15px;
+}
+
+.subsDate h6 {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.subsDateTop-2,
+.subsDateBot-2 {
+    margin-top: -10px;
+}
+
+/* Active Subscription */
+
+.actSubs {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border: solid 3px#000000;
+    border-radius: 10px;
+}
+
+.actSubBox1,
+.actSubBox2,
+.actSubBox3,
+.actSubBox4 {
+    border: solid 2px #000000;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.actSubsTop h3,
+.actSubsBot h3 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #008ec2;
+}
+
+.actSubsP {
+    font-size: 12px;
+    margin-top: -5px;
+}
+
+/* Recent Tasks */
+
+.recentTasks {
+    border: solid 3px#008ec2;
+    border-radius: 10px;
+}
+
+.recentTasksBox {
+    border: solid 2px #000000;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Brand Colors */
+
+.color-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 10px;
+}
+.color-label {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.colorCircle {
+    height: 100px; 
+    width: 100px; 
+    border-radius: 100px
+}
+
+
+/*Gallery*/
+.custom-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.card-image {
+    height: 200px;
+    width: 200px;
+    padding-bottom: 10px; 
+    margin: auto; 
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.card-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.card-footer {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    border-top: solid 2px #fff;
+    padding: 10px 0;
+}
+
+.card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: trandform 0.3s ease-in-out;
+}
+
+.card-link:hover .custom-card{
+    transform: scale(1.1);
+}
+
+.custom-card {
+    transform-origin: center center; /* Ensure scaling originates from the center */
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+/* ROC COLOR */
+
+.blue {
+    background-color: #008ec2;
+}
+
+.orange {
+    background-color: #f38c1e;
+}
+
+.red {
+    background-color: #d23426;
+}
+
+.green {
+    background-color: #84c148;
+}
+
+.gray {
+    background-color: #F7F7F7;
+}
+
+.black {
+    background-color: #000000;
+}
+
+
+.twhite {
+    color: #ffffff;
+}
+
+.tblack {
+    color: #000000;
+}
+
+.tgray {
+   
+     color: #534B4B;
+}
+
+.tblue {
+    color: #008ec2;
+}
+
+.tgreen {
+    color: #84c148;
+}
+
+.tred {
+    color: #d23426;
+}
+
+.borderleft {
+    border-left: white 5px solid;
+}
+
+.borderbottom {
+    border-bottom: rgb(255, 255, 255) 5px solid;
+}
+
+.vh10 {
+    height: 2vh;
+}
+
+.neg10 {
+    margin-top: -10px;
+}
+
+.neg20 {
+    margin-top: -20px;
+}
+
+.maxwidth {
+    max-width: 100%;
+}
+
+.center {
+    text-align: center;
+}
