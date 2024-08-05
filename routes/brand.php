@@ -9,6 +9,8 @@ use App\Http\Controllers\Brand\BrandProfileController;
 use App\Http\Controllers\Brand\BrandUserProfileController;
 use App\Http\Controllers\Brand\BrandPaymentMethodController;
 use App\Http\Controllers\Brand\BrandProofOfPaymentController;
+use App\Http\Controllers\Brand\BrandEmployeeController;
+use App\Http\Controllers\Brand\BrandTicketController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/brand/dashboard', [BrandDashboardController::class, 'create'])->name('brand.dashboard.create');
@@ -37,4 +39,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/brand/order-confirmation', [BrandPaymentMethodController::class, 'create_order_confirmation'])->name('brand.orderconfirmation.create');
 
     Route::get('/brand/proof-of-payment', [BrandProofOfPaymentController::class, 'create'])->name('brand.proofofpayment.create');
+
+    Route::get('/brand/employees', [BrandEmployeeController::class, 'create'])->name('brand.employees.create');
+    Route::post('/brand/employees/update', [BrandEmployeeController::class, 'update_employee'])->name('brand.employees.update');
+    Route::delete('/brand/employees/delete/{id}', [BrandEmployeeController::class, 'delete_employee'])->name('brand.employees.delete');
+    Route::get('/brand/employees/cancel', [BrandEmployeeController::class, 'cancel_edit_employee'])->name('brand.employees.cancel');
+    Route::post('/brand/employees/invitation/store', [BrandEmployeeController::class, 'store_invitation'])->name('brand.employees.invitation.store');
+
+    Route::get('/brand/tickets', [BrandTicketController::class, 'create'])->name('brand.tickets.create');
 });

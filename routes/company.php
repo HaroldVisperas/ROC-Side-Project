@@ -17,9 +17,13 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/company/brand/store', [CompanyBrandCreationController::class, 'store'])->name('company.brand.store');
 
     Route::get('/company/employee', [CompanyEmployeeController::class, 'create'])->name('company.employee.create');
+    Route::post('/company/employee/update', [CompanyEmployeeController::class, 'update_employee'])->name('company.employee.update');
+    Route::get('/company/employee/delete/{id}', [CompanyEmployeeController::class, 'delete_employee'])->name('company.employee.delete');
+    Route::get('/company/employee/cancel', [CompanyEmployeeController::class, 'cancel_edit_employee'])->name('company.employee.cancel');
     Route::post('/company/employees/invite/store', [CompanyEmployeeController::class, 'store_invitation'])->name('company.employee.invite.store');
 
     Route::get('/company/brands', [CompanyBrandListController::class, 'create'])->name('company.brands.create');
+    Route::post('/company/brands/select', [CompanyBrandListController::class, 'select_brand'])->name('company.brands.select');
 
     Route::get('/company/profile', [CompanyUserProfileController::class, 'create'])->name('company.profile.create');
     Route::get('/company/profile/edit', [CompanyUserProfileController::class, 'edit'])->name('company.profile.edit');

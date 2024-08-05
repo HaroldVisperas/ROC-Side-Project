@@ -20,14 +20,17 @@ return new class extends Migration
             $table->string('phone_num');
             $table->string('role');
             $table->string('affiliation');
+            $table->string('affiliation_secondary');
             $table->string('timezone');
             $table->timestamps();
         });
 
         Schema::create('invitations', function (Blueprint $table) {
-            $table->uuid('email')->primary();
+            $table->id();
+            $table->string('email');
             $table->integer('employee_id')->nullable();
             $table->string('affiliation');
+            $table->string('affiliation_secondary');
             $table->string('role');
             $table->timestamps();
         });

@@ -136,21 +136,53 @@
                 @endif
                 <form method="POST" action="{{ route('company.brand.store') }}" >
                     @csrf
+                    <input type="hidden" name="user_email" value="{{ auth()->user()->email }}">
                     <div class="mb-3">
                         <label for="name" class="form-label">Brand Name*</label>
                         <input type="text" class="form-control custom-input" id="name" name="name" value="{{ old('name') }}" placeholder="Enter brand name" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="color" class="form-label">Brand Color*</label>
-                        <input type="text" class="form-control custom-input" id="color" name="color" value="{{ old('color') }}" placeholder="Enter brand color in hex (e.g., #008EC2)" required>
-                    </div>
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label for="description" class="form-label">Brand Description*</label>
                         <textarea class="form-control custom-input" id="description" name="description" rows="3" placeholder="Enter brand description" required>{{ old('description') }}</textarea>
                     </div>
-                    <div class="mb-3">
-                        <label for="social_media_link" class="form-label">Social Media Link</label>
-                        <input type="url" class="form-control custom-input" id="social_media_link" name="social_media_link" value="{{ old('social_media_link') }}" placeholder="Enter social media link">
+                    <div class="mb-1">
+                        <label for="social_media_link" class="form-label p-2">Social Media Links:</label>
+                    </div>
+                    <div class="mb-3 align-items-center">
+                        <div class="d-flex">
+                            <p class="p-3">https://www.facebook.com/</p>
+                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="facebook_link" placeholder="Enter Facebook link">
+                        </div>
+                    </div>
+                    <div class="mb-3 align-items-center">
+                        <div class="d-flex">
+                            <p class="p-3">https://www.linkedin.com/in/</p>
+                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="linkedin_link" placeholder="Enter LinkedIn link">
+                        </div>
+                    </div>
+                    <div class="mb-3 align-items-center">
+                        <div class="d-flex">
+                            <p class="p-3">https://www.instagram.com/</p>
+                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="instagram_link" placeholder="Enter Instagram link">
+                        </div>
+                    </div>
+                    <div class="mb-3 align-items-center">
+                        <div class="d-flex">
+                            <p class="p-3">https://www.x.com/</p>
+                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="x_link" placeholder="Enter X link">
+                        </div>
+                    </div>
+                    <div class="mb-3 align-items-center">
+                        <div class="d-flex">
+                            <p class="p-3">https://www.youtube.com/</p>
+                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="youtube_link" placeholder="Enter Youtube link">
+                        </div>
+                    </div>
+                    <div class="mb-3 align-items-center">
+                        <div class="d-flex">
+                            <p class="p-3">https://www.tiktok.com/</p>
+                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="tiktok_link" placeholder="Enter Tiktok link">
+                        </div>
                     </div>
                     <button type="submit" class="btn blue text-white custom-button">Create</button>
                 </form>

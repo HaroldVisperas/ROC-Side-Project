@@ -11,6 +11,10 @@ class CompanyUserProfileController extends Controller
 {
     public function create(Request $request)
     {
+        if($request->session()->has('brand')) {
+            $request->session()->forget('brand');
+        }
+
         $employeeInfo = Employee::where('email', auth()->user()->email)->first();
 
         return view('company.company-user-profile', compact('employeeInfo'));
@@ -18,6 +22,10 @@ class CompanyUserProfileController extends Controller
 
     public function edit(Request $request)
     {
+        if($request->session()->has('brand')) {
+            $request->session()->forget('brand');
+        }
+
         $currentTimeZone = $request->timezone;
 
         $timezones = array(

@@ -2,36 +2,67 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* Background */
+
 /* navbar */
+.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbarName {
+    margin-left: 15px;
+}
+
 .navbar-dark .navbar-nav .nav-link {
     color: #fff;
 }
+
 .navbar-dark .navbar-nav .nav-link:hover {
     color: #ccc;
 }
+
 .dropdown-menu {
     background-color: #84c148;
     border-color: #84c148;
 }
+
 .dropdown-item {
     color: #fff;
 }
+
 .dropdown-item:hover {
     background-color: #178325;
     color: #fff;
 }
+
 .navbar-brand img {
     max-height: 90px;
 }
+
 .accountName {
     color: #fff;
     width: 140%;
 }
 
+
+
 /* SideBar */
+
 .nav-link {
     color: #fff;
     margin-left: 15px;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #fff; /* Change the text color on hover */
+    text-decoration: none; /* Remove underline on hover */
+    margin-left: -10px;
+    padding-left: 20px;
+    border-left: solid 2px #fff;
+    transition: 0.6s;
 }
 
 :root {
@@ -49,7 +80,7 @@
     }
 
     .offcanvas-backdrop::before {
-        display: none;
+        display: none !important;
     }
 
     .main {
@@ -58,76 +89,51 @@
 
     .sidebar-nav {
         transform: none;
-        position: fixed;
         visibility: visible !important;
         top: var(--topNavbarHeight);
         height: calc(100vh - var(--topNavbarHeight));
     }
 }
 
+/* Override the offcanvas backdrop color */
+.offcanvas-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Adjust opacity as needed */
+}
+
+/* Override the offcanvas background color */
+.offcanvas {
+    background-color: #fff;
+    /* Set your desired background color */
+}
+
 /* Main */
-.main {
-    max-width: 100%;
-    margin-top: 20px;
+.contents {
+    margin-top: 180px;
 }
 
-.mainP {
-    margin-top: -60px;
-}
 
-.main p {
-    margin-left: -10px;
-}
 
 /* Stripes */
+
 .stripe {
     height: 15px;
-    max-width: 100.8%;
 }
 
-/* Edit Profile */
-.upload {
+.stripes {
+    margin-top: 120px;
+    position: fixed;
+    top: 0;
     width: 100%;
-    position: relative;
-    margin: auto;
-    margin-top: 20px;
+    z-index: 1000;
 }
-.upload img {
-    width: 20%;
-    height: 20%;
-    border-radius: 50%;
-    border: 6px solid #008EC2;
-}
-.upload .round {
-    position: absolute;
-    margin-top: -40px;
-    margin-left: 54%;
-    background: #84C148;
-    width: 32px;
-    height: 32px;
-    line-height: 39px;
-    text-align: center;
-    border-radius: 50%;
-    overflow: hidden;
-}
-.upload .round input[type='file'] {
-    position: absolute;
-    transform: scale(2);
-    opacity: 0;
-}
-.profileName {
-    width: 50%;
-    background: #008EC2;
-    text-align: center;
-    margin-top: 15px;
-    margin-left: 25%;
-}
-.profileName h1 {
-    background: #008EC2;
-    align-items: center;
-    margin-top: 7px;
-    color: white;
-    font-weight: 800;
+
+/* Profile Page */
+
+.mainProfileImage img {
+    width: 25%;
+    height: 25%;
+    border: 4px solid #008ec2;
 }
 
 /* Table Styles */
@@ -144,19 +150,22 @@ td {
 td:first-child {
     color: #666;
     font-weight: bold;
-    width: 35%;
+    width: 11%;
 }
 
 td:last-child {
     color: #333;
+    width: 12%;
 }
 
-.userInfo {
-    margin-top: 50px;
+.employeeName{
+    font-weight: bold;
+    max-width: 40%;
 }
 
-.basicInfo {
-    border-right: solid 2px #000000;
+.basicInfo h3,
+.contactInfo h3{
+    padding-left: 30px;
 }
 
 .biTable,
@@ -166,7 +175,13 @@ td:last-child {
     border: 2px solid #008EC2;
 }
 
+.inviteEmployee {
+    width: 60%;
+}
+
+
 /* ROC COLOR */
+
 .blue {
     background-color: #008ec2;
 }
@@ -188,12 +203,19 @@ td:last-child {
 }
 
 .tblack {
-    color: #008EC2;
-    font-weight: bold;
+    color: #000000;
 }
 
-.custom-heading {
-    font-weight: bold !important;
+.tgray {
+    color: #534B4B;
+}
+
+.tblue {
+    color: #008ec2;
+}
+
+.tgreen {
+    color: #84c148;
 }
 
 .borderleft {
@@ -202,6 +224,10 @@ td:last-child {
 
 .borderbottom {
     border-bottom: rgb(255, 255, 255) 5px solid;
+}
+
+.borderbottom2 {
+    border-bottom: rgb(0, 0, 0) 2px solid;
 }
 
 .vh10 {
@@ -222,50 +248,4 @@ td:last-child {
 
 .center {
     text-align: center;
-}
-
-.bg-image {
-    background-image: url('../images/roc.png');
-    background-size: 45%;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative;
-}
-
-.bg-image .form-overlay {
-    position: relative;
-    z-index: 1;
-}
-
-.bg-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    z-index: 0;
-}
-
-
-.form-container input,
-.form-container textarea,
-.form-container button {
-    border-radius: 10px;
-    position: relative;
-    z-index: 1;
-
-}
-
-
-.custom-input {
-    border: 3px solid #008EC2;
-    height: 60px;
-}
-.custom-button {
-    margin-left: 90%;
-    border-radius: 10px;
-    border: 2px solid #008EC2; 
-    width: 10%;
 }

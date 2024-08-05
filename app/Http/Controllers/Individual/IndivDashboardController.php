@@ -30,6 +30,7 @@ class IndivDashboardController extends Controller
         $employee->lastname = $user->lastname;
         $employee->phone_num = $user->phone_num;
         $employee->affiliation = $request->affiliation;
+        $employee->affiliation_secondary = $request->affiliation_secondary;
         $employee->role = $user->role;
         $employee->timezone = $user->timezone;
         $employee->save();

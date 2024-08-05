@@ -6,11 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 use App\Models\Task;
+use App\Models\Employee;
 
 class CompanyDashboardController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
+        $employee = Employee::where('email', auth()->user()->email)->first();
+
+        if(!$request->session()->has('company')) {
+            $request->session()->put('company', $employee->affiliation);
+        }
+        if($request->session()->has('brand')) {
+            $request->session()->forget('brand');
+        }
+
         $latestAnnouncements = Announcement::orderBy('updated_at', 'desc')->first();
         $latestAnnouncements = $latestAnnouncements ? collect([$latestAnnouncements]) : collect([]);
 

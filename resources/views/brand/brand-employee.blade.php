@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/company-employees.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/brand-employees.css') }}">
 </head>
 
 <body>
@@ -56,16 +56,15 @@
                     <a class="navbarName dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="True"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <form id="profile-form" method="GET" action="{{ route('company.profile.create') }}">
+                        <form id="profile-form" method="GET" action="{{ route('brand.user.profile.create') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>My Profile</a></li>
-                            <input type="hidden" name="user_timezone" value="{{ auth()->user()->timezone }}">
+                                <i class="bi bi-person-check fs-5 me-2"></i>My Profile</a></li>
                         </form>
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Logout</a></li>
+                                <i class="bi bi-box-arrow-right fs-5 me-2"></i>Logout</a></li>
                         </form>
                     </ul>
                     </ulx>
@@ -87,33 +86,90 @@
             <nav class="navbar-dark">
                 <ul class="navbar-nav">
                     <li>
-                        <form id="dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                        <form id="dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
                             @csrf
                             <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('dashboard-link').submit();">
                                 <i class="bi bi-microsoft fs-5 me-2"></i>
                                 <span class="text-uppercase fw-bold fs-5">Dashboard</span>
                             </a>
                         </form>
-                        <form id="brand-create-link" method="GET" action="{{ route('company.brand.create') }}">
+                        <form id="brand-profile-link" method="GET" action="{{ route('brand.profile.create') }}">
                             @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
-                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Create Brand</span>
-                            </a>
-                        </form>
-                        <form id="brands-link" method="GET" action="{{ route('company.brands.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brands-link').submit();">
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-profile-link').submit();">
                                 <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Brands</span>
+                                <span class="text-uppercase fw-bold fs-5">Brand Profile</span>
                             </a>
                         </form>
-                        <form id="employees-link" method="GET" action="{{ route('company.employee.create') }}">
+                        <form id="assets-link" method="GET" action="{{ route('brand.assets.create') }}">
                             @csrf
-                            <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('assets-link').submit();">
+                                <i class="bi bi-image fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Assets</span>
+                            </a>
+                        </form>
+                        <form id="project-link" method="GET" action="{{ route('brand.tasks.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('project-link').submit();">
+                                <i class="bi bi-kanban fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Project</span>
+                            </a>
+                        </form>
+                        <form id="tickets-link" method="GET" action="{{ route('brand.tickets.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('tickets-link').submit();">
+                                <i class="bi bi-ticket-detailed fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Tickets</span>
+                            </a>
+                        </form>
+                        <form id="employees-link" method="GET" action="{{ route('brand.employees.create') }}">
+                            @csrf
                             <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('employees-link').submit();">
-                                <i class="bi bi-person-hearts fs-5 me-2"></i>
+                                <i class="bi bi-person-heart fs-5 me-2"></i>
                                 <span class="text-uppercase fw-bold fs-5">Employees</span>
+                            </a>
+                        </form>
+                        <a class="nav-link pt-3 sidebar-link text-start" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span><i class="bi bi-house-gear-fill fs-5 me-2"></i></span>
+                            <span class="text-uppercase fw-bold fs-5">Services</span>
+                            <span><i class="bi bi-chevron-down"></i></span>
+                        </a>
+                        <div class="collapse" id="collapseExample">
+                            <div>
+                                <ul class="navbar-nav ps-3">
+                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-1">
+                                            <span><i class="bi bi-box-fill fs-5 me-2"></i></span>
+                                            <span class="text-uppercase fw-bold fs-6">Subscription</span>
+                                        </a></li>
+                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-1">
+                                            <span><i class="bi bi-cart-plus-fill fs-5 me-2"></i></span>
+                                            <span class="text-uppercase fw-bold fs-6">Cart</span>
+                                        </a></li>
+                                    <li>
+                                        <form id="payment-method-link" method="GET" action="{{ route('brand.paymentmethod.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('payment-method-link').submit();">
+                                                <i class="bi bi-cash fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Payment Method</span>
+                                            </a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form id="proof-of-payment-link" method="GET" action="{{ route('brand.proofofpayment.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('proof-of-payment-link').submit();">
+                                                <i class="bi bi-receipt-cutoff fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Proof of Payment</span>
+                                            </a>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <form id="company-dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('company-dashboard-link').submit();">
+                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Return to Company</span>
                             </a>
                         </form>
                     </li>
@@ -167,7 +223,7 @@
                             <tbody>
                                 @foreach($companyowners as $companyowner)
                                     <tr>
-                                        <form method="POST" action="{{ route('company.employee.update') }}">
+                                        <form method="POST" action="{{ route('brand.employees.update') }}">
                                             @csrf
                                             <input type="hidden" name="email" value="{{ $companyowner->email }}">
                                             <td>
@@ -176,57 +232,25 @@
                                             <td id="td-name-display-{{ $companyowner->email }}">{{ $companyowner->firstname }} {{ $companyowner->middlename }} {{ $companyowner->lastname }}</td>
                                             <td>
                                                 <span id="td-role-display-{{ $companyowner->email }}">Company Owner</span>
-                                                <select name="role" id="td-role-edit-{{ $companyowner->email }}" style="display:none;" class="form-select" required>
-                                                    @if (auth()->user()->role == 'company_owner')
-                                                        <option value="company_owner">Company Owner</option>
-                                                        <option value="brand_owner">Brand Owner</option>
-                                                        <option value="member">Member</option>
-                                                    @elseif (auth()->user()->role == 'brand_owner')
-                                                        <option value="brand_owner">Brand Owner</option>
-                                                        <option value="member">Member</option>
-                                                    @endif
-                                                </select>
                                             </td>
                                             <td>
                                                 <span id="td-affiliation-secondary-display-{{ $companyowner->email }}">{{ $companyowner->affiliation_secondary }}</span>
-                                                <select name="affiliation_secondary" id="td-affiliation-secondary-edit-{{ $companyowner->email }}" style="display:none;" class="form-select" required>
-                                                    <option value="{{ $company }}">{{ $company }}</option>
-                                                    @foreach($brands as $brand)
-                                                        <option value="{{ $brand->name }}">{{ $brand->name }}</option>
-                                                    @endforeach
-                                                </select>
                                             </td>
                                             <td>
-                                                @if (auth()->user()->role == 'company_owner')
-                                                    <button type="button" id="btn-edit-{{ $companyowner->email }}" class="btn orange twhite btn-sm" 
-                                                        onclick="editButton('btn-edit-{{ $companyowner->email }}', 'btn-delete-{{ $companyowner->email }}', 'btn-save-{{ $companyowner->email }}', 'btn-cancel-{{ $companyowner->email }}', 
-                                                        'td-id-display-{{ $companyowner->email }}', 'td-id-edit-{{ $companyowner->email }}', 'td-role-display-{{ $companyowner->email }}', 'td-role-edit-{{ $companyowner->email }}', 'td-affiliation-secondary-display-{{ $companyowner->email }}', 'td-affiliation-secondary-edit-{{ $companyowner->email }}')">
-                                                        Edit</button>
-                                                    <a href="#" id="btn-delete-{{ $companyowner->email }}" class="btn blue twhite btn-sm" onclick="event.preventDefault(); document.getElementById('delete-companyowner').submit();">
-                                                        <span>Delete</span>
-                                                    </a>
-                                                    <button type="submit" id="btn-save-{{ $companyowner->email }}" class="btn green twhite btn-sm" style="display:none;" 
-                                                        onclick="saveButton('btn-edit-{{ $companyowner->email }}', 'btn-delete-{{ $companyowner->email }}', 'btn-save-{{ $companyowner->email }}', 'btn-cancel-{{ $companyowner->email }}', 
-                                                        'td-id-display-{{ $companyowner->email }}', 'td-id-edit-{{ $companyowner->email }}', 'td-role-display-{{ $companyowner->email }}', 'td-role-edit-{{ $companyowner->email }}', 'td-affiliation-secondary-display-{{ $companyowner->email }}', 'td-affiliation-secondary-edit-{{ $companyowner->email }}')">
-                                                        Save</button>
-                                                    <a href="#" id="btn-cancel-{{ $companyowner->email }}" class="btn red twhite btn-sm" style="display:none;" onclick="event.preventDefault(); document.getElementById('cancel-companyowner').submit();">
-                                                        <span>Cancel</span>
-                                                    </a>
-                                                @endif
                                             </td>
                                         </form>
-                                        <form id="delete-companyowner" method="POST" action="{{ route('company.employee.create') }}">
+                                        <form id="delete-companyowner" method="POST" action="{{ route('brand.employees.cancel') }}">
                                             @csrf
                                             <input type="hidden" name="employee_email" value="{{ $companyowner->email }}">
                                         </form>
-                                        <form id="cancel-companyowner" method="GET" action="{{ route('company.employee.cancel') }}">
+                                        <form id="cancel-companyowner" method="GET" action="{{ route('brand.employees.cancel') }}">
                                             @csrf
                                         </form>
                                     </tr>
                                 @endforeach
                                 @foreach($brandowners as $brandowner)
                                     <tr>
-                                        <form method="POST" action="{{ route('company.employee.update') }}">
+                                        <form method="POST" action="{{ route('brand.employees.update') }}">
                                             @csrf
                                             <input type="hidden" name="email" value="{{ $brandowner->email }}">
                                             <td>
@@ -249,12 +273,6 @@
                                             </td>
                                             <td>
                                                 <span id="td-affiliation-secondary-display-{{ $brandowner->email }}">{{ $brandowner->affiliation_secondary }}</span>
-                                                <select name="affiliation_secondary" id="td-affiliation-secondary-edit-{{ $brandowner->email }}" style="display:none;" class="form-select" required>
-                                                    <option value="{{ $company }}">{{ $company }}</option>
-                                                    @foreach($brands as $brand)
-                                                        <option value="{{ $brand->name }}">{{ $brand->name }}</option>
-                                                    @endforeach
-                                                </select>
                                             </td>
                                             <td>
                                                 <button type="button" id="btn-edit-{{ $brandowner->email }}" class="btn orange twhite btn-sm" 
@@ -273,18 +291,18 @@
                                                 </a>
                                             </td>
                                         </form>
-                                        <form id="delete-brandowner" method="POST" action="{{ route('company.employee.create') }}">
+                                        <form id="delete-brandowner" method="POST" action="{{ route('brand.employees.cancel') }}">
                                             @csrf
                                             <input type="hidden" name="employee_email" value="{{ $brandowner->email }}">
                                         </form>
-                                        <form id="cancel-brandowner" method="GET" action="{{ route('company.employee.cancel') }}">
+                                        <form id="cancel-brandowner" method="GET" action="{{ route('brand.employees.cancel') }}">
                                             @csrf
                                         </form>
                                     </tr>
                                 @endforeach
                                 @foreach($members as $member)
                                     <tr>
-                                        <form method="POST" action="{{ route('company.employee.update') }}">
+                                        <form method="POST" action="{{ route('brand.employees.update') }}">
                                             @csrf
                                             <input type="hidden" name="email" value="{{ $member->email }}">
                                             <td>
@@ -307,12 +325,6 @@
                                             </td>
                                             <td>
                                                 <span id="td-affiliation-secondary-display-{{ $member->email }}">{{ $member->affiliation_secondary }}</span>
-                                                <select name="affiliation_secondary" id="td-affiliation-secondary-edit-{{ $member->email }}" style="display:none;" class="form-select" required>
-                                                    <option value="{{ $company }}">{{ $company }}</option>
-                                                    @foreach($brands as $brand)
-                                                        <option value="{{ $brand->name }}">{{ $brand->name }}</option>
-                                                    @endforeach
-                                                </select>
                                             </td>
                                             <td>
                                                 <button type="button" id="btn-edit-{{ $member->email }}" class="btn orange twhite btn-sm" 
@@ -331,11 +343,11 @@
                                                 </a>
                                             </td>
                                         </form>
-                                        <form id="delete-member" method="POST" action="{{ route('company.employee.create') }}">
+                                        <form id="delete-member" method="POST" action="{{ route('brand.employees.cancel') }}">
                                             @csrf
                                             <input type="hidden" name="employee_email" value="{{ $member->email }}">
                                         </form>
-                                        <form id="cancel-member" method="GET" action="{{ route('company.employee.cancel') }}">
+                                        <form id="cancel-member" method="GET" action="{{ route('brand.employees.cancel') }}">
                                             @csrf
                                         </form>
                                     </tr>
@@ -357,7 +369,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('company.employee.invite.store') }}">
+                        <form method="POST" action="{{ route('brand.employees.invitation.store') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address:</label>
@@ -383,10 +395,7 @@
                             <div class="mb-3">
                                 <label for="affiliation_secondary" class="form-label">Affiliation:</label>
                                 <select name="affiliation_secondary" id="affiliation_secondary" class="form-select" required>
-                                    <option value="{{ $company }}">{{ $company }}</option>
-                                    @foreach($brands as $brand)
-                                        <option value="{{ $brand->name }}">{{ $brand->name }}</option>
-                                    @endforeach
+                                    <option value="{{ $brand }}">{{ $brand }}</option>
                                 </select>
                             </div>
                             <input type="hidden" name="inviter_email" value="{{ auth()->user()->email }}">

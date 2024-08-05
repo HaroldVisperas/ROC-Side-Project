@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class BrandDashboardController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
         return view('brand.brand-dashboard');
     }

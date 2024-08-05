@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('color');
+            $table->string('company');
+            $table->string('name')->unique();
             $table->text('description');
-            $table->string('social_media_link')->nullable();
+            $table->string('facebook_link')->nullable();
+            $table->string('x_link')->nullable();
+            $table->string('linkedin_link')->nullable();
+            $table->string('instagram_link')->nullable();
+            $table->string('youtube_link')->nullable();
+            $table->string('tiktok_link')->nullable();
             $table->timestamps();
         });
     }

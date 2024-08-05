@@ -116,14 +116,20 @@
                                 <span class="text-uppercase fw-bold fs-5">Project</span>
                             </a>
                         </form>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-ticket-detailed fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Ticket</span>
-                        </a>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-person-heart fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Employee</span>
-                        </a>
+                        <form id="tickets-link" method="GET" action="{{ route('brand.tickets.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('tickets-link').submit();">
+                                <i class="bi bi-ticket-detailed fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Tickets</span>
+                            </a>
+                        </form>
+                        <form id="employees-link" method="GET" action="{{ route('brand.employees.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('employees-link').submit();">
+                                <i class="bi bi-person-heart fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Employees</span>
+                            </a>
+                        </form>
                         <a class="nav-link pt-3 sidebar-link text-start" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <span><i class="bi bi-house-gear-fill fs-5 me-2"></i></span>
                             <span class="text-uppercase fw-bold fs-5">Services</span>
@@ -161,6 +167,13 @@
                                 </ul>
                             </div>
                         </div>
+                        <form id="company-dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('company-dashboard-link').submit();">
+                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Return to Company</span>
+                            </a>
+                        </form>
                     </li>
                 </ul>
             </nav>

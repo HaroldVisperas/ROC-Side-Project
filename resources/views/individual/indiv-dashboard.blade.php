@@ -116,7 +116,11 @@
                                                     @elseif ($invitation->role == 'member')
                                                         Member
                                                     @endif
-                                                </span></span></p>
+                                                    </span>
+                                                    @if ($invitation->affiliation != $invitation->affiliation_secondary)
+                                                        of <span class="fw-bold">{{ $invitation->affiliation_secondary }}</span>
+                                                    @endif
+                                                </span></p>
                                                 <p class="tblack notifdate">{{ $invitation->updated_at->setTimezone(auth()->user()->timezone)->format('F j, Y') }} |<span style="color: #84c148;"> {{ $invitation->updated_at->setTimezone(auth()->user()->timezone)->format('g:i A') }}</span></p>
                                                 <div class="d-flex gap-2">
                                                     <form method="POST" action="{{ route('individual.invitation.update') }}">
@@ -124,6 +128,7 @@
                                                         <input type="hidden" name="email" value="{{ $invitation->email }}">
                                                         <input type="hidden" name="employee_id" value="{{ $invitation->employee_id }}">
                                                         <input type="hidden" name="affiliation" value="{{ $invitation->affiliation }}">
+                                                        <input type="hidden" name="affiliation_secondary" value="{{ $invitation->affiliation_secondary }}">
                                                         <input type="hidden" name="role" value="{{ $invitation->role }}">
                                                         <button type="submit" class="btn text-white green accept">Accept</button>
                                                     </form>

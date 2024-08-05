@@ -56,6 +56,7 @@ class IndivCompanyCreationController extends Controller
         $employee->lastname = $user->lastname;
         $employee->phone_num = $user->phone_num;
         $employee->affiliation = $request->company_name;
+        $employee->affiliation_secondary = $request->company_name;
         $employee->role = $user->role;
         $employee->timezone = $user->timezone;
         $employee->save();
@@ -68,6 +69,7 @@ class IndivCompanyCreationController extends Controller
         $employee->lastname = $user->lastname;
         $employee->phone_num = $user->phone_num;
         $employee->affiliation = $request->company_name;
+        $employee->affiliation_secondary = $request->company_name;
         $employee->role = $user->role;
         $employee->timezone = $user->timezone;
         $employee->save();

@@ -136,84 +136,26 @@
 
         <div class="container-fluid">
             <div class="row">
-                <!-- foreach -->
-                <div class="col-md-3 pt-3">
-                    <form id="brand-dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
-                        @csrf
-                        <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('brand-dashboard-link').submit();">
-                            <div class="card custom-card text-center">
-                                <div class="card-body p-0">
-                                    <div class="card-image">
-                                        <img src="{{ asset('assets/images/Gardenia.png') }}" class="img-fluid" alt="Gardenia Logo">
-                                    </div>
-                                    <div class="card-footer blue text-white">
-                                        GARDENIA
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </form>
-                </div>
-                <!-- foreach -->
-                <div class="col-md-3 pt-3">
-                    <form id="brand-dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
-                        @csrf
-                        <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('brand-dashboard-link').submit();">
-                            <div class="card custom-card text-center">
-                                <div class="card-body p-0">
-                                    <div class="card-image">
-                                        <img src="{{ asset('assets/images/Gardenia.png') }}" class="img-fluid" alt="Gardenia Logo">
-                                    </div>
-                                    <div class="card-footer blue text-white">
-                                        GARDENIA
+                @foreach ($brands as $brand)
+                    <div class="col-md-3 pt-3">
+                        <form id="brand-link-{{ $brand->name }}" method="POST" action="{{ route('company.brands.select') }}">
+                            @csrf
+                            <input type="hidden" name="brand_name" value="{{ $brand->name }}">
+                            <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('brand-link-{{ $brand->name }}').submit();">
+                                <div class="card custom-card text-center">
+                                    <div class="card-body p-0">
+                                        <div class="card-image">
+                                            <img src="{{ asset('assets/images/Gardenia.png') }}" class="img-fluid" alt="Gardenia Logo">
+                                        </div>
+                                        <div class="card-footer blue text-white">
+                                            {{ $brand->name }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </form>
-                </div>
-                <div class="col-md-3 pt-3">
-                    <a href="Sample.html" class="card-link">
-                        <div class="card custom-card text-center">
-                            <div class="card-body p-0">
-                                <div class="card-image">
-                                    <img src="{{ asset('assets/images/Gardenia.png') }}" class="img-fluid" alt="Gardenia Logo">
-                                </div>
-                                <div class="card-footer blue text-white">
-                                    GARDENIA
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 pt-3">
-                    <a href="Sample.html" class="card-link">
-                        <div class="card custom-card text-center">
-                            <div class="card-body p-0">
-                                <div class="card-image">
-                                    <img src="{{ asset('assets/images/Gardenia.png') }}" class="img-fluid" alt="Gardenia Logo">
-                                </div>
-                                <div class="card-footer blue text-white">
-                                    GARDENIA
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 pt-3">
-                    <a href="Sample.html" class="card-link">
-                        <div class="card custom-card text-center">
-                            <div class="card-body p-0">
-                                <div class="card-image">
-                                    <img src="{{ asset('assets/images/Gardenia.png') }}" class="img-fluid" alt="Gardenia Logo">
-                                </div>
-                                <div class="card-footer blue text-white">
-                                    GARDENIA
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                            </a>
+                        </form>
+                    </div>
+                @endforeach
             </div>
         </div>
     </main>

@@ -1,31 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Company;
+namespace App\Http\Controllers\Brand;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employee;
-use App\Models\Invitation;
-use App\Models\Brand;
 
-class CompanyEmployeeController extends Controller
+class BrandEmployeeController extends Controller
 {
     public function create(Request $request)
     {
-        if($request->session()->has('brand')) {
-            $request->session()->forget('brand');
-        }
-
-        $employee = Employee::where('email', auth()->user()->email)->first();
-
-        $companyowners = Employee::where('affiliation', $employee->affiliation)->where('role', 'company_owner')->orderBy('employee_id', 'desc')->get();
-        $brandowners = Employee::where('affiliation', $employee->affiliation)->where('role', 'brand_owner')->orderBy('employee_id', 'desc')->get();
-        $members = Employee::where('affiliation', $employee->affiliation)->where('role', 'member')->orderBy('employee_id', 'desc')->get();
-
         $company = $request->session()->get('company');
-        $brands = Brand::where('company', $company)->orderBy('name', 'desc')->get();
+        $brand = $request->session()->get('brand');
 
-        return view('company.company-employee', compact('companyowners', 'brandowners', 'members', 'company', 'brands'));
+        $companyowners = Employee::where('affiliation', $company)->where('role', 'company_owner')->orderBy('firstname', 'desc')->get();
+        $brandowners = Employee::where('affiliation', $company)->where('affiliation_secondary', $brand)->where('role', 'brand_owner')->orderBy('employee_id', 'desc')->get();
+        $members = Employee::where('affiliation', $company)->where('affiliation_secondary', $brand)->where('role', 'member')->orderBy('employee_id', 'desc')->get();
+
+        return view('brand.brand-employee', compact('companyowners', 'brandowners', 'members', 'company', 'brand'));
     }
 
     public function update_employee(Request $request)
@@ -82,6 +74,6 @@ class CompanyEmployeeController extends Controller
         $invitation->role = $request->role;
         $invitation->save();
 
-        return redirect()->action([CompanyEmployeeController::class, 'create']);
+        return redirect()->action([BrandEmployeeController::class, 'create']);
     }
 }

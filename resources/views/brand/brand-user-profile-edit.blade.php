@@ -289,7 +289,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-start">Affiliation</td>
-                                            <td id="affiliation" name="affiliation" class="text-end">{{ $employeeInfo->affiliation }}</td>
+                                            <td id="affiliation_secondary" name="affiliation_secondary" class="text-end">{{ $employeeInfo->affiliation_secondary }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-start">TimeZone</td>

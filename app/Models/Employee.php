@@ -27,6 +27,7 @@ class Employee extends Model
         'lastname',
         'phone_num',
         'affiliation',
+        'affiliation_secondary',
         'role',
         'timezone',
     ];

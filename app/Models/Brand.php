@@ -10,9 +10,14 @@ class Brand extends Model
     use HasFactory;
 
     protected $fillable = [
+        'company',
         'name',
-        'color',
         'description',
-        'social_media_link'
+        'facebook_link',
+        'x_link',
+        'linkedin_link',
+        'instagram_link',
+        'youtube_link',
+        'tiktok_link',
     ];
 }
