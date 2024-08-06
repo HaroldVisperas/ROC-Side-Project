@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Invitation;
 
 class BrandEmployeeController extends Controller
 {
@@ -75,5 +76,48 @@ class BrandEmployeeController extends Controller
         $invitation->save();
 
         return redirect()->action([BrandEmployeeController::class, 'create']);
+    }
+
+    public function search_employee(Request $request)
+    {
+        $company = $request->session()->get('company');
+        $brand = $request->session()->get('brand');
+
+        $searchTerm = '%' . $request->search . '%';
+
+        $companyowners = Employee::where('affiliation', $company)
+            ->where('role', 'company_owner')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('employee_id', 'like', $searchTerm)
+                    ->orWhere('firstname', 'like', $searchTerm)
+                    ->orWhere('middlename', 'like', $searchTerm)
+                    ->orWhere('lastname', 'like', $searchTerm);
+            })
+            ->orderBy('employee_id', 'desc')
+            ->get();
+    
+        $brandowners = Employee::where('affiliation', $company)
+            ->where('role', 'brand_owner')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('employee_id', 'like', $searchTerm)
+                    ->orWhere('firstname', 'like', $searchTerm)
+                    ->orWhere('middlename', 'like', $searchTerm)
+                    ->orWhere('lastname', 'like', $searchTerm);
+            })
+            ->orderBy('employee_id', 'desc')
+            ->get();
+    
+        $members = Employee::where('affiliation', $company)
+            ->where('role', 'member')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('employee_id', 'like', $searchTerm)
+                    ->orWhere('firstname', 'like', $searchTerm)
+                    ->orWhere('middlename', 'like', $searchTerm)
+                    ->orWhere('lastname', 'like', $searchTerm);
+            })
+            ->orderBy('employee_id', 'desc')
+            ->get();
+
+        return view('brand.brand-employee', compact('companyowners', 'brandowners', 'members', 'company', 'brand'));
     }
 }

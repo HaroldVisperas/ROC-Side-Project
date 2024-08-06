@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROOF OF PAYMENT</title>
+    <title>ROCPH Digital Marketing Services</title>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/brand-proof-of-payment.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/brand-create-ticket.css') }}">
 </head>
 
 <body>
@@ -183,126 +183,63 @@
     </div>
     <!-- SideBar -->
 
-    <!-- Main Contents --- WAG PAPALITAAAAAN!! -->
-    <main class="mt-3 text-start tblack main" data-bs-spy="noscroll">
-        <div class="container-fluid">
-            <div class="row justify-content-center contents">
-            <div class="container mt-5">
-                    <div class="header">
-                        <h2>Proof of Payment</h2>
-                        <div class="search-bar">
-                            <form method="GET" action="">
-                                <div class="input-group">
-                                    <input type="text" name="search" class="form-control" placeholder="Search Bar" value="{{ request('search') }}">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="submit">
-                                            <i class="fas fa-search"></i>
-                                        </button>
+    <!-- Main Contents -->
+        <main class="mt-3 text-start tblack main" data-bs-spy="noscroll">
+                <div class="container-fluid">
+                    <div class="row justify-content-center contents">
+                        <div class="container my-5">
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            <form method="GET" action="{{ route('brand.tickets.create') }}">
+                                @csrf
+                                <input type="hidden" name="status" value="Active">
+                                <div class="mb-3">
+                                    <label for="employee_id" class="form-label">Employee ID Number</label>
+                                    <input type="text" name="employee_id" class="form-control" id="employee_id" value="{{ $ticket->employee_id }}" readonly>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="first_name" class="form-label">First Name</label>
+                                        <input type="text" name="first_name" class="form-control" id="first_name" value="{{ $ticket->first_name }}" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="middle_name" class="form-label">Middle Name</label>
+                                        <input type="text" name="middle_name" class="form-control" id="middle_name" value="{{ $ticket->middle_name }}" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="last_name" class="form-label">Last Name</label>
+                                        <input type="text" name="last_name" class="form-control" id="last_name" value="{{ $ticket->last_name }}" readonly>
                                     </div>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="work_email" class="form-label">Work Email</label>
+                                    <input type="email" name="work_email" class="form-control" id="work_email" value="{{ $ticket->work_email }}" readonly>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-8">
+                                        <label for="title" class="form-label">Ticket Title</label>
+                                        <input type="text" name="title" class="form-control" id="title" value="{{ $ticket->title }}" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="status" class="form-label">Status</label>
+                                        <input type="text" name="status" class="form-control" id="status" value="{{ $ticket->status }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea name="message" class="form-control" id="message" rows="4" readonly>{{ $ticket->message }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Back</button>
                             </form>
                         </div>
                     </div>
-                    <div class="underline"></div>
-                    <form method="GET" action="">
-                        <div class="form-group-inline">
-                            <div class="form-group">
-                                <label for="company">Company</label>
-                                <input type="text" id="company" class="form-control" placeholder="Company" value="AMAZON" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="brand">Brand</label>
-                                <input type="text" id="brand" class="form-control" placeholder="Brand" value="AMAZON PRIME" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control" onchange="this.form.submit()">
-                                    <option value="">- Status -</option>
-                                    <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Paid</option>
-                                    <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>Processing</option>
-                                    <option value="verified" {{ request('status') == 'verified' ? 'selected' : '' }}>Verified</option>
-                                    <option value="not verified" {{ request('status') == 'not verified' ? 'selected' : '' }}>Not Verified</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr style="background-color: #008EC2;">
-                                <th style="background-color: #008EC2;">Reference ID</th>
-                                <th style="background-color: #008EC2;">Description</th>
-                                <th style="background-color: #008EC2;">Status</th>
-                                <th style="background-color: #008EC2;">Payment Method</th>
-                                <th style="background-color: #008EC2;">Transaction Date</th>
-                                <th style="background-color: #008EC2;">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{-- Mock Data --}}
-                            @php
-                            $mockPayments = [
-                                (object)[
-                                    'reference_id' => 'F20240710-001',
-                                    'description' => 'Facebook Basic Plan',
-                                    'status' => 'paid',
-                                    'payment_method' => 'PayPal',
-                                    'transaction_date' => '2019-01-05',
-                                    'amount' => 500.00
-                                ],
-                                (object)[
-                                    'reference_id' => 'F20240710-002',
-                                    'description' => 'Twitter Standard Plan',
-                                    'status' => 'processing',
-                                    'payment_method' => 'Gcash',
-                                    'transaction_date' => '2019-01-05',
-                                    'amount' => 1000.00
-                                ],
-                                (object)[
-                                    'reference_id' => 'F20240710-003',
-                                    'description' => 'Tiktok Pro Plan',
-                                    'status' => 'verified',
-                                    'payment_method' => 'Maya',
-                                    'transaction_date' => '2019-01-05',
-                                    'amount' => 3000.00
-                                ],
-                                (object)[
-                                    'reference_id' => 'F20240710-004',
-                                    'description' => 'Youtube Premium Plan',
-                                    'status' => 'not verified',
-                                    'payment_method' => 'BDO',
-                                    'transaction_date' => '2019-01-05',
-                                    'amount' => 3500.00
-                                ],
-                            ];
-                            @endphp
-
-                            @foreach($mockPayments as $payment)
-                                @if(request('status') && $payment->status != request('status'))
-                                    @continue
-                                @endif
-                                @if(request('payment_method') && $payment->payment_method != request('payment_method'))
-                                    @continue
-                                @endif
-                                <tr>
-                                    <td>{{ $payment->reference_id }}</td>
-                                    <td>{{ $payment->description }}</td>
-                                    <td class="status-{{ str_replace(' ', '-', strtolower($payment->status)) }}">{{ ucfirst($payment->status) }}</td>
-                                    <td>{{ $payment->payment_method }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($payment->transaction_date)->format('m - d - y') }}</td>
-                                    <td>PHP {{ number_format($payment->amount, 2) }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{-- Pagination Links --}}
                 </div>
-            </div>
-        </div>
-    </main>
-     
+            </main>
 
     <!-- JavaScript -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>

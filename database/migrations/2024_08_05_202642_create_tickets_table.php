@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
+            $table->string('company');
+            $table->string('brand');
             $table->string('employee_id');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('work_email');
+            $table->string('title');
             $table->text('message');
+            $table->string('status')->default('Active');
             $table->string('_token')->nullable();
             $table->timestamps();
         });

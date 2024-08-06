@@ -9,17 +9,19 @@ use App\Models\Image;
 
 class BrandAssetController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        $colors = Color::where('brand', auth()->user()->email)->get();
-        $images = Image::where('brand', auth()->user()->email)->get();
-        return view('brand.brand-assets', compact('colors', 'images'));
+        $company = $request->session()->get('company');
+        $brand = $request->session()->get('brand');
+
+        $colors = Color::where('company', $company)->where('brand', $brand)->get();
+        $images = Image::where('company', $company)->where('brand', $brand)->get();
+        return view('brand.brand-assets', compact('colors', 'images', 'company', 'brand'));
     }
 
     public function store_color(Request $request)
     {
         $request->validate([
-            'color_brand' => 'required',
             'color' => 'required',
         ]);
 
@@ -30,7 +32,8 @@ class BrandAssetController extends Controller
 
         // Save the data to the database
         $color = new Color();
-        $color->brand = $request->color_brand;
+        $color->company = $request->session()->get('company');
+        $color->brand = $request->session()->get('brand');
         $color->color = $hexColor;
         $color->rgb = json_encode($rgbColor);
         $color->hsl = json_encode($hslColor);
@@ -49,7 +52,6 @@ class BrandAssetController extends Controller
     public function store_image(Request $request)
     {
         $request->validate([
-            'image_brand' => 'required',
             'image_title' => 'required|max:255|string',
             'image' => 'required|mimes:png,jpg,jpeg',
         ]);
@@ -60,7 +62,8 @@ class BrandAssetController extends Controller
 
             // Save the data to the database
             $image = new Image();
-            $image->brand = $request->image_brand;
+            $image->company = $request->session()->get('company');
+            $image->brand = $request->session()->get('brand');
             $image->title = $request->image_title;
             $image->path = 'assets/uploads/images/' . $imageName;
             $image->save();

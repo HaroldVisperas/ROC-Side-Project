@@ -137,9 +137,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center mt-4">
                 <div class="col-lg-10 d-flex justify-content-end">
-                    <form class="d-flex w-20" role="search">
-                        <input class="form-control border border-2 me-2 search-input" type="search" placeholder="Search"
-                            aria-label="Search">
+                    <form method="GET" action="{{ route('company.employee.search') }}" class="d-flex w-20">
+                        <input class="form-control border border-2 me-2 search-input" type="text" placeholder="Search Employee Name" name="search">
                         <button class="btn orange twhite me-2 btn-sm" type="submit">Search</button>
                         <button type="button" class="btn blue twhite me-2 invite-button btn-sm inviteEmployee"
                             data-bs-toggle="modal" data-bs-target="#inviteEmployeeModal">

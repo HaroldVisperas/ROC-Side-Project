@@ -15,7 +15,7 @@
 
 <body>
     <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg blue borderbottom fixed-top">
+    <nav class="navbar navbar-expand-lg lightblue borderbottom fixed-top {border-bottom: white 5px solid;}">
         <div class="container-fluid">
             <!-- offcanvas trigger -->
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
@@ -39,8 +39,16 @@
                                 style="width: 50px; height: 50px; background-image: url('{{ asset('assets/images/Default.png') }}'); background-size: cover;">
                             </div>
                             <div>
-                                <div class="text-white fs-2 fw-bold text-uppercase">Brand name</div>
-                                <div class="text-white fs-6 text-end neg10">Brand Account</div>
+                                <div class="text-white fs-2 fw-bold text-uppercase">{{ auth()->user()->firstname }} {{ auth()->user()->middlename }} {{ auth()->user()->lastname }}</div>
+                                <div class="text-white fs-6 text-end neg10">
+                                    @if (auth()->user()->role == 'company_owner')
+                                        Company Owner Account
+                                    @elseif (auth()->user()->role == 'brand_owner')
+                                        Brand Owner Account
+                                    @elseif (auth()->user()->role == 'member')
+                                        Member Account
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -48,8 +56,8 @@
                         </ul>
                     </li>
                     <a class="navbarName dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="true"></a>
-                    <ul class="dropdown-menu dropdown-menu-end custom-dropdown-menu">
+                        aria-expanded="True"></a>
+                    <ul class="dropdown-menu dropdown-menu-end">
                         <form id="profile-form" method="GET" action="{{ route('brand.user.profile.create') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
@@ -108,14 +116,20 @@
                                 <span class="text-uppercase fw-bold fs-5">Project</span>
                             </a>
                         </form>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-ticket-detailed fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Ticket</span>
-                        </a>
-                        <a href="Sample.html" class="nav-link text-white text-start pt-3">
-                            <span><i class="bi bi-person-heart fs-5 me-2"></i></span>
-                            <span class="text-uppercase fw-bold fs-5">Employee</span>
-                        </a>
+                        <form id="tickets-link" method="GET" action="{{ route('brand.tickets.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('tickets-link').submit();">
+                                <i class="bi bi-ticket-detailed fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Tickets</span>
+                            </a>
+                        </form>
+                        <form id="employees-link" method="GET" action="{{ route('brand.employees.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('employees-link').submit();">
+                                <i class="bi bi-person-heart fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Employees</span>
+                            </a>
+                        </form>
                         <a class="nav-link pt-3 sidebar-link text-start" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <span><i class="bi bi-house-gear-fill fs-5 me-2"></i></span>
                             <span class="text-uppercase fw-bold fs-5">Services</span>
@@ -153,6 +167,15 @@
                                 </ul>
                             </div>
                         </div>
+                        @if(auth()->user()->role != 'member')
+                            <form id="company-dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                                @csrf
+                                <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('company-dashboard-link').submit();">
+                                    <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                                    <span class="text-uppercase fw-bold fs-5">Return to Company</span>
+                                </a>
+                            </form>
+                        @endif
                     </li>
                 </ul>
             </nav>

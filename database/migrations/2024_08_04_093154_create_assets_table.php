@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
+            $table->string('company');
             $table->string('brand');
             $table->string('color');
             $table->json('rgb');
@@ -22,6 +23,7 @@ return new class extends Migration
 
         Schema::create('images', function (Blueprint $table) {
             $table->id();
+            $table->string('company');
             $table->string('brand');
             $table->string('title');
             $table->string('path');

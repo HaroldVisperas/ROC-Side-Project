@@ -45,6 +45,8 @@
                                         Company Owner Account
                                     @elseif (auth()->user()->role == 'brand_owner')
                                         Brand Owner Account
+                                    @elseif (auth()->user()->role == 'member')
+                                        Member Account
                                     @endif
                                 </div>
                             </div>
@@ -67,7 +69,7 @@
                                 <i class="bi bi-box-arrow-right fs-5 me-2"></i>Logout</a></li>
                         </form>
                     </ul>
-                    </ulx>
+                </ul>
             </div>
         </div>
     </nav>
@@ -165,13 +167,15 @@
                                 </ul>
                             </div>
                         </div>
-                        <form id="company-dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('company-dashboard-link').submit();">
-                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Return to Company</span>
-                            </a>
-                        </form>
+                        @if(auth()->user()->role != 'member')
+                            <form id="company-dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                                @csrf
+                                <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('company-dashboard-link').submit();">
+                                    <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                                    <span class="text-uppercase fw-bold fs-5">Return to Company</span>
+                                </a>
+                            </form>
+                        @endif
                     </li>
                 </ul>
             </nav>
@@ -193,9 +197,8 @@
         <div class="container-fluid">
             <div class="row justify-content-center mt-4">
                 <div class="col-lg-10 d-flex justify-content-end">
-                    <form class="d-flex w-20" role="search">
-                        <input class="form-control border border-2 me-2 search-input" type="search" placeholder="Search"
-                            aria-label="Search">
+                    <form method="GET" action="{{ route('brand.employees.search') }}" class="d-flex w-20">
+                        <input class="form-control border border-2 me-2 search-input" type="text" placeholder="Search Employee Name" name="search">
                         <button class="btn orange twhite me-2 btn-sm" type="submit">Search</button>
                         <button type="button" class="btn blue twhite me-2 invite-button btn-sm inviteEmployee"
                             data-bs-toggle="modal" data-bs-target="#inviteEmployeeModal">
@@ -239,13 +242,6 @@
                                             <td>
                                             </td>
                                         </form>
-                                        <form id="delete-companyowner" method="POST" action="{{ route('brand.employees.cancel') }}">
-                                            @csrf
-                                            <input type="hidden" name="employee_email" value="{{ $companyowner->email }}">
-                                        </form>
-                                        <form id="cancel-companyowner" method="GET" action="{{ route('brand.employees.cancel') }}">
-                                            @csrf
-                                        </form>
                                     </tr>
                                 @endforeach
                                 @foreach($brandowners as $brandowner)
@@ -261,14 +257,8 @@
                                             <td>
                                                 <span id="td-role-display-{{ $brandowner->email }}">Brand Owner</span>
                                                 <select name="role" id="td-role-edit-{{ $brandowner->email }}" style="display:none;" class="form-select" required>
-                                                    @if (auth()->user()->role == 'company_owner')
-                                                        <option value="company_owner">Company Owner</option>
-                                                        <option value="brand_owner">Brand Owner</option>
-                                                        <option value="member">Member</option>
-                                                    @elseif (auth()->user()->role == 'brand_owner')
-                                                        <option value="brand_owner">Brand Owner</option>
-                                                        <option value="member">Member</option>
-                                                    @endif
+                                                    <option value="brand_owner">Brand Owner</option>
+                                                    <option value="member">Member</option>
                                                 </select>
                                             </td>
                                             <td>
@@ -277,14 +267,14 @@
                                             <td>
                                                 <button type="button" id="btn-edit-{{ $brandowner->email }}" class="btn orange twhite btn-sm" 
                                                     onclick="editButton('btn-edit-{{ $brandowner->email }}', 'btn-delete-{{ $brandowner->email }}', 'btn-save-{{ $brandowner->email }}', 'btn-cancel-{{ $brandowner->email }}', 
-                                                    'td-id-display-{{ $brandowner->email }}', 'td-id-edit-{{ $brandowner->email }}', 'td-role-display-{{ $brandowner->email }}', 'td-role-edit-{{ $brandowner->email }}', 'td-affiliation-secondary-display-{{ $brandowner->email }}', 'td-affiliation-secondary-edit-{{ $brandowner->email }}')">
+                                                    'td-id-display-{{ $brandowner->email }}', 'td-id-edit-{{ $brandowner->email }}', 'td-role-display-{{ $brandowner->email }}', 'td-role-edit-{{ $brandowner->email }}')">
                                                     Edit</button>
                                                 <a href="#" id="btn-delete-{{ $brandowner->email }}" class="btn blue twhite btn-sm" onclick="event.preventDefault(); document.getElementById('delete-brandowner').submit();">
                                                     <span>Delete</span>
                                                 </a>
                                                 <button type="submit" id="btn-save-{{ $brandowner->email }}" class="btn green twhite btn-sm" style="display:none;" 
                                                     onclick="saveButton('btn-edit-{{ $brandowner->email }}', 'btn-delete-{{ $brandowner->email }}', 'btn-save-{{ $brandowner->email }}', 'btn-cancel-{{ $brandowner->email }}', 
-                                                    'td-id-display-{{ $brandowner->email }}', 'td-id-edit-{{ $brandowner->email }}', 'td-role-display-{{ $brandowner->email }}', 'td-role-edit-{{ $brandowner->email }}', 'td-affiliation-secondary-display-{{ $brandowner->email }}', 'td-affiliation-secondary-edit-{{ $brandowner->email }}')">
+                                                    'td-id-display-{{ $brandowner->email }}', 'td-id-edit-{{ $brandowner->email }}', 'td-role-display-{{ $brandowner->email }}', 'td-role-edit-{{ $brandowner->email }}')">
                                                     Save</button>
                                                 <a href="#" id="btn-cancel-{{ $brandowner->email }}" class="btn red twhite btn-sm" style="display:none;" onclick="event.preventDefault(); document.getElementById('cancel-brandowner').submit();">
                                                     <span>Cancel</span>
@@ -313,14 +303,8 @@
                                             <td>
                                                 <span id="td-role-display-{{ $member->email }}">Member</span>
                                                 <select name="role" id="td-role-edit-{{ $member->email }}" style="display:none;" class="form-select" required>
-                                                    @if (auth()->user()->role == 'company_owner')
-                                                        <option value="company_owner">Company Owner</option>
-                                                        <option value="brand_owner">Brand Owner</option>
-                                                        <option value="member">Member</option>
-                                                    @elseif (auth()->user()->role == 'brand_owner')
-                                                        <option value="brand_owner">Brand Owner</option>
-                                                        <option value="member">Member</option>
-                                                    @endif
+                                                    <option value="brand_owner">Brand Owner</option>
+                                                    <option value="member">Member</option>
                                                 </select>
                                             </td>
                                             <td>
@@ -329,14 +313,14 @@
                                             <td>
                                                 <button type="button" id="btn-edit-{{ $member->email }}" class="btn orange twhite btn-sm" 
                                                     onclick="editButton('btn-edit-{{ $member->email }}', 'btn-delete-{{ $member->email }}', 'btn-save-{{ $member->email }}', 'btn-cancel-{{ $member->email }}', 
-                                                    'td-id-display-{{ $member->email }}', 'td-id-edit-{{ $member->email }}', 'td-role-display-{{ $member->email }}', 'td-role-edit-{{ $member->email }}', 'td-affiliation-secondary-display-{{ $member->email }}', 'td-affiliation-secondary-edit-{{ $member->email }}')">
+                                                    'td-id-display-{{ $member->email }}', 'td-id-edit-{{ $member->email }}', 'td-role-display-{{ $member->email }}', 'td-role-edit-{{ $member->email }}')">
                                                     Edit</button>
                                                 <a href="#" id="btn-delete-{{ $member->email }}" class="btn blue twhite btn-sm" onclick="event.preventDefault(); document.getElementById('delete-member').submit();">
                                                     <span>Delete</span>
                                                 </a>
                                                 <button type="submit" id="btn-save-{{ $member->email }}" class="btn green twhite btn-sm" style="display:none;" 
                                                     onclick="saveButton('btn-edit-{{ $member->email }}', 'btn-delete-{{ $member->email }}', 'btn-save-{{ $member->email }}', 'btn-cancel-{{ $member->email }}', 
-                                                    'td-id-display-{{ $member->email }}', 'td-id-edit-{{ $member->email }}', 'td-role-display-{{ $member->email }}', 'td-role-edit-{{ $member->email }}', 'td-affiliation-secondary-display-{{ $member->email }}', 'td-affiliation-secondary-edit-{{ $member->email }}')">
+                                                    'td-id-display-{{ $member->email }}', 'td-id-edit-{{ $member->email }}', 'td-role-display-{{ $member->email }}', 'td-role-edit-{{ $member->email }}')">
                                                     Save</button>
                                                 <a href="#" id="btn-cancel-{{ $member->email }}" class="btn red twhite btn-sm" style="display:none;" onclick="event.preventDefault(); document.getElementById('cancel-member').submit();">
                                                     <span>Cancel</span>
@@ -382,21 +366,13 @@
                             <div class="mb-3">
                                 <label for="role" class="form-label">Position:</label>
                                 <select name="role" id="role" class="form-select" required>
-                                    @if (auth()->user()->role == 'company_owner')
-                                        <option value="company_owner">Company Owner</option>
                                         <option value="brand_owner">Brand Owner</option>
                                         <option value="member">Member</option>
-                                    @else
-                                        <option value="brand_owner">Brand Owner</option>
-                                        <option value="member">Member</option>
-                                    @endif
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="affiliation_secondary" class="form-label">Affiliation:</label>
-                                <select name="affiliation_secondary" id="affiliation_secondary" class="form-select" required>
-                                    <option value="{{ $brand }}">{{ $brand }}</option>
-                                </select>
+                                <input type="text" name="affiliation_secondary" class="form-control" id="affiliation_secondary" value="{{ $brand }}" readonly>
                             </div>
                             <input type="hidden" name="inviter_email" value="{{ auth()->user()->email }}">
                             <div class="modal-footer">
@@ -411,7 +387,7 @@
         </div>
     </main>
 
-    <script src="{{ asset('assets/js/editableEmployeeList.js') }}"></script>
+    <script src="{{ asset('assets/js/editableBrandEmployeeList.js') }}"></script>
     <script src="{{ asset('assets/js/contenteditable.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>

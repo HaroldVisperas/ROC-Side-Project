@@ -84,4 +84,47 @@ class CompanyEmployeeController extends Controller
 
         return redirect()->action([CompanyEmployeeController::class, 'create']);
     }
+
+    public function search_employee(Request $request)
+    {
+        $company = $request->session()->get('company');
+        $brands = Brand::where('company', $company)->orderBy('name', 'desc')->get();
+
+        $searchTerm = '%' . $request->search . '%';
+
+        $companyowners = Employee::where('affiliation', $company)
+            ->where('role', 'company_owner')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('employee_id', 'like', $searchTerm)
+                    ->orWhere('firstname', 'like', $searchTerm)
+                    ->orWhere('middlename', 'like', $searchTerm)
+                    ->orWhere('lastname', 'like', $searchTerm);
+            })
+            ->orderBy('employee_id', 'desc')
+            ->get();
+    
+        $brandowners = Employee::where('affiliation', $company)
+            ->where('role', 'brand_owner')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('employee_id', 'like', $searchTerm)
+                    ->orWhere('firstname', 'like', $searchTerm)
+                    ->orWhere('middlename', 'like', $searchTerm)
+                    ->orWhere('lastname', 'like', $searchTerm);
+            })
+            ->orderBy('employee_id', 'desc')
+            ->get();
+    
+        $members = Employee::where('affiliation', $company)
+            ->where('role', 'member')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('employee_id', 'like', $searchTerm)
+                    ->orWhere('firstname', 'like', $searchTerm)
+                    ->orWhere('middlename', 'like', $searchTerm)
+                    ->orWhere('lastname', 'like', $searchTerm);
+            })
+            ->orderBy('employee_id', 'desc')
+            ->get();
+
+        return view('company.company-employee', compact('companyowners', 'brandowners', 'members', 'company', 'brands'));
+    }
 }

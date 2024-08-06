@@ -21,6 +21,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/company/employee/delete/{id}', [CompanyEmployeeController::class, 'delete_employee'])->name('company.employee.delete');
     Route::get('/company/employee/cancel', [CompanyEmployeeController::class, 'cancel_edit_employee'])->name('company.employee.cancel');
     Route::post('/company/employees/invite/store', [CompanyEmployeeController::class, 'store_invitation'])->name('company.employee.invite.store');
+    Route::get('/company/employees/search', [CompanyEmployeeController::class, 'search_employee'])->name('company.employee.search');
 
     Route::get('/company/brands', [CompanyBrandListController::class, 'create'])->name('company.brands.create');
     Route::post('/company/brands/select', [CompanyBrandListController::class, 'select_brand'])->name('company.brands.select');

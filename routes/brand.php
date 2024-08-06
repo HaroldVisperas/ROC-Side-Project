@@ -45,6 +45,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/brand/employees/delete/{id}', [BrandEmployeeController::class, 'delete_employee'])->name('brand.employees.delete');
     Route::get('/brand/employees/cancel', [BrandEmployeeController::class, 'cancel_edit_employee'])->name('brand.employees.cancel');
     Route::post('/brand/employees/invitation/store', [BrandEmployeeController::class, 'store_invitation'])->name('brand.employees.invitation.store');
+    Route::get('/brand/employees/search', [BrandEmployeeController::class, 'search_employee'])->name('brand.employees.search');
 
     Route::get('/brand/tickets', [BrandTicketController::class, 'create'])->name('brand.tickets.create');
+    Route::get('/brand/tickets/create', [BrandTicketController::class, 'create_ticket'])->name('brand.tickets.create_ticket');
+    Route::post('/brand/tickets/store', [BrandTicketController::class, 'store'])->name('brand.tickets.store');
+    Route::get('/brand/tickets/view', [BrandTicketController::class, 'view'])->name('brand.tickets.view');
 });

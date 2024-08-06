@@ -167,13 +167,15 @@
                                 </ul>
                             </div>
                         </div>
-                        <form id="company-dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('company-dashboard-link').submit();">
-                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Return to Company</span>
-                            </a>
-                        </form>
+                        @if(auth()->user()->role != 'member')
+                            <form id="company-dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                                @csrf
+                                <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('company-dashboard-link').submit();">
+                                    <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                                    <span class="text-uppercase fw-bold fs-5">Return to Company</span>
+                                </a>
+                            </form>
+                        @endif
                     </li>
                 </ul>
             </nav>
