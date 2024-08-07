@@ -19,12 +19,12 @@ class CompanyBrandCreationController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'facebook_link' => 'nullable|url',
-            'x_link' => 'nullable|url',
-            'linkedin_link' => 'nullable|url',
-            'instagram_link' => 'nullable|url',
-            'youtube_link' => 'nullable|url',
-            'tiktok_link' => 'nullable|url',
+            'facebook_link' => 'nullable',
+            'x_link' => 'nullable',
+            'linkedin_link' => 'nullable',
+            'instagram_link' => 'nullable',
+            'youtube_link' => 'nullable',
+            'tiktok_link' => 'nullable',
         ]);
 
         $employee = Employee::where('email', $request->user_email)->first();
@@ -33,21 +33,50 @@ class CompanyBrandCreationController extends Controller
         $brand->company = $employee->affiliation;
         $brand->name = $request->name;
         $brand->description = $request->description;
-        if($request->facebook_link) 
-            $brand->facebook_link = $request->facebook_link;
-        if($request->x_link)
-            $brand->x_link = $request->x_link;
-        if($request->linkedin_link)
-            $brand->linkedin_link = $request->linkedin_link;
-        if($request->instagram_link)
-            $brand->instagram_link = $request->instagram_link;
-        if($request->youtube_link)
-            $brand->youtube_link = $request->youtube_link;
-        if($request->tiktok_link)
-            $brand->tiktok_link = $request->tiktok_link;
+        if ($request->facebook_link) {
+            $facebookLink = $request->facebook_link;
+            if (strpos($facebookLink, 'https://www.facebook.com/') !== 0) {
+                $facebookLink = 'https://www.facebook.com/' . ltrim($facebookLink, '/');
+            }
+            $brand->facebook_link = $facebookLink;
+        }
+        if ($request->x_link) {
+            $xLink = $request->x_link;
+            if (strpos($xLink, 'https://www.x.com/') !== 0) {
+                $xLink = 'https://www.x.com/' . ltrim($xLink, '/');
+            }
+            $brand->x_link = $xLink;
+        }
+        if ($request->linkedin_link) {
+            $linkedinLink = $request->linkedin_link;
+            if (strpos($linkedinLink, 'https://www.linkedin.com/in/') !== 0) {
+                $linkedinLink = 'https://www.linkedin.com/' . ltrim($linkedinLink, '/');
+            }
+            $brand->linkedin_link = $linkedinLink;
+        }
+        if ($request->instagram_link) {
+            $instagramLink = $request->instagram_link;
+            if (strpos($instagramLink, 'https://www.instagram.com/') !== 0) {
+                $instagramLink = 'https://www.instagram.com/' . ltrim($instagramLink, '/');
+            }
+            $brand->instagram_link = $instagramLink;
+        }
+        if ($request->youtube_link) {
+            $youtubeLink = $request->youtube_link;
+            if (strpos($youtubeLink, 'https://www.youtube.com/@') !== 0) {
+                $youtubeLink = 'https://www.youtube.com/@' . ltrim($youtubeLink, '/');
+            }
+            $brand->youtube_link = $youtubeLink;
+        }
+        if ($request->tiktok_link) {
+            $tiktokLink = $request->tiktok_link;
+            if (strpos($tiktokLink, 'https://www.tiktok.com/') !== 0) {
+                $tiktokLink = 'https://www.tiktok.com/' . ltrim($tiktokLink, '/');
+            }
+            $brand->tiktok_link = $tiktokLink;
+        }
         $brand->save();
-        
-        $request->session()->put('brand', $brand->name);
-        return redirect()->route('brand.dashboard.create');
+
+        return redirect()->route('company.brands.create');
     }
 }

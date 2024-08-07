@@ -194,89 +194,96 @@
     <!-- SideBar -->
 
     <!-- Main Contents --- WAG PAPALITAAAAAN!! -->
+    <!-- Main Contents -->
     <main class="mt-3 text-start tblack main" data-bs-spy="noscroll">
         <div class="container-fluid">
             <div class="row justify-content-center contents">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container">
-                        <a class="navbar-brand" href="#">Services</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-outline-primary" href="#">Cart</a>
-                                </li>
-                            </ul>
+                <div class="container mt-3">
+                    <div class="row justify-content-between align-items-center mb-2">
+                        <div class="col text-center-custom">
+                            <h1 class="text-uppercase fw-bold tblue">Services</h1>
+                        </div>
+                        <div class="col text-end">
+                            <form id="cart-link" method="GET" action="{{ route('brand.cart.create') }}">
+                                <button type="submit" class="btn btn-primary rounded-circle">
+                                    <i class="bi bi-cart-fill"></i>
+                                    <br>
+                                    <i>Cart</i>
+                                </button>
+                            </form>
                         </div>
                     </div>
-                </nav>
-                <main class="container my-5">
-                    <div class="text-center mb-5">
-                        <h1>Our Services</h1>
-                        <p class="lead">We offer a range of services to help you succeed on social media</p>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100 text-center border-0 shadow tblue-outline">
+                                <div class="card-body">
+                                    <h3 class="card-title">FACEBOOK</h3>
+                                    <ul class="list-unstyled">
+                                        <li>Up to 4 FB Post with Cross Posting to Instagram per week via VA Lite</li>
+                                        <li>Up to 15 Social Media posts per month with unlimited revisions</li>
+                                        <li>3-5 Business Days Turnaround Time</li>
+                                        <li>Unlimited 24/7 Project Manager</li>
+                                        <li>8/5 Strategy Virtual Consultation</li>
+                                        <li>8/5 Project Support via Email Ticket and Chat</li>
+                                    </ul>
+                                    <button class="btn btn-success mt-2">Avail</button>
+                                    <button class="btn btn-primary mt-2">Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100 text-center border-0 shadow tblue-outline">
+                                <div class="card-body">
+                                    <h3 class="card-title">YOUTUBE</h3>
+                                    <ul class="list-unstyled">
+                                        <li>Up to 4 FB Post with Cross Posting to Instagram per week via VA Lite</li>
+                                        <li>Up to 15 Social Media posts per month with unlimited revisions</li>
+                                        <li>3-5 Business Days Turnaround Time</li>
+                                        <li>Unlimited 24/7 Project Manager</li>
+                                        <li>8/5 Strategy Virtual Consultation</li>
+                                        <li>8/5 Project Support via Email Ticket and Chat</li>
+                                    </ul>
+                                    <button class="btn btn-success mt-2">Avail</button>
+                                    <button class="btn btn-primary mt-2">Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100 text-center border-0 shadow tblue-outline">
+                                <div class="card-body">
+                                    <h3 class="card-title">TWITTER</h3>
+                                    <ul class="list-unstyled">
+                                        <li>Up to 4 FB Post with Cross Posting to Instagram per week via VA Lite</li>
+                                        <li>Up to 15 Social Media posts per month with unlimited revisions</li>
+                                        <li>3-5 Business Days Turnaround Time</li>
+                                        <li>Unlimited 24/7 Project Manager</li>
+                                        <li>8/5 Strategy Virtual Consultation</li>
+                                        <li>8/5 Project Support via Email Ticket and Chat</li>
+                                    </ul>
+                                    <button class="btn btn-success mt-2">Avail</button>
+                                    <button class="btn btn-primary mt-2">Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100 text-center border-0 shadow tblue-outline">
+                                <div class="card-body">
+                                    <h3 class="card-title">TIKTOK</h3>
+                                    <ul class="list-unstyled">
+                                        <li>Up to 4 FB Post with Cross Posting to Instagram per week via VA Lite</li>
+                                        <li>Up to 15 Social Media posts per month with unlimited revisions</li>
+                                        <li>3-5 Business Days Turnaround Time</li>
+                                        <li>Unlimited 24/7 Project Manager</li>
+                                        <li>8/5 Strategy Virtual Consultation</li>
+                                        <li>8/5 Project Support via Email Ticket and Chat</li>
+                                    </ul>
+                                    <button class="btn btn-success mt-2">Avail</button>
+                                    <button class="btn btn-primary mt-2">Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <img src="{{ asset('assets/images/facebook.png') }}" class="card-img-top" alt="Facebook">
-                                <div class="card-body d-flex flex-column text-center">
-                                    <h5 class="card-title">Facebook</h5>
-                                    <p class="card-text flex-grow-1">Grow your audience and engage with your followers
-                                        on Facebook.</p>
-                                    <div class="mt-auto">
-                                         <button onclick="deleteImage()" class="btn blue btn-sm me-1">Buy Now</i></button>
-                                        <a href="assets/images/logo.png" class="btn green btn-sm ">Add to Cart</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('assets/images/facebook.png') }}" alt="Twitter">
-                                <div class="card-body d-flex flex-column text-center">
-                                    <h5 class="card-title">Twitter</h5>
-                                    <p class="card-text flex-grow-1">Stay updated with the latest trends and news on
-                                        Twitter.</p>
-                                    <div class="mt-auto">
-                                        <button onclick="deleteImage()" class="btn blue btn-sm me-1">Buy Now</i></button>
-                                        <a href="assets/images/logo.png" class="btn green btn-sm ">Add to Cart</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <img src="{{ asset('assets/images/facebook.png') }}" class="card-img-top" alt="TikTok">
-                                <div class="card-body d-flex flex-column text-center">
-                                    <h5 class="card-title">TikTok</h5>
-                                    <p class="card-text flex-grow-1">Create viral content and grow your following on
-                                        TikTok.</p>
-                                    <div class="mt-2">
-                                        <button onclick="deleteImage()" class="btn blue btn-sm me-1">Buy Now</i></button>
-                                        <a href="assets/images/logo.png" class="btn green btn-sm ">Add to Cart</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <img src="{{ asset('assets/images/facebook.png') }}" class="card-img-top" alt="YouTube">
-                                <div class="card-body d-flex flex-column text-center">
-                                    <h5 class="card-title">YouTube</h5>
-                                    <p class="card-text flex-grow-1">Build your channel and reach millions of viewers on
-                                        YouTube.</p>
-                                    <div class="mt-auto">
-                                        <button onclick="deleteImage()" class="btn blue btn-sm me-1">Buy Now</i></button>
-                                        <a href="assets/images/logo.png" class="btn green btn-sm ">Add to Cart</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
+                </div>
             </div>
         </div>
     </main>

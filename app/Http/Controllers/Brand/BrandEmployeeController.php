@@ -97,6 +97,7 @@ class BrandEmployeeController extends Controller
             ->get();
     
         $brandowners = Employee::where('affiliation', $company)
+            ->where('affiliation_secondary', $brand)
             ->where('role', 'brand_owner')
             ->where(function ($query) use ($searchTerm) {
                 $query->where('employee_id', 'like', $searchTerm)
@@ -108,6 +109,7 @@ class BrandEmployeeController extends Controller
             ->get();
     
         $members = Employee::where('affiliation', $company)
+            ->where('affiliation_secondary', $brand)
             ->where('role', 'member')
             ->where(function ($query) use ($searchTerm) {
                 $query->where('employee_id', 'like', $searchTerm)

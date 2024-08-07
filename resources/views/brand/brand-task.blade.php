@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/calendar-intlTelInput.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/calendar-index.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>

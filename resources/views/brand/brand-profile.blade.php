@@ -202,7 +202,7 @@
                     <div class="text-center mainProfileImage">
                         <div class="d-flex justify-content-center mb-2">
                             <img id="selectedAvatar" src="{{ asset('assets/images/Default.png') }}" class="rounded-circle"
-                                style="width: 200px; height: 200px;" alt="example placeholder" />
+                                style="width: 200px; height: 200px;" alt="Brand Image" />
                         </div>
                         <div class="d-flex justify-content-center">
                             <form method="GET" action="{{ route('brand.profile.edit') }}">
@@ -216,7 +216,7 @@
                     <div class="text-center mt-1">
                         <div class="row justify-content-center">
                             <div class="col-auto blue profileName">
-                                <h1 class="text-uppercase fw-bold twhite mt-2">Brand Name</h1>
+                                <h1 class="text-uppercase fw-bold twhite mt-2">{{ $brand->name }}</h1>
                             </div>
                         </div>
                     </div>
@@ -233,23 +233,88 @@
                     <div class="col-12">
                         <div class="row justify-content-center">
                             <div class="col-11">
-                                <p class="text-start">Brand Name</p>
+                                <p class="text-start">Parent Company</p>
                             </div>
                             <div class="col-11 white brandInformationBox1">
-                                <p class="text-start tblack brandInformationP1 mt-2">"Brand Name here"</p>
+                                <p class="text-start tblack brandInformationP1 mt-2">{{ $company }}</p>
                             </div>
                             <div class="col-11">
-                                <p class="text-start mt-1">Brand Color</p>
+                                <p class="text-start">Brand Name</p>
                             </div>
                             <div class="col-11 white brandInformationBox2">
-                                <p class="text-start tblack brandInformationP2 mt-2">"Brand Color here"</p>
+                                <p class="text-start tblack brandInformationP1 mt-2">{{ $brand->name }}</p>
                             </div>
                             <div class="col-11">
-                                <p class="text-start mt-1">Social Media Link</p>
+                                <p class="text-start mt-1">Social Media Links:</p>
                             </div>
-                            <div class="col-11 white brandInformationBox3">
-                                <p class="text-start tblack brandInformationP3 mt-2">"Social Media Link here"</p>
-                            </div>
+                            @if($socmeds)
+                                @if($facebook)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">Facebook</p>
+                                        </div>
+                                        <div class="col-9 white brandInformationBox3">
+                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->facebook_link }}</p>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if($x)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">X</p>
+                                        </div>
+                                        <div class="col-9 white brandInformationBox3">
+                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->x_link }}</p>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if($linkedin)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">LinkedIn</p>
+                                        </div>
+                                        <div class="col-9 white brandInformationBox3">
+                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->linkedin_link }}</p>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if($instagram)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">Instagram</p>
+                                        </div>
+                                        <div class="col-9 white brandInformationBox3">
+                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->instagram_link }}</p>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if($youtube)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">Youtube</p>
+                                        </div>
+                                        <div class="col-9 white brandInformationBox3">
+                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->youtube_link }}</p>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if($tiktok)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">Tiktok</p>
+                                        </div>
+                                        <div class="col-9 white brandInformationBox3">
+                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->tiktok_link }}</p>
+                                        </div>
+                                    </div>
+                                @endif
+
+
+                            @else
+                                <div class="col-11 white brandInformationBox3">
+                                    <p class="text-start tblack mt-2">"No Social Media Link"</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -262,7 +327,7 @@
                                 <p class="text-start">Brand Description</p>
                             </div>
                             <div class="col-11 white brandDescriptionBox1">
-                                <p class="text-start tblack brandInformationP1 mt-2">"Brand Description here"</p>
+                                <p class="text-start tblack brandInformationP1 mt-2">{{ $brand->description }}</p>
                             </div>
                            
                         </div>

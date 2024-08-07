@@ -211,3 +211,67 @@
 .center {
     text-align: center;
 }
+
+/* MAIN CONTENT */
+
+.tblue {
+    color: #008EC2;
+}
+
+.tblue-outline {
+    border: 4px solid #008EC2 !important;
+    border-radius: 20px;
+}
+
+.btn-primary {
+    background-color: #008EC2;
+    border-color: #008EC2;
+    border-radius: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #006999;
+    border-color: #006999;
+}
+
+.btn-success {
+    background-color: #84c148;
+    border-color: #84c148;
+    border-radius: 10px;
+}
+
+.btn-success:hover {
+    background-color: #6fae2e;
+    border-color: #6fae2e;
+}
+
+.card-title {
+    font-weight: bold;
+    color: #008EC2;
+}
+
+.card-body ul {
+    padding-left: 0;
+}
+
+.card-body ul li {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-circle {
+    border-radius: 50%;
+}
+
+.text-center-custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35%;
+    margin-right: auto;
+    height: 100%;
+}

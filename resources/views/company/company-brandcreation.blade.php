@@ -151,37 +151,37 @@
                     <div class="mb-3 align-items-center">
                         <div class="d-flex">
                             <p class="p-3">https://www.facebook.com/</p>
-                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="facebook_link" placeholder="Enter Facebook link">
+                            <input type="text" class="form-control custom-input p-2" id="social_media_link" name="facebook_link" placeholder="Enter Facebook link">
                         </div>
                     </div>
                     <div class="mb-3 align-items-center">
                         <div class="d-flex">
                             <p class="p-3">https://www.linkedin.com/in/</p>
-                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="linkedin_link" placeholder="Enter LinkedIn link">
+                            <input type="text" class="form-control custom-input p-2" id="social_media_link" name="linkedin_link" placeholder="Enter LinkedIn link">
                         </div>
                     </div>
                     <div class="mb-3 align-items-center">
                         <div class="d-flex">
                             <p class="p-3">https://www.instagram.com/</p>
-                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="instagram_link" placeholder="Enter Instagram link">
+                            <input type="text" class="form-control custom-input p-2" id="social_media_link" name="instagram_link" placeholder="Enter Instagram link">
                         </div>
                     </div>
                     <div class="mb-3 align-items-center">
                         <div class="d-flex">
                             <p class="p-3">https://www.x.com/</p>
-                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="x_link" placeholder="Enter X link">
+                            <input type="text" class="form-control custom-input p-2" id="social_media_link" name="x_link" placeholder="Enter X link">
                         </div>
                     </div>
                     <div class="mb-3 align-items-center">
                         <div class="d-flex">
-                            <p class="p-3">https://www.youtube.com/</p>
-                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="youtube_link" placeholder="Enter Youtube link">
+                            <p class="p-3">https://www.youtube.com/@</p>
+                            <input type="text" class="form-control custom-input p-2" id="social_media_link" name="youtube_link" placeholder="Enter Youtube link">
                         </div>
                     </div>
                     <div class="mb-3 align-items-center">
                         <div class="d-flex">
                             <p class="p-3">https://www.tiktok.com/</p>
-                            <input type="url" class="form-control custom-input p-2" id="social_media_link" name="tiktok_link" placeholder="Enter Tiktok link">
+                            <input type="text" class="form-control custom-input p-2" id="social_media_link" name="tiktok_link" placeholder="Enter Tiktok link">
                         </div>
                     </div>
                     <button type="submit" class="btn blue text-white custom-button">Create</button>
