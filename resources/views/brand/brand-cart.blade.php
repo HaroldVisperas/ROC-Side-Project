@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>ROCPH Digital Marketing Services</title>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/brand-profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/brand-cart.css') }}">
 </head>
 
 <body>
     <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg lightblue borderbottom fixed-top {border-bottom: white 5px solid;}">
+    <nav class="navbar navbar-expand-lg blue borderbottom fixed-top {border-bottom: white 5px solid;}">
         <div class="container-fluid">
             <!-- offcanvas trigger -->
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
@@ -193,30 +193,96 @@
     </div>
     <!-- SideBar -->
 
-
-    <!-- Dashboard -->
+    <!-- Main Contents --- WAG PAPALITAAAAAN!! -->
     <main class="mt-3 text-start tblack main" data-bs-spy="noscroll">
         <div class="container-fluid">
             <div class="row justify-content-center contents">
-                <div class="col-md-12">
-                    <div class="text-center mainProfileImage">
-                        <div class="d-flex justify-content-center mb-2">
-                            <img id="selectedAvatar" src="{{ asset('assets/images/Default.png') }}" class="rounded-circle"
-                                style="width: 200px; height: 200px;" alt="example placeholder" />
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <form method="GET" action="{{ route('brand.profile.edit') }}">
-                                @csrf
-                                <button type="submit" class="btn blue btn-sm">
-                                    <label class="form-label text-white m-1">Edit Profile</label>
+                <div class="col-11">
+                    <table class="table table-striped-columns cart-table table-hover tblue fw-bold">
+                        <thead class="thead-light blue twhite">
+                            <tr>
+                                <th scope="col"><class id="selectAll"> Product</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total Price</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="select-item me-2">Facebook</td>
+                                <td>10,000</td>
+                                <td>
+                                    <div class="quantity-control">
+                                        <button class="btn blue twhite btn-decrease">-</button>
+                                        <input type="text" value="1"
+                                            class="form-control mx-2 text-center quantity-input" style="width: 50px;">
+                                        <button class="btn blue twhite btn-increase">+</button>
+                                    </div>
+                                </td>
+                                <td class="total-price">10,000</td>
+                                <td><button class="btn btn-outline-danger btn-delete" data-toggle="modal"
+                                        data-target="#deleteModal"><i class="bi bi-trash-fill"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="select-item me-2">Facebook</td>
+                                <td>10,000</td>
+                                <td>
+                                    <div class="quantity-control">
+                                        <button class="btn blue twhite btn-decrease">-</button>
+                                        <input type="text" value="1"
+                                            class="form-control mx-2 text-center quantity-input" style="width: 50px;">
+                                        <button class="btn blue twhite btn-increase">+</button>
+                                    </div>
+                                </td>
+                                <td class="total-price">10,000</td>
+                                <td><button class="btn btn-outline-danger btn-delete" data-toggle="modal"
+                                        data-target="#deleteModal"><i class="bi bi-trash-fill"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="select-item me-2">Facebook</td>
+                                <td>10,000</td>
+                                <td>
+                                    <div class="quantity-control">
+                                        <button class="btn blue twhite btn-decrease">-</button>
+                                        <input type="text" value="1"
+                                            class="form-control mx-2 text-center quantity-input" style="width: 50px;">
+                                        <button class="btn blue twhite btn-increase">+</button>
+                                    </div>
+                                </td>
+                                <td class="total-price">10,000</td>
+                                <td><button class="btn btn-outline-danger btn-delete" data-toggle="modal"
+                                        data-target="#deleteModal"><i class="bi bi-trash-fill"></i></button></td>
+                            </tr>
+                            <!-- Repeat similar <tr> elements for more items -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="1"><input type="checkbox" id="selectAllFooter"> Select All</td>
+                                <td colspan="3" class="text-end font-weight-bold">Total Price: ₱10,000</td>
+                                <td><button class="btn blue twhite">Check Out</button></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="text-center mt-1">
-                        <div class="row justify-content-center">
-                            <div class="col-auto blue profileName">
-                                <h1 class="text-uppercase fw-bold twhite mt-2">Brand Name</h1>
+                            </div>
+                            <div class="modal-body">
+                                This action cannot be undone. All values associated with this field will be lost.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" id="confirmDelete">Delete Field</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -225,53 +291,74 @@
         </div>
     </main>
 
-    <main class="mt-3 main" data-bs-spy="noscroll">
-        <div class="container-fluid">
-            <div class="row justify-content-center ">
-                <div class="col-xl-5 orange m-2 twhite brandInformationBox">
-                    <h3 class="twhite borderbottom2 fw-bold mt-3">Brand Information</h3>
-                    <div class="col-12">
-                        <div class="row justify-content-center">
-                            <div class="col-11">
-                                <p class="text-start">Brand Name</p>
-                            </div>
-                            <div class="col-11 white brandInformationBox1">
-                                <p class="text-start tblack brandInformationP1 mt-2">"Brand Name here"</p>
-                            </div>
-                            <div class="col-11">
-                                <p class="text-start mt-1">Brand Color</p>
-                            </div>
-                            <div class="col-11 white brandInformationBox2">
-                                <p class="text-start tblack brandInformationP2 mt-2">"Brand Color here"</p>
-                            </div>
-                            <div class="col-11">
-                                <p class="text-start mt-1">Social Media Link</p>
-                            </div>
-                            <div class="col-11 white brandInformationBox3">
-                                <p class="text-start tblack brandInformationP3 mt-2">"Social Media Link here"</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <script>
+        document.getElementById('selectAll').addEventListener('change', function () {
+            var checkboxes = document.querySelectorAll('.select-item');
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = this.checked;
+            }, this);
+        });
 
-                <div class="col-xl-5 m-2 green twhite brandDescriptionBox">
-                    <h3 class="twhite borderbottom2 fw-bold mt-3">Brand Description</h3>
-                    <div class="col-12">
-                        <div class="row justify-content-center">
-                            <div class="col-11">
-                                <p class="text-start">Brand Description</p>
-                            </div>
-                            <div class="col-11 white brandDescriptionBox1">
-                                <p class="text-start tblack brandInformationP1 mt-2">"Brand Description here"</p>
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+        document.getElementById('selectAllFooter').addEventListener('change', function () {
+            var checkboxes = document.querySelectorAll('.select-item');
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = this.checked;
+            }, this);
+            document.getElementById('selectAll').checked = this.checked;
+        });
 
+        document.querySelectorAll('.select-item').forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                if (!this.checked) {
+                    document.getElementById('selectAll').checked = false;
+                    document.getElementById('selectAllFooter').checked = false;
+                } else if (document.querySelectorAll('.select-item:checked').length === document.querySelectorAll('.select-item').length) {
+                    document.getElementById('selectAll').checked = true;
+                    document.getElementById('selectAllFooter').checked = true;
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-increase').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var input = this.closest('.quantity-control').querySelector('.quantity-input');
+                input.value = parseInt(input.value) + 1;
+                updateTotalPrice(this.closest('tr'));
+            });
+        });
+
+        document.querySelectorAll('.btn-decrease').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var input = this.closest('.quantity-control').querySelector('.quantity-input');
+                if (parseInt(input.value) > 1) {
+                    input.value = parseInt(input.value) - 1;
+                    updateTotalPrice(this.closest('tr'));
+                }
+            });
+        });
+
+        function updateTotalPrice(row) {
+            var unitPrice = parseInt(row.querySelector('td:nth-child(2)').innerText.replace(/,/g, ''));
+            var quantity = parseInt(row.querySelector('.quantity-input').value);
+            var totalPriceCell = row.querySelector('.total-price');
+            totalPriceCell.innerText = (unitPrice * quantity).toLocaleString();
+        }
+
+        document.querySelectorAll('.btn-delete').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var row = this.closest('tr');
+                document.getElementById('confirmDelete').onclick = function () {
+                    row.remove();
+                    $('#deleteModal').modal('hide');
+                };
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="{{ asset('assets/js/contenteditable.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>

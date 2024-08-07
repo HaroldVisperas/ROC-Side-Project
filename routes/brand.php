@@ -11,6 +11,8 @@ use App\Http\Controllers\Brand\BrandPaymentMethodController;
 use App\Http\Controllers\Brand\BrandProofOfPaymentController;
 use App\Http\Controllers\Brand\BrandEmployeeController;
 use App\Http\Controllers\Brand\BrandTicketController;
+use App\Http\Controllers\Brand\BrandSubscriptionController;
+use App\Http\Controllers\Brand\BrandCartController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/brand/dashboard', [BrandDashboardController::class, 'create'])->name('brand.dashboard.create');
@@ -51,4 +53,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/brand/tickets/create', [BrandTicketController::class, 'create_ticket'])->name('brand.tickets.create_ticket');
     Route::post('/brand/tickets/store', [BrandTicketController::class, 'store'])->name('brand.tickets.store');
     Route::get('/brand/tickets/view', [BrandTicketController::class, 'view'])->name('brand.tickets.view');
+
+    Route::get('/brand/subscription', [BrandSubscriptionController::class, 'create'])->name('brand.subscription.create');
+
+    Route::get('/brand/cart', [BrandCartController::class, 'create'])->name('brand.cart.create');
 });

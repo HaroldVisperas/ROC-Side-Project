@@ -15,7 +15,7 @@
 
 <body>
     <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg blue borderbottom fixed-top {border-bottom: white 5px solid;}">
+    <nav class="navbar navbar-expand-lg lightblue borderbottom fixed-top {border-bottom: white 5px solid;}">
         <div class="container-fluid">
             <!-- offcanvas trigger -->
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
@@ -138,14 +138,24 @@
                         <div class="collapse" id="collapseExample">
                             <div>
                                 <ul class="navbar-nav ps-3">
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-1">
-                                            <span><i class="bi bi-box-fill fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-6">Subscription</span>
-                                        </a></li>
-                                    <li><a href="Sample.html" class="nav-link text-white text-start pt-1">
-                                            <span><i class="bi bi-cart-plus-fill fs-5 me-2"></i></span>
-                                            <span class="text-uppercase fw-bold fs-6">Cart</span>
-                                        </a></li>
+                                    <li>
+                                        <form id="subscription-link" method="GET" action="{{ route('brand.subscription.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('subscription-link').submit();">
+                                                <i class="bi bi-box-fill fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Subscription</span>
+                                            </a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form id="cart-link" method="GET" action="{{ route('brand.cart.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('cart-link').submit();">
+                                                <i class="bi bi-cart-plus-fill fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Cart</span>
+                                            </a>
+                                        </form>
+                                    </li>
                                     <li>
                                         <form id="payment-method-link" method="GET" action="{{ route('brand.paymentmethod.create') }}">
                                             @csrf

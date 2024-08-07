@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>ROCPH Digital Marketing Services</title>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/brand-profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/brand-subscription.css') }}">
 </head>
 
 <body>
     <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg lightblue borderbottom fixed-top {border-bottom: white 5px solid;}">
+    <nav class="navbar navbar-expand-lg blue borderbottom fixed-top {border-bottom: white 5px solid;}">
         <div class="container-fluid">
             <!-- offcanvas trigger -->
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
@@ -193,85 +193,98 @@
     </div>
     <!-- SideBar -->
 
-
-    <!-- Dashboard -->
+    <!-- Main Contents --- WAG PAPALITAAAAAN!! -->
     <main class="mt-3 text-start tblack main" data-bs-spy="noscroll">
         <div class="container-fluid">
             <div class="row justify-content-center contents">
-                <div class="col-md-12">
-                    <div class="text-center mainProfileImage">
-                        <div class="d-flex justify-content-center mb-2">
-                            <img id="selectedAvatar" src="{{ asset('assets/images/Default.png') }}" class="rounded-circle"
-                                style="width: 200px; height: 200px;" alt="example placeholder" />
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <form method="GET" action="{{ route('brand.profile.edit') }}">
-                                @csrf
-                                <button type="submit" class="btn blue btn-sm">
-                                    <label class="form-label text-white m-1">Edit Profile</label>
-                                </button>
-                            </form>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">Services</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-outline-primary" href="#">Cart</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="text-center mt-1">
-                        <div class="row justify-content-center">
-                            <div class="col-auto blue profileName">
-                                <h1 class="text-uppercase fw-bold twhite mt-2">Brand Name</h1>
+                </nav>
+                <main class="container my-5">
+                    <div class="text-center mb-5">
+                        <h1>Our Services</h1>
+                        <p class="lead">We offer a range of services to help you succeed on social media</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="{{ asset('assets/images/facebook.png') }}" class="card-img-top" alt="Facebook">
+                                <div class="card-body d-flex flex-column text-center">
+                                    <h5 class="card-title">Facebook</h5>
+                                    <p class="card-text flex-grow-1">Grow your audience and engage with your followers
+                                        on Facebook.</p>
+                                    <div class="mt-auto">
+                                         <button onclick="deleteImage()" class="btn blue btn-sm me-1">Buy Now</i></button>
+                                        <a href="assets/images/logo.png" class="btn green btn-sm ">Add to Cart</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card">
+                                <img src="{{ asset('assets/images/facebook.png') }}" alt="Twitter">
+                                <div class="card-body d-flex flex-column text-center">
+                                    <h5 class="card-title">Twitter</h5>
+                                    <p class="card-text flex-grow-1">Stay updated with the latest trends and news on
+                                        Twitter.</p>
+                                    <div class="mt-auto">
+                                        <button onclick="deleteImage()" class="btn blue btn-sm me-1">Buy Now</i></button>
+                                        <a href="assets/images/logo.png" class="btn green btn-sm ">Add to Cart</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="{{ asset('assets/images/facebook.png') }}" class="card-img-top" alt="TikTok">
+                                <div class="card-body d-flex flex-column text-center">
+                                    <h5 class="card-title">TikTok</h5>
+                                    <p class="card-text flex-grow-1">Create viral content and grow your following on
+                                        TikTok.</p>
+                                    <div class="mt-2">
+                                        <button onclick="deleteImage()" class="btn blue btn-sm me-1">Buy Now</i></button>
+                                        <a href="assets/images/logo.png" class="btn green btn-sm ">Add to Cart</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="{{ asset('assets/images/facebook.png') }}" class="card-img-top" alt="YouTube">
+                                <div class="card-body d-flex flex-column text-center">
+                                    <h5 class="card-title">YouTube</h5>
+                                    <p class="card-text flex-grow-1">Build your channel and reach millions of viewers on
+                                        YouTube.</p>
+                                    <div class="mt-auto">
+                                        <button onclick="deleteImage()" class="btn blue btn-sm me-1">Buy Now</i></button>
+                                        <a href="assets/images/logo.png" class="btn green btn-sm ">Add to Cart</i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </main>
             </div>
         </div>
     </main>
+    <!-- Main Contents -->
 
-    <main class="mt-3 main" data-bs-spy="noscroll">
-        <div class="container-fluid">
-            <div class="row justify-content-center ">
-                <div class="col-xl-5 orange m-2 twhite brandInformationBox">
-                    <h3 class="twhite borderbottom2 fw-bold mt-3">Brand Information</h3>
-                    <div class="col-12">
-                        <div class="row justify-content-center">
-                            <div class="col-11">
-                                <p class="text-start">Brand Name</p>
-                            </div>
-                            <div class="col-11 white brandInformationBox1">
-                                <p class="text-start tblack brandInformationP1 mt-2">"Brand Name here"</p>
-                            </div>
-                            <div class="col-11">
-                                <p class="text-start mt-1">Brand Color</p>
-                            </div>
-                            <div class="col-11 white brandInformationBox2">
-                                <p class="text-start tblack brandInformationP2 mt-2">"Brand Color here"</p>
-                            </div>
-                            <div class="col-11">
-                                <p class="text-start mt-1">Social Media Link</p>
-                            </div>
-                            <div class="col-11 white brandInformationBox3">
-                                <p class="text-start tblack brandInformationP3 mt-2">"Social Media Link here"</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-5 m-2 green twhite brandDescriptionBox">
-                    <h3 class="twhite borderbottom2 fw-bold mt-3">Brand Description</h3>
-                    <div class="col-12">
-                        <div class="row justify-content-center">
-                            <div class="col-11">
-                                <p class="text-start">Brand Description</p>
-                            </div>
-                            <div class="col-11 white brandDescriptionBox1">
-                                <p class="text-start tblack brandInformationP1 mt-2">"Brand Description here"</p>
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('assets/js/contenteditable.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
@@ -279,6 +292,7 @@
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+                
 </body>
 
 </html>
