@@ -157,6 +157,10 @@
     border: 4px solid #008ec2;
 }
 
+.editProfile {
+    margin-top: 100px;
+}
+
 /* Profile Content */
 
 .profile-content {
@@ -177,8 +181,50 @@
 .brandDescriptionBox,
 .brandInformationBox {
     border-radius: 10px;
-}   
+}
 
+.brandInformationBox h3 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.brandInformationBox1,
+.brandInformationBox2,
+.brandInformationBox3 {
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #fff;
+    height: 40px;
+    margin-top: -18px;
+}
+
+.brandInformationP1,
+.brandInformationP2,
+.brandInformationP3 {
+    padding-left: 10px;
+}
+
+.brandInformationBox3 {
+    margin-bottom: 30px;
+}
+
+.brandDescriptionBox1 {
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #fff;
+    height: 180px;
+    margin-top: -18px;
+    margin-bottom: 20px;
+
+}
+
+.brandInformationBoxx {
+    border-radius: 10px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #fff;
+    height: 40px;
+}
 
 /* ROC COLOR */
 

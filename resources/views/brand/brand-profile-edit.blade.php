@@ -195,27 +195,29 @@
 
 
     <!-- Dashboard -->
+    <form method="POST" action="{{ route('brand.profile.update') }}" enctype="multipart/form-data">
+    @csrf
     <main class="mt-3 text-start tblack main" data-bs-spy="noscroll">
         <div class="container-fluid">
             <div class="row justify-content-center contents">
                 <div class="col-md-12">
                     <div class="text-center mainProfileImage">
                         <div class="d-flex justify-content-center mb-2">
-                            <img id="selectedAvatar" src="{{ asset('assets/images/Default.png') }}" class="rounded-circle"
-                                style="width: 200px; height: 200px;" alt="example placeholder" />
+                            <img id="image_preview" src="{{ asset($brand->logo) }}" alt="Brand Image" class="rounded-circle"
+                                style="width: 200px; height: 200px;" alt="Brand Image" />
                         </div>
                         <div class="d-flex justify-content-center">
                             <div data-mdb-ripple-init class="btn blue btn-sm">
-                                <label class="form-label text-white m-1" for="customFile2">Choose file</label>
-                                <input type="file" class="form-control d-none" id="customFile2"
-                                    onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                                <label class="form-label text-white m-1" for="logo" role="button">Change Brand Image</label>
+                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control d-none" id="logo" name="logo"
+                                    onchange="previewImage(event)">
                             </div>
                         </div>
                     </div>
                     <div class="text-center mt-1">
                         <div class="row justify-content-center">
                             <div class="col-auto blue profileName">
-                                <h1 class="text-uppercase fw-bold twhite mt-2">Brand Name</h1>
+                            <h1 class="text-uppercase fw-bold twhite mt-2">{{ $brand->name }}</h1>
                             </div>
                         </div>
                     </div>
@@ -229,47 +231,149 @@
             <div class="row justify-content-center ">
                 <div class="col-xl-5 orange m-2 twhite brandInformationBox">
                     <h3 class="twhite borderbottom2 fw-bold mt-3">Brand Information</h3>
-                    <div class="col">
-                        <div class="table-responsive">
-                            <table class="table mt-3">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="personalEmail">Brand Name</label>
-                                        <input type="email" class="form-control" id="personalEmail" value="johndoe@example.com">
+                    <div class="col-12">
+                        <div class="row justify-content-center">
+                            <div class="col-11">
+                                <p class="text-start">Parent Company</p>
+                            </div>
+                            <div class="col-11">
+                                <input type="text" class="form-control tblack brandInformationBox2" id="company" name="company" value="{{ $company }}" readonly>
+                            </div>
+                            <div class="col-11">
+                                <p class="text-start">Brand Name</p>
+                            </div>
+                            <div class="col-11">
+                                <input type="text" class="form-control tblack brandInformationBox2" id="name" name="name" value="{{ $brand->name }}">
+                            </div>
+                            <div class="col-11">
+                                <p class="text-start mt-1">Social Media Links:</p>
+                            </div>
+                            @if($socmeds)
+                                @if($facebook)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">Facebook</p>
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="url" class="form-control tblack brandInformationBox3" id="facebook_link" name="facebook_link" value="{{ $brand->facebook_link }}">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="employeeID">Brand Color</label>
-                                        <input type="text" class="form-control" id="employeeID" value="2658459">
+                                @endif
+                                @if($x)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">X</p>
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control tblack brandInformationBox3" id="x_link" name="x_link" value="{{ $brand->x_link }}">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="position">Social Media Link</label>
-                                        <input type="text" class="form-control" id="position" value="Employee">
+                                @endif
+                                @if($linkedin)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">LinkedIn</p>
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control tblack brandInformationBox3" id="linkedin_link" name="linkedin_link" value="{{ $brand->linkedin_link }}">
+                                        </div>
                                     </div>
-                                </form>
-                            </table>
+                                @endif
+                                @if($instagram)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">Instagram</p>
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control tblack brandInformationBox3" id="instagram_link" name="instagram_link" value="{{ $brand->instagram_link }}">
+                                        </div>
+                                    </div>
+                                @endif
+                                @if($youtube)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">Youtube</p>
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control tblack brandInformationBox3" id="youtube_link" name="youtube_link" value="{{ $brand->youtube_link }}">
+                                        </div>
+                                    </div>
+                                @endif
+                                @if($tiktok)
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <p class="text-start">Tiktok</p>
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control tblack brandInformationBox3" id="tiktok_link" name="tiktok_link" value="{{ $brand->tiktok_link }}">
+                                        </div>
+                                    </div>
+                                @endif
+                            @else
+                                <div class="col-11 white brandInformationBox3">
+                                    <p class="text-start tblack mt-2">"No Social Media Link"</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-5 m-2 green brandDescriptionBox">
+                <div class="col-xl-5 m-2 green twhite brandDescriptionBox">
                     <h3 class="twhite borderbottom2 fw-bold mt-3">Brand Description</h3>
-                    <div class="col twhite">
-                        <div class="table-responsive">
-                            <table class="table mt-3">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="description">Brand Description</label>
-                                        <textarea class="form-control" id="description" value="I am brand X" rows="4"></textarea>
-                                        <button type="submit" class="btn white tblue mt-3">Save Changes</button>
+                    <div class="col-12">
+                        <div class="row justify-content-center">
+                            <div class="col-11">
+                                <p class="text-start">Brand Description</p>
+                            </div>
+                            <div class="col-11">
+                                <textarea type="text" class="form-control tblack brandDescriptionBox1" id="description" name="description">{{ $brand->description }}</textarea>
+                            </div>
+                            <div class="col-11">
+                                <div class="row justify-content-center">
+                                    <div class="col-4">
+                                        <button type="submit" class="btn white tgreen mt-2" style="width:150px">Save Changes</button>
+                                    </form>
                                     </div>
-                                </form>
-                            </table>
+                                    <div class="col-4">
+                                        <form method="GET" action="{{ route('brand.profile.create') }}">
+                                            @csrf
+                                            <button type="submit" class="btn white tgreen mt-2" style="width:150px">Cancel</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-4">
+                                        <form method="POST" action="{{ route('brand.profile.delete') }}">
+                                            @csrf
+                                            <button type="submit" class="btn red twhite mt-2" style="width:150px">Delete Brand</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('image_preview');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
 
     <script src="{{ asset('assets/js/contenteditable.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>

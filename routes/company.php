@@ -18,7 +18,7 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::get('/company/employee', [CompanyEmployeeController::class, 'create'])->name('company.employee.create');
     Route::post('/company/employee/update', [CompanyEmployeeController::class, 'update_employee'])->name('company.employee.update');
-    Route::get('/company/employee/delete/{id}', [CompanyEmployeeController::class, 'delete_employee'])->name('company.employee.delete');
+    Route::post('/company/employee/delete', [CompanyEmployeeController::class, 'delete_employee'])->name('company.employee.delete');
     Route::get('/company/employee/cancel', [CompanyEmployeeController::class, 'cancel_edit_employee'])->name('company.employee.cancel');
     Route::post('/company/employees/invite/store', [CompanyEmployeeController::class, 'store_invitation'])->name('company.employee.invite.store');
     Route::get('/company/employees/search', [CompanyEmployeeController::class, 'search_employee'])->name('company.employee.search');

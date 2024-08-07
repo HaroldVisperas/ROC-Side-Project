@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('company');
             $table->string('name')->unique();
+            $table->string('logo')->default('assets/images/brand_default.png');
             $table->text('description');
             $table->string('facebook_link')->nullable();
             $table->string('x_link')->nullable();

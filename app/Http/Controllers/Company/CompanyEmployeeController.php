@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Invitation;
 use App\Models\Brand;
+use App\Models\User;
 
 class CompanyEmployeeController extends Controller
 {
@@ -39,6 +40,7 @@ class CompanyEmployeeController extends Controller
 
         // Retrieve the existing employee record
         $employee = Employee::find($request->email);
+        $user = User::where('email', $request->email)->first();
         if (!$employee) {
             return redirect()->back()->withErrors(['employee_id' => 'Employee not found']);
         }
@@ -49,14 +51,22 @@ class CompanyEmployeeController extends Controller
         $employee->role = $request->role;
         $employee->save();
 
+        $user->role = $request->role;
+        $user->save();
+
         // Specify a valid route for the redirect
         return redirect()->back();
     }
 
-    public function delete_employee($id)
+    public function delete_employee(Request $request)
     {
-        $employee = Employee::find($id);
+        $employee = Employee::where('email', $request->employee_email)->first();
         $employee->delete();
+
+        $user = User::where('email', $request->employee_email)->first();
+        $user->role = 'individual_client';
+        $user->save();
+        
         return redirect()->action([CompanyEmployeeController::class, 'create']);
     }
 

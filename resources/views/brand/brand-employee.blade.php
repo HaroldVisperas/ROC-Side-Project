@@ -291,7 +291,7 @@
                                                 </a>
                                             </td>
                                         </form>
-                                        <form id="delete-brandowner" method="POST" action="{{ route('brand.employees.cancel') }}">
+                                        <form id="delete-brandowner" method="POST" action="{{ route('brand.employees.delete') }}">
                                             @csrf
                                             <input type="hidden" name="employee_email" value="{{ $brandowner->email }}">
                                         </form>
@@ -337,7 +337,7 @@
                                                 </a>
                                             </td>
                                         </form>
-                                        <form id="delete-member" method="POST" action="{{ route('brand.employees.cancel') }}">
+                                        <form id="delete-member" method="POST" action="{{ route('brand.employees.delete') }}">
                                             @csrf
                                             <input type="hidden" name="employee_email" value="{{ $member->email }}">
                                         </form>

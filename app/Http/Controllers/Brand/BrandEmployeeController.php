@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Invitation;
+use App\Models\User;
 
 class BrandEmployeeController extends Controller
 {
@@ -27,30 +28,37 @@ class BrandEmployeeController extends Controller
             'email' => 'required|email',
             'employee_id' => 'required',
             'role' => 'required|in:company_owner,brand_owner,member',
-            'affiliation_secondary' => 'required',
         ]);
 
         // Retrieve the existing employee record
         $employee = Employee::find($request->email);
+        $user = User::where('email', $request->email)->first();
         if (!$employee) {
             return redirect()->back()->withErrors(['employee_id' => 'Employee not found']);
         }
 
         // Update the existing employee record
         $employee->employee_id = $request->employee_id;
-        $employee->affiliation_secondary = $request->affiliation_secondary;
         $employee->role = $request->role;
         $employee->save();
+
+        $user->role = $request->role;
+        $user->save();
 
         // Specify a valid route for the redirect
         return redirect()->back();
     }
 
-    public function delete_employee($id)
+    public function delete_employee(Request $request)
     {
-        $employee = Employee::find($id);
+        $employee = Employee::where('email', $request->employee_email)->first();
         $employee->delete();
-        return redirect()->action([CompanyEmployeeController::class, 'create']);
+
+        $user = User::where('email', $request->employee_email)->first();
+        $user->role = 'individual_client';
+        $user->save();
+        
+        return redirect()->action([BrandEmployeeController::class, 'create']);
     }
 
     public function cancel_edit_employee()

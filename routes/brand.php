@@ -30,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/brand/profile', [BrandProfileController::class, 'create'])->name('brand.profile.create');
     Route::get('/brand/profile/edit', [BrandProfileController::class, 'edit'])->name('brand.profile.edit');
+    Route::post('/brand/profile/update', [BrandProfileController::class, 'update'])->name('brand.profile.update');
+    Route::post('/brand/profile/delete', [BrandProfileController::class, 'delete'])->name('brand.profile.delete');
 
     Route::get('/brand/user/profile', [BrandUserProfileController::class, 'create'])->name('brand.user.profile.create');
     Route::get('/brand/user/profile/edit', [BrandUserProfileController::class, 'edit'])->name('brand.user.profile.edit');
@@ -44,7 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/brand/employees', [BrandEmployeeController::class, 'create'])->name('brand.employees.create');
     Route::post('/brand/employees/update', [BrandEmployeeController::class, 'update_employee'])->name('brand.employees.update');
-    Route::delete('/brand/employees/delete/{id}', [BrandEmployeeController::class, 'delete_employee'])->name('brand.employees.delete');
+    Route::post('/brand/employees/delete', [BrandEmployeeController::class, 'delete_employee'])->name('brand.employees.delete');
     Route::get('/brand/employees/cancel', [BrandEmployeeController::class, 'cancel_edit_employee'])->name('brand.employees.cancel');
     Route::post('/brand/employees/invitation/store', [BrandEmployeeController::class, 'store_invitation'])->name('brand.employees.invitation.store');
     Route::get('/brand/employees/search', [BrandEmployeeController::class, 'search_employee'])->name('brand.employees.search');

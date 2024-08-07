@@ -145,7 +145,7 @@
                                 <div class="card custom-card text-center">
                                     <div class="card-body p-0">
                                         <div class="card-image">
-                                            <img src="{{ asset('assets/images/Gardenia.png') }}" class="img-fluid" alt="Gardenia Logo">
+                                            <img src="{{ asset($brand->logo) }}" class="img-fluid" alt="Gardenia Logo">
                                         </div>
                                         <div class="card-footer blue text-white">
                                             {{ $brand->name }}

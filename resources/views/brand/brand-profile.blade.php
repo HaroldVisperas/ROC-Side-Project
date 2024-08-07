@@ -201,16 +201,8 @@
                 <div class="col-md-12">
                     <div class="text-center mainProfileImage">
                         <div class="d-flex justify-content-center mb-2">
-                            <img id="selectedAvatar" src="{{ asset('assets/images/Default.png') }}" class="rounded-circle"
+                            <img id="selectedAvatar" src="{{ asset($brand->logo) }}" class="rounded-circle"
                                 style="width: 200px; height: 200px;" alt="Brand Image" />
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <form method="GET" action="{{ route('brand.profile.edit') }}">
-                                @csrf
-                                <button type="submit" class="btn blue btn-sm">
-                                    <label class="form-label text-white m-1">Edit Profile</label>
-                                </button>
-                            </form>
                         </div>
                     </div>
                     <div class="text-center mt-1">
@@ -253,8 +245,10 @@
                                         <div class="col-3">
                                             <p class="text-start">Facebook</p>
                                         </div>
-                                        <div class="col-9 white brandInformationBox3">
-                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->facebook_link }}</p>
+                                        <div class="col-8 white brandInformationBox3">
+                                            <a href="{{ $brand->facebook_link }}" target="_blank" style="text-decoration: none;">
+                                                <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->facebook_link }}</p>
+                                            </a>
                                         </div>
                                     </div>
                                 @endif
@@ -263,8 +257,10 @@
                                         <div class="col-3">
                                             <p class="text-start">X</p>
                                         </div>
-                                        <div class="col-9 white brandInformationBox3">
-                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->x_link }}</p>
+                                        <div class="col-8 white brandInformationBox3">
+                                            <a href="{{ $brand->x_link }}" target="_blank" style="text-decoration: none;">
+                                                <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->x_link }}</p>
+                                            </a>
                                         </div>
                                     </div>
                                 @endif
@@ -273,8 +269,10 @@
                                         <div class="col-3">
                                             <p class="text-start">LinkedIn</p>
                                         </div>
-                                        <div class="col-9 white brandInformationBox3">
-                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->linkedin_link }}</p>
+                                        <div class="col-8 white brandInformationBox3">
+                                            <a href="{{ $brand->linkedin_link }}" target="_blank" style="text-decoration: none;">
+                                                <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->linkedin_link }}</p>
+                                            </a>
                                         </div>
                                     </div>
                                 @endif
@@ -283,8 +281,10 @@
                                         <div class="col-3">
                                             <p class="text-start">Instagram</p>
                                         </div>
-                                        <div class="col-9 white brandInformationBox3">
-                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->instagram_link }}</p>
+                                        <div class="col-8 white brandInformationBox3">
+                                            <a href="{{ $brand->instagram_link }}" target="_blank" style="text-decoration: none;">
+                                                <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->instagram_link }}</p>
+                                            </a>
                                         </div>
                                     </div>
                                 @endif
@@ -293,8 +293,10 @@
                                         <div class="col-3">
                                             <p class="text-start">Youtube</p>
                                         </div>
-                                        <div class="col-9 white brandInformationBox3">
-                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->youtube_link }}</p>
+                                        <div class="col-8 white brandInformationBox3">
+                                            <a href="{{ $brand->youtube_link }}" target="_blank" style="text-decoration: none;">
+                                                <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->youtube_link }}</p>
+                                            </a>
                                         </div>
                                     </div>
                                 @endif
@@ -303,13 +305,13 @@
                                         <div class="col-3">
                                             <p class="text-start">Tiktok</p>
                                         </div>
-                                        <div class="col-9 white brandInformationBox3">
-                                            <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->tiktok_link }}</p>
+                                        <div class="col-8 white brandInformationBox3">
+                                            <a href="{{ $brand->tiktok_link }}" target="_blank" style="text-decoration: none;">
+                                                <p class="text-start tblack brandInformationP3 mt-2">{{ $brand->tiktok_link }}</p>
+                                            </a>
                                         </div>
                                     </div>
                                 @endif
-
-
                             @else
                                 <div class="col-11 white brandInformationBox3">
                                     <p class="text-start tblack mt-2">"No Social Media Link"</p>
@@ -318,7 +320,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-xl-5 m-2 green twhite brandDescriptionBox">
                     <h3 class="twhite borderbottom2 fw-bold mt-3">Brand Description</h3>
                     <div class="col-12">
@@ -329,7 +330,14 @@
                             <div class="col-11 white brandDescriptionBox1">
                                 <p class="text-start tblack brandInformationP1 mt-2">{{ $brand->description }}</p>
                             </div>
-                           
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-4">
+                                <form method="GET" action="{{ route('brand.profile.edit') }}">
+                                    @csrf
+                                    <button type="submit" class="btn white tgreen mt-2">Edit Profile</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
