@@ -157,15 +157,6 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <form id="payment-method-link" method="GET" action="{{ route('brand.paymentmethod.create') }}">
-                                            @csrf
-                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('payment-method-link').submit();">
-                                                <i class="bi bi-cash fs-5 me-2"></i>
-                                                <span class="text-uppercase fw-bold fs-6">Payment Method</span>
-                                            </a>
-                                        </form>
-                                    </li>
-                                    <li>
                                         <form id="proof-of-payment-link" method="GET" action="{{ route('brand.proofofpayment.create') }}">
                                             @csrf
                                             <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('proof-of-payment-link').submit();">

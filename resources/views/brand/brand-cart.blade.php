@@ -157,15 +157,6 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <form id="payment-method-link" method="GET" action="{{ route('brand.paymentmethod.create') }}">
-                                            @csrf
-                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('payment-method-link').submit();">
-                                                <i class="bi bi-cash fs-5 me-2"></i>
-                                                <span class="text-uppercase fw-bold fs-6">Payment Method</span>
-                                            </a>
-                                        </form>
-                                    </li>
-                                    <li>
                                         <form id="proof-of-payment-link" method="GET" action="{{ route('brand.proofofpayment.create') }}">
                                             @csrf
                                             <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('proof-of-payment-link').submit();">
@@ -260,45 +251,9 @@
                         </tfoot>
                     </table>
                 </div>
-
-                <!-- Delete Confirmation Modal -->
-                <!-- <button class="btn btn-outline-danger btn-delete" data-toggle="modal"
-                data-target="#deleteModal"><i class="bi bi-trash-fill"></i></button> -->
-                <!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                This action cannot be undone. All values associated with this field will be lost.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" id="confirmDelete">Delete Field</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </main>
-
-    <!-- <script>
-        document.querySelectorAll('.btn-delete').forEach(function (button) {
-            button.addEventListener('click', function () {
-                var row = this.closest('tr');
-                document.getElementById('confirmDelete').onclick = function () {
-                    row.remove();
-                    $('#deleteModal').modal('hide');
-                };
-            });
-        });
-    </script> -->
     
     <script src="{{ asset('assets/js/contenteditable.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
