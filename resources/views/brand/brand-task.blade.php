@@ -201,7 +201,7 @@
 
     <!-- Dashboard -->
     <main class="mt-2 text-start tblack main" data-bs-spy="noscroll">
-        <div class="container-fluid">
+        <div class="container-fluid" data-bs-spy="noscroll">
             <div class="row justify-content-center contents">
                 <!-- KANBAN -->
                 <div class="container upperDashboard">
@@ -279,7 +279,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="GET" action="{{ route('brand.tasks.create') }}">
+                                <form method="POST" action="{{ route('brand.tasks.store') }}">
                                     @csrf
                                     <input type="text" id="todoInput" name="title" class="form-control mb-3"
                                         placeholder="Enter your task" required>

@@ -11,7 +11,10 @@ class BrandTicketController extends Controller
 {
     public function create(Request $request)
     {
-        $tickets = Ticket::where('company', $request->session()->get('company'))->where('brand', $request->session()->get('brand'))->get();
+        $tickets = Ticket::where('company', $request->session()->get('company'))
+            ->where('brand', $request->session()->get('brand'))
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('brand.brand-ticket', compact('tickets'));
     }

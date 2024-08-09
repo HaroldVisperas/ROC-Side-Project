@@ -125,37 +125,31 @@
 
 
     <!-- Dashboard -->
-    <main class="mt-3 tblack main">
-        <div class="container-fluid">
+    <main class="text-start tblack main" data-bs-spy="noscroll">
+        <div class="container-fluid list-container">
             <div class="row justify-content-center contents">
-                <div class="col-lg-11 text-center ">
-                    <h3 class="tblue fw-bold fs-3 me-2 p-2 borderbottom2">List of Brands</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            <div class="row">
-                @foreach ($brands as $brand)
-                    <div class="col-md-3 pt-3">
-                        <form id="brand-link-{{ $brand->name }}" method="POST" action="{{ route('company.brands.select') }}">
-                            @csrf
-                            <input type="hidden" name="brand_name" value="{{ $brand->name }}">
-                            <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('brand-link-{{ $brand->name }}').submit();">
-                                <div class="card custom-card text-center">
-                                    <div class="card-body p-0">
-                                        <div class="card-image">
-                                            <img src="{{ asset($brand->logo) }}" class="img-fluid" alt="Gardenia Logo">
+                <h3 class="text-center fw-bold tblue">Our Featured Brands</h3>
+                <div class="row mt-2">
+                    @foreach ($brands as $brand)
+                        <div class="col-md-4">
+                            <form id="brand-link-{{ $brand->name }}" method="POST" action="{{ route('company.brands.select') }}">
+                                @csrf
+                                <input type="hidden" name="brand_name" value="{{ $brand->name }}">
+                                <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('brand-link-{{ $brand->name }}').submit();">
+                                    <div class="brand-card">
+                                        <div class="brand-image">
+                                            <img src="{{ asset('assets/images/brand-background.png') }}" class="blue" alt="Brand Background">
+                                            <div class="brand-logo">
+                                                <img src="{{ asset($brand->logo) }}" class="img-fluid" alt="Brand Logo">
+                                            </div>
                                         </div>
-                                        <div class="card-footer blue text-white">
-                                            {{ $brand->name }}
-                                        </div>
+                                        <div class="brand-title">{{ $brand->name }}</div>
                                     </div>
-                                </div>
-                            </a>
-                        </form>
-                    </div>
-                @endforeach
+                                </a>
+                            </form>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </main>

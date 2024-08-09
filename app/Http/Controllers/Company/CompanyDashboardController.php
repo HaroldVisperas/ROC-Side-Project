@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Announcement;
 use App\Models\Task;
 use App\Models\Employee;
+use App\Models\Subscription;
 
 class CompanyDashboardController extends Controller
 {
@@ -26,6 +27,8 @@ class CompanyDashboardController extends Controller
 
         $recenttasks = Task::orderBy('updated_at', 'desc')->limit(2)->get();
 
-        return view('company.company-dashboard', compact('latestAnnouncements', 'recenttasks'));
+        $recentsubscriptions = Subscription::where('company', $employee->affiliation)->orderBy('created_at', 'desc')->limit(2)->get();
+
+        return view('company.company-dashboard', compact('latestAnnouncements', 'recenttasks', 'recentsubscriptions'));
     }
 }

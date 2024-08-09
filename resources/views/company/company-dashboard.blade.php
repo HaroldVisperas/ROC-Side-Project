@@ -184,7 +184,7 @@
                             </div>
                             <div class="row mt-4 justify-content-center">
                                 <div class="col-5 gray recentTaskBox1 p-3">
-                                    @if($latestAnnouncements->isNotEmpty())
+                                    @if($recenttasks->isNotEmpty())
                                         @foreach($recenttasks as $recenttask)
                                             <div>
                                                 <h4 class="text-white fw-bold text-center">
@@ -229,60 +229,34 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3 justify-content-center">
-                        <div class="col-10 activeSubsBox1 p-3">
-                            <div class="text-uppercase">
-                                <h3 class="text-white fw-bold text-center">
-                                    <span class="tblack">Subscription</span>
-                                </h3>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">Brand Name: 
-                                <span style="color:rgb(46, 46, 46); font-weight: 800">Amazon Prime</span>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">Subscription ID: 
-                                <span style="color:rgb(46, 46, 46); font-weight: 800">254856</span>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">End of Subscription: 
-                                <span style="color:rgb(46, 46, 46); font-weight: 800">May 01, 2023</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-3 justify-content-center">
-                        <div class="col-10 activeSubsBox2 p-3">
-                            <div class="text-uppercase">
-                                <h3 class="text-white fw-bold text-center">
-                                    <span class="tblack">Subscription</span>
-                                </h3>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">Brand Name: 
-                                <span style="color:rgb(46, 46, 46); font-weight: 800">Amazon Prime</span>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">Subscription ID: 
-                                <span style="color:rgb(46, 46, 46); font-weight: 800">254856</span>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">End of Subscription: 
-                                <span style="color:rgb(46, 46, 46); font-weight: 800">May 01, 2023</span>
+                    @if($recentsubscriptions->isNotEmpty())
+                        @foreach($recentsubscriptions as $recentsubscription)
+                        <div class="row mt-3 justify-content-center">
+                            <div class="col-10 activeSubsBox1 p-3">
+                                <div class="text-uppercase">
+                                    <h3 class="text-white fw-bold text-center">
+                                        <span class="tblack">{{ $recentsubscription->package_name }}</span>
+                                    </h3>
+                                </div>
+                                <div class="fw-normal actSubsP tblack text-center">Brand Name:
+                                    <span style="color:rgb(46, 46, 46); font-weight: 800">{{ $recentsubscription->brand }}</span>
+                                </div>
+                                <div class="fw-normal actSubsP tblack text-center">Subscription Duration:
+                                    <span style="color:rgb(46, 46, 46); font-weight: 800">{{ $recentsubscription->duration }} Month{{ $recentsubscription->duration > 1 ? 's' : '' }}</span>
+                                </div>
+                                <div class="fw-normal actSubsP tblack text-center">End of Subscription: 
+                                <span style="color:rgb(46, 46, 46); font-weight: 800">{{ date('M d, Y', strtotime($recentsubscription->created_at . ' + ' . $recentsubscription->duration . ' months')) }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-3 justify-content-center">
-                        <div class="col-10 activeSubsBox3 p-3">
-                            <div class="text-uppercase">
-                                <h3 class="text-white fw-bold text-center">
-                                    <span class="tblack">Subscription</span>
-                                </h3>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">Brand Name: 
-                                <span style="color:rgb(46, 46, 46); font-weight: 800">Amazon Prime</span>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">Subscription ID: 
-                                <span style="color:rgb(46, 46, 46); font-weight: 800">254856</span>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">End of Subscription: 
-                                <span style="color:rgb(46, 46, 46); font-weight: 800">May 01, 2023</span>
-                            </div>
+                        @endforeach
+                    @else
+                        <div class="col-9 gray recentTaskBox1 p-3">
+                            <h4 class="text-white fw-bold text-center">
+                                <span class="tblack">No Subscription Made</span>
+                            </h4>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
