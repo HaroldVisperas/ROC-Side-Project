@@ -189,72 +189,96 @@
     <main class="mt-2 text-start tblack main" data-bs-spy="noscroll">
         <div class="container-fluid">
             <div class="row justify-content-center contents">
-                <div class="m-2 col-lg-6 fw-bold announcementCol">
-                    <h1 class="text-center mt-4 fw-bold tgray">Announcement</h1>
-                    <div class="row justify-content-center">
-                        <div class="col-md-10">
+                @if($latestAnnouncements->isNotEmpty())
+                    @foreach($latestAnnouncements as $latestAnnouncement)
+                        <div class="m-2 col-lg-6 fw-bold announcementCol">
+                            <h1 class="text-center mt-4 fw-bold tgray">Announcement</h1>
+                            <div class="row justify-content-center">
+                                <div class="col-md-10">
+                                    <div class="row mt-3 justify-content-center">
+                                        <div class="col-sm-auto me-4">
+                                            <div class="fs-5 fw-bold text-start tblack">{{ $latestAnnouncement->title }}</div>
+                                        </div>
+                                        <div class="col-sm-auto text-end mt-2">
+                                            <div class="fw-normal announcementName-2">{{ $latestAnnouncement->updated_at->setTimezone(auth()->user()->timezone)->format('F j, Y') }} | 
+                                                <span style="color:green">{{ $latestAnnouncement->updated_at->setTimezone(auth()->user()->timezone)->format('g:i A') }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row mt-3 justify-content-center">
-                                <div class="col-sm-auto me-4">
-                                    <div class="fs-5 fw-bold text-start tblack">New Announcement</div>
-                                </div>
-                                <div class="col-sm-auto text-end mt-2">
-                                    <div class="fw-normal announcementName-2">January 05, 2024 | <span style="color:green">
-                                            10:24 AM </span></div>
+                                <div class="col-md-10">
+                                    <div class="fw-normal announcementP lh-sm fw-lighter">
+                                        <form id="announcement-form" method="GET" action="{{ route('brand.announcements.create') }}">
+                                            @csrf
+                                            <p>{{ substr($latestAnnouncement->content, 0, 600) }}
+                                                <a href="#" style="color:green; text-decoration: none;" onclick="event.preventDefault(); document.getElementById('announcement-form').submit();">
+                                                    Read More...
+                                                </a>
+                                            </p>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-3 justify-content-center">
-                        <div class="col-md-10">
-                            <div class="fw-normal announcementP lh-sm fw-lighter">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                                    nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec
-                                    purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui.
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                                    nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec
-                                    purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. <span href="#"
-                                        style="color:green">
-                                        Read More...</p>
-                            </div>
+                    @endforeach
+                @else
+                    <div class="m-2 col-lg-6 fw-bold announcementCol">
+                        <h1 class="text-center mt-4 fw-bold tgray">Announcement</h1>
+                        <div class="col-5 gray recentTaskBox1 p-3">
+                            <h4 class="text-white fw-bold text-center">
+                                <span class="tblack">No Announcement</span>
+                            </h4>
                         </div>
                     </div>
-                </div>
+                @endif
                 <div class="m-2 col-lg-5 blue currentSubCol text-white">
                     <div class="row">
                         <div class="col">
-                            <h4 class="text-center twhite">Current Subscription</h4>
+                            <h4 class="text-center twhite">Recent Subscription</h4>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col text-center availedSubsTop">
-                            <div class=" fw-bold text-uppercase">
-                                <h1>Enterprise</h1>
+                    @if($recentsubscriptions)
+                        <div class="row">
+                            <div class="col text-center availedSubsTop">
+                                <div class=" fw-bold text-uppercase">
+                                    <h1>{{ $recentsubscriptions->package_name }}</h1>
+                                </div>
+                                <div class="fw-normal tblack availedSubsTop-2">Availed Subscription</div>
                             </div>
-                            <div class="fw-normal tblack availedSubsTop-2">Availed Subscription</div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col text-center availedSubsBot mt-3">
-                            <div class="fw-bold  text-lowercase">
-                                <h3 style="color:rgb(22, 14, 101)">bearbrand</h3>
+                        <div class="row">
+                            <div class="col text-center availedSubsBot mt-3">
+                                <div class="fw-bold">
+                                    <h3 style="color:rgb(22, 14, 101)">{{ $recentsubscriptions->brand }}</h3>
+                                </div>
+                                <div class="fw-normal tblack availedSubsBot-2 ">Brand Name</div>
                             </div>
-                            <div class="fw-normal tblack availedSubsBot-2 ">Brand Name</div>
                         </div>
-                    </div>
-                    <div class="row justify-content-center text-center mt-3 subsDate">
-                        <div class="col-4 text-center subsDateTop">
-                            <div class="fw-bold">
-                                <h6>June 01, 2024</h6>
+                        <div class="row justify-content-center text-center mt-3 subsDate">
+                            <div class="col-4 text-center subsDateTop">
+                                <div class="fw-bold">
+                                    <h6>{{ date('M d, Y', strtotime($recentsubscriptions->created_at)) }}</h6>
+                                </div>
+                                <div class="fw-normal tblack subsDateTop-2 ">Start Date</div>
                             </div>
-                            <div class="fw-normal tblack subsDateTop-2 ">Start Date</div>
-                        </div>
-                        <div class="col-4 text-center subsDateBot">
-                            <div class="fw-bold">
-                                <h6>August 01, 2023</h6>
+                            <div class="col-4 text-center subsDateBot">
+                                <div class="fw-bold">
+                                    <h6>{{ date('M d, Y', strtotime($recentsubscriptions->created_at . ' + ' . $recentsubscriptions->duration . ' months')) }}</h6>
+                                </div>
+                                <div class="fw-normal tblack subsDateBot-2">Billing Date</div>
                             </div>
-                            <div class="fw-normal tblack subsDateBot-2">Billing Date</div>
                         </div>
-                    </div>
+                    @else
+                        <div class="row mt-3 justify-content-center">
+                            <div class="col-9 gray recentTaskBox1 p-3">
+                                <h4 class="text-white fw-bold text-center">
+                                    <span class="tblack">No Subscription Made</span>
+                                </h4>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -264,38 +288,53 @@
         <div class="container-fluid">
             <div class="row justify-content-center mt-2">
                 <div class="col-md-11 recentTasks">
-                    <div class="row justify-content-center">
-                        <div class="col">
-                            <h3 class="text-center fw-bold tgray mt-3">Recent Tasks
-                                <a href="your-target-url.html" class="btn"
-                                    style="background-color: #84c148; color: white; border: solid 2px black;">View</a>
-                            </h3>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <h3 class="text-center fw-bold tgray mt-3">Recent Tasks</h3>
+                            <form method="GET" action="{{ route('brand.tasks.create') }}">
+                                @csrf
+                                <button type="submit" class="btn ms-3" style="background-color: #84c148; color: white; border: solid 2px black;">View All</button>
+                            </form>
                         </div>
                     </div>
-
                     <div class="row justify-content-center actSubsTop">
-                        <div class="m-3 col-sm-5 actSubBox1 blue">
-                            <div class="fw-bold text-uppercase">
-                                <h3 class="text-white text-center"><span class="tblack">"Added To-do"</span></h3>
+                        @if($recenttasks->isNotEmpty())
+                            @foreach($recenttasks as $recenttask)
+                                <div class="m-3 col-sm-5 actSubBox1 blue">
+                                    <div class="fw-bold text-uppercase">
+                                        <h3 class="text-white text-center"><span class="tblack">{{ $recenttask->title }}</span></h3>
+                                    </div>
+                                    <div class="fw-normal recentTaskP tblack text-center">Status:
+                                        @if($recenttask->status == 'todo')
+                                            <span class="text-uppercase" style="color: #534B4B; font-weight: 800">{{ $recenttask->status }}</span>
+                                        @elseif($recenttask->status == 'working')
+                                            <span class="text-uppercase" style="color: #F38C1E; font-weight: 800">{{ $recenttask->status }}</span>
+                                        @elseif($recenttask->status == 'approval')
+                                            <span class="text-uppercase" style="color: #D23426; font-weight: 800">{{ $recenttask->status }}</span>
+                                        @elseif($recenttask->status == 'done')
+                                            <span class="text-uppercase" style="color: #84C148; font-weight: 800">{{ $recenttask->status }}</span>
+                                        @endif
+                                    </div>
+                                    <div class="fw-normal actSubsP tblack text-center">Company Name: 
+                                        <span style="color:white; font-weight: 800">{{ $recenttask->company }}</span>
+                                    </div>
+                                    <div class="fw-normal actSubsP tblack text-center">Brand Name: 
+                                        <span style="color:white; font-weight: 800">{{ $recenttask->brand }}</span>
+                                    </div>
+                                    <div class="fw-normal actSubsP tblack text-center">Ticket No.: 
+                                        <span style="color:white; font-weight: 800">{{ $recenttask->id }}</span>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="col-5 gray recentTaskBox1 p-3">
+                                <div>
+                                    <h4 class="text-white fw-bold text-center">
+                                        <span class="tblack">No Recent Task</span>
+                                    </h4>
+                                </div>
                             </div>
-                            <div class="fw-normal actSubsP tblack text-center">Company Name: <span
-                                    style="color:white; font-weight: 800">Amazon Prime</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Brand Name: <span
-                                    style="color:white; font-weight: 800">Nike</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Ticket No.: <span
-                                    style="color:white; font-weight: 800">359875</span></div>
-                        </div>
-                        <div class="m-3 col-sm-5 actSubBox2 blue">
-                            <div class="fw-bold text-uppercase">
-                                <h3 class="text-white text-center"><span class="tblack">"Added To-do"</span></h3>
-                            </div>
-                            <div class="fw-normal actSubsP tblack text-center">Company Name: <span
-                                    style="color:white; font-weight: 800">Amazon Prime</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Brand Name: <span
-                                    style="color:white; font-weight: 800">Nike</span></div>
-                            <div class="fw-normal actSubsP tblack text-center">Ticket No.: <span
-                                    style="color:white; font-weight: 800">359875</span></div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

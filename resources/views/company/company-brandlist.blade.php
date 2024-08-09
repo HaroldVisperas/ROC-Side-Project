@@ -135,7 +135,7 @@
                             <form id="brand-link-{{ $brand->name }}" method="POST" action="{{ route('company.brands.select') }}">
                                 @csrf
                                 <input type="hidden" name="brand_name" value="{{ $brand->name }}">
-                                <a href="#" class="card-link" onclick="event.preventDefault(); document.getElementById('brand-link-{{ $brand->name }}').submit();">
+                                <a href="#" class="card-link text-decoration-none" onclick="event.preventDefault(); document.getElementById('brand-link-{{ $brand->name }}').submit();">
                                     <div class="brand-card">
                                         <div class="brand-image">
                                             <img src="{{ asset('assets/images/brand-background.png') }}" class="blue" alt="Brand Background">

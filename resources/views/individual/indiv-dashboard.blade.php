@@ -22,7 +22,7 @@
     @elseif (auth()->user()->role == 'member')
         <script>window.location.href = "{{ route('brand.dashboard.create') }}";</script>
     @elseif (auth()->user()->role == 'roc_administrator')
-        <script>window.location.href = "#";</script>
+        <script>window.location.href = "{{ route('administrator.create') }}";</script>
     @endif
 
     <!-- NavBar -->

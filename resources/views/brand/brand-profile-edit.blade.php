@@ -332,35 +332,39 @@
                                     </div>
                                     @if(auth()->user()->role == 'company_owner')
                                         <div class="col-4">
-                                            <form method="POST" action="{{ route('brand.profile.delete') }}">
-                                                @csrf
-                                                <button type="submit" class="btn red twhite mt-2 btn-delete" style="width:150px" 
-                                                    data-toggle="#deleteModal">Delete Model</button>
-                                                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                This action cannot be undone. All values associated with this field will be lost.
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-danger" id="confirmDelete">Delete Field</button>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <button type="button" class="btn red twhite mt-2 btn-delete" style="width:150px" data-toggle="modal" data-target="#deleteModal">
+                                                Delete Brand
+                                            </button>
                                         </div>
                                     @endif
-
-
+                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title tblack" id="deleteModalLabel">Are you sure?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body tblack">
+                                                    <div class="row align-items-center justify-content-center">
+                                                        <img id="image_preview" src="{{ asset($brand->logo) }}" alt="Brand Image" class="col-6 rounded-circle"
+                                                        style="width: 200px; height: 200px;" alt="Brand Image" />
+                                                        <h4 class="col-6 bold">{{ $brand->name }}</h4>
+                                                    </div>
+                                                    <br>
+                                                    This action <b class="tred">cannot be UNDONE</b>. All values associated with the brand: <span class="text-uppercase">{{ $brand->name }}</span> <b class="tred">will be LOST</b>.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <form id="deleteForm" method="POST" action="{{ route('brand.profile.delete') }}">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger" id="confirmDelete">Delete Field</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -391,27 +395,9 @@
         }
     </script>
 
-    <!-- <script>
-        document.querySelectorAll('.btn-delete').forEach(function (button) {
-            button.addEventListener('click', function () {
-                var row = this.closest('tr');
-                document.getElementById('confirmDelete').onclick = function () {
-                    row.remove();
-                    $('#deleteModal').modal('hide');
-                };
-            });
-        });
-    </script> -->
-
-    <script>
-        function handleDelete(button) {
-            var row = button.closest('tr');
-            document.getElementById('confirmDelete').onclick = function () {
-                row.remove();
-                $('#deleteModal').modal('hide');
-            };
-        }
-    </script>
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script src="{{ asset('assets/js/contenteditable.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>

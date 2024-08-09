@@ -27,7 +27,7 @@ class CompanyDashboardController extends Controller
 
         $recenttasks = Task::orderBy('updated_at', 'desc')->limit(2)->get();
 
-        $recentsubscriptions = Subscription::where('company', $employee->affiliation)->orderBy('created_at', 'desc')->limit(2)->get();
+        $recentsubscriptions = Subscription::where('company', $employee->affiliation)->orderBy('created_at', 'desc')->limit(3)->get();
 
         return view('company.company-dashboard', compact('latestAnnouncements', 'recenttasks', 'recentsubscriptions'));
     }

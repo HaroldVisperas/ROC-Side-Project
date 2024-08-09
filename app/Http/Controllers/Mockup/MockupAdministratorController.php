@@ -11,7 +11,7 @@ class MockupAdministratorController extends Controller
     public function create()
     {
         $announcements = Announcement::orderBy('updated_at', 'desc')->get();
-        return view('mockup.admin.mockup-addannouncement', compact('announcements'));
+        return view('administrator.administrator-addannouncement', compact('announcements'));
     }
 
     public function store_announcement(Request $request)
@@ -30,13 +30,13 @@ class MockupAdministratorController extends Controller
         $announcement->link_url = $request->link_url;
         $announcement->save();
 
-        return redirect()->route('mockup.administrator.create')->with('success', 'Announcement added successfully');
+        return redirect()->route('administrator.create')->with('success', 'Announcement added successfully');
     }
 
     public function edit_announcement($id)
     {
         $announcement = Announcement::find($id);
-        return view('mockup.admin.mockup-editannouncement', compact('announcement'));
+        return view('administrator-editannouncement', compact('announcement'));
     }
 
     public function update_announcement(Request $request, $id)
@@ -55,7 +55,7 @@ class MockupAdministratorController extends Controller
         $announcement->link_url = $request->link_url;
         $announcement->save();
 
-        return redirect()->route('mockup.administrator.create')->with('success', 'Announcement updated successfully');
+        return redirect()->route('administrator.create')->with('success', 'Announcement updated successfully');
     }
 
     public function delete_announcement($id)
@@ -63,6 +63,6 @@ class MockupAdministratorController extends Controller
         $announcement = Announcement::find($id);
         $announcement->delete();
 
-        return redirect()->route('mockup.administrator.create')->with('success', 'Announcement deleted successfully');
+        return redirect()->route('administrator.create')->with('success', 'Announcement deleted successfully');
     }
 }

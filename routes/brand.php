@@ -13,9 +13,12 @@ use App\Http\Controllers\Brand\BrandEmployeeController;
 use App\Http\Controllers\Brand\BrandTicketController;
 use App\Http\Controllers\Brand\BrandSubscriptionController;
 use App\Http\Controllers\Brand\BrandCartController;
+use App\Http\Controllers\Brand\BrandAnnouncementController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/brand/dashboard', [BrandDashboardController::class, 'create'])->name('brand.dashboard.create');
+
+    Route::get('/brand/announcements', [BrandAnnouncementController::class, 'create'])->name('brand.announcements.create');
 
     Route::get('/brand/tasks', [BrandTaskController::class, 'create'])->name('brand.tasks.create');
     Route::post('/brand/tasks/store', [BrandTaskController::class, 'store'])->name('brand.tasks.store');

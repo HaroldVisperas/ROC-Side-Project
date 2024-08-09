@@ -14,18 +14,15 @@
 </head>
 
 <body>
-
-    <!-- Start of NavBar -->
+    <!-- NavBar -->
     <nav class="navbar navbar-expand-lg blue borderbottom fixed-top {border-bottom: white 5px solid;}">
         <div class="container-fluid">
-
-            <!-- Start of offcanvas trigger -->
+            <!-- offcanvas trigger -->
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon" data-bs-target="#offcanvasExample"></span>
             </button>
-            <!-- End of offcanvas trigger -->
-
+            <!-- offcanvas trigger -->
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('assets/images/logo.png') }}" class="logo" alt="ROCPH">
             </a>
@@ -48,6 +45,8 @@
                                         Company Owner Account
                                     @elseif (auth()->user()->role == 'brand_owner')
                                         Brand Owner Account
+                                    @elseif (auth()->user()->role == 'member')
+                                        Member Account
                                     @endif
                                 </div>
                             </div>
@@ -57,27 +56,24 @@
                         </ul>
                     </li>
                     <a class="navbarName dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="true"></a>
+                        aria-expanded="True"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <form id="profile-form" method="GET" action="{{ route('company.profile.create') }}">
+                        <form id="profile-form" method="GET" action="{{ route('brand.user.profile.create') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>My Profile</a></li>
-                            <input type="hidden" name="user_timezone" value="{{ auth()->user()->timezone }}">
+                                <i class="bi bi-person-check fs-5 me-2"></i>My Profile</a></li>
                         </form>
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Logout</a></li>
+                                <i class="bi bi-box-arrow-right fs-5 me-2"></i>Logout</a></li>
                         </form>
                     </ul>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- End of NavBar -->
-
-    <!-- Start of Stripes -->
+    <!-- NavBar -->
     <div class="container-fluid">
         <div class="row stripes">
             <div class="col-12 stripe borderbottom orange"></div>
@@ -85,58 +81,115 @@
             <div class="col-12 stripe borderbottom green"></div>
         </div>
     </div>
-    <!-- End of Stripes -->
-
-
-    <!-- Start of SideBar -->
+    <!-- SideBar -->
     <div class="offcanvas offcanvas-start blue text-white sidebar-nav " tabindex="-1" id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-body">
             <nav class="navbar-dark">
                 <ul class="navbar-nav">
                     <li>
-                        <form id="dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                        <form id="dashboard-link" method="GET" action="{{ route('brand.dashboard.create') }}">
                             @csrf
                             <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('dashboard-link').submit();">
                                 <i class="bi bi-microsoft fs-5 me-2"></i>
                                 <span class="text-uppercase fw-bold fs-5">Dashboard</span>
                             </a>
                         </form>
-                        <form id="brand-create-link" method="GET" action="{{ route('company.brand.create') }}">
+                        <form id="brand-profile-link" method="GET" action="{{ route('brand.profile.create') }}">
                             @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-create-link').submit();">
-                                <i class="bi bi-building-fill-add fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Create Brand</span>
-                            </a>
-                        </form>
-                        <form id="brands-link" method="GET" action="{{ route('company.brands.create') }}">
-                            @csrf
-                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brands-link').submit();">
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('brand-profile-link').submit();">
                                 <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
-                                <span class="text-uppercase fw-bold fs-5">Brands</span>
+                                <span class="text-uppercase fw-bold fs-5">Brand Profile</span>
                             </a>
                         </form>
-                        <form id="employees-link" method="GET" action="{{ route('company.employee.create') }}">
+                        <form id="assets-link" method="GET" action="{{ route('brand.assets.create') }}">
                             @csrf
-                            <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('assets-link').submit();">
+                                <i class="bi bi-image fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Assets</span>
+                            </a>
+                        </form>
+                        <form id="project-link" method="GET" action="{{ route('brand.tasks.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('project-link').submit();">
+                                <i class="bi bi-kanban fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Project</span>
+                            </a>
+                        </form>
+                        <form id="tickets-link" method="GET" action="{{ route('brand.tickets.create') }}">
+                            @csrf
+                            <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('tickets-link').submit();">
+                                <i class="bi bi-ticket-detailed fs-5 me-2"></i>
+                                <span class="text-uppercase fw-bold fs-5">Tickets</span>
+                            </a>
+                        </form>
+                        <form id="employees-link" method="GET" action="{{ route('brand.employees.create') }}">
+                            @csrf
                             <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('employees-link').submit();">
-                                <i class="bi bi-person-hearts fs-5 me-2"></i>
+                                <i class="bi bi-person-heart fs-5 me-2"></i>
                                 <span class="text-uppercase fw-bold fs-5">Employees</span>
                             </a>
                         </form>
+                        <a class="nav-link pt-3 sidebar-link text-start" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span><i class="bi bi-house-gear-fill fs-5 me-2"></i></span>
+                            <span class="text-uppercase fw-bold fs-5">Services</span>
+                            <span><i class="bi bi-chevron-down"></i></span>
+                        </a>
+                        <div class="collapse" id="collapseExample">
+                            <div>
+                                <ul class="navbar-nav ps-3">
+                                    <li>
+                                        <form id="subscription-link" method="GET" action="{{ route('brand.subscription.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('subscription-link').submit();">
+                                                <i class="bi bi-box-fill fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Subscription</span>
+                                            </a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form id="cart-link" method="GET" action="{{ route('brand.cart.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('cart-link').submit();">
+                                                <i class="bi bi-cart-plus-fill fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Cart</span>
+                                            </a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form id="proof-of-payment-link" method="GET" action="{{ route('brand.proofofpayment.create') }}">
+                                            @csrf
+                                            <a href="#" class="nav-link text-white text-start pt-1" onclick="event.preventDefault(); document.getElementById('proof-of-payment-link').submit();">
+                                                <i class="bi bi-receipt-cutoff fs-5 me-2"></i>
+                                                <span class="text-uppercase fw-bold fs-6">Proof of Payment</span>
+                                            </a>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        @if(auth()->user()->role != 'member')
+                            <form id="company-dashboard-link" method="GET" action="{{ route('company.dashboard.create') }}">
+                                @csrf
+                                <a href="#" class="nav-link text-white text-start pt-3" onclick="event.preventDefault(); document.getElementById('company-dashboard-link').submit();">
+                                    <i class="bi bi-building-fill-add fs-5 me-2"></i>
+                                    <span class="text-uppercase fw-bold fs-5">Return to Company</span>
+                                </a>
+                            </form>
+                        @endif
                     </li>
                 </ul>
             </nav>
         </div>
     </div>
-    <!-- End of SideBar -->
+    <!-- SideBar -->
 
     <!-- Start of Main -->
     <main class="mt-3 tblack main" data-bs-spy="noscroll">
         <div class="container-fluid">
             <div class="row justify-content-center contents">
                 <div class="col-lg-12">
-                    <form id="return-form" method="GET" action="{{ route('company.dashboard.create') }}">
+                    <form id="return-form" method="GET" action="{{ route('brand.dashboard.create') }}">
                         @csrf
                         <a class="nav-link tblue text-end pt-3" href="#" onclick="event.preventDefault(); document.getElementById('return-form').submit();">
                             <span class="text-uppercase fw-bold fs-5">X</span>

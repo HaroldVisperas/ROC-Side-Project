@@ -59,13 +59,13 @@
                         <form id="profile-form" method="GET" action="{{ route('company.profile.create') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>My Profile</a></li>
+                                <i class="bi bi-person-check fs-5 me-2"></i>My Profile</a></li>
                             <input type="hidden" name="user_timezone" value="{{ auth()->user()->timezone }}">
                         </form>
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="bi bi-gear fs-5 me-2"></i>Logout</a></li>
+                                <i class="bi bi-box-arrow-right fs-5 me-2"></i>Logout</a></li>
                         </form>
                     </ul>
                 </ul>
@@ -175,43 +175,49 @@
                         <div class="col-md-11 blue recentTasks">
                             <div class="row justify-content-center">
                                 <div class="col">
-                                    <h3 class="text-center fw-bold twhite">Recent Tasks
-                                        <a href="your-target-url.html" class="btn"
-                                            style="background-color: #84c148; color: white; border: solid 2px black;">View
-                                        </a>
-                                    </h3>
+                                    <h3 class="text-center fw-bold twhite">Recent Tasks</h3>
                                 </div>
                             </div>
-                            <div class="row mt-4 justify-content-center">
-                                <div class="col-5 gray recentTaskBox1 p-3">
-                                    @if($recenttasks->isNotEmpty())
-                                        @foreach($recenttasks as $recenttask)
+                            <div class="row mt-4 justify-content-evenly">
+                                @if($recenttasks->isNotEmpty())
+                                    @foreach($recenttasks as $recenttask)
+                                        <div class="col-5 gray recentTaskBox1 p-3">
                                             <div>
                                                 <h4 class="text-white fw-bold text-center">
                                                     <span class="tblack">{{ $recenttask->title }}</span>
                                                 </h4>
                                             </div>
-                                            <div class="fw-normal recentTaskP tblack text-center">Status: 
-                                                <span class="text-uppercase" style="color: #D23426; font-weight: 800">{{ $recenttask->status }}</span>
+                                            <div class="fw-normal recentTaskP tblack text-center">Status:
+                                                @if($recenttask->status == 'todo')
+                                                    <span class="text-uppercase" style="color: #534B4B; font-weight: 800">{{ $recenttask->status }}</span>
+                                                @elseif($recenttask->status == 'working')
+                                                    <span class="text-uppercase" style="color: #F38C1E; font-weight: 800">{{ $recenttask->status }}</span>
+                                                @elseif($recenttask->status == 'approval')
+                                                    <span class="text-uppercase" style="color: #D23426; font-weight: 800">{{ $recenttask->status }}</span>
+                                                @elseif($recenttask->status == 'done')
+                                                    <span class="text-uppercase" style="color: #84C148; font-weight: 800">{{ $recenttask->status }}</span>
+                                                @endif
                                             </div>
                                             <div class="fw-normal recentTaskP tblack text-center">Company Name: 
-                                                <span style="color:rgb(46, 46, 46); font-weight: 800">"Company Name"</span>
+                                                <span style="color:rgb(46, 46, 46); font-weight: 800">{{ $recenttask->company }}</span>
                                             </div>
                                             <div class="fw-normal recentTaskP tblack text-center">Brand Name: 
-                                                <span style="color:rgb(46, 46, 46); font-weight: 800">"Brand Name"</span>
+                                                <span style="color:rgb(46, 46, 46); font-weight: 800">{{ $recenttask->brand }}</span>
                                             </div>
                                             <div class="fw-normal recentTaskP tblack text-center">Ticket No.: 
                                                 <span style="color:rgb(46, 46, 46); font-weight: 800">{{ $recenttask->id }}</span>
                                             </div>
-                                        @endforeach
-                                    @else
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="col-5 gray recentTaskBox1 p-3">
                                         <div>
                                             <h4 class="text-white fw-bold text-center">
                                                 <span class="tblack">No Recent Task</span>
                                             </h4>
                                         </div>
-                                    @endif
-                                </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -220,13 +226,7 @@
                     <div class="row mt-2 activeBrand justify-content-center mt-3">
                         <div class="col-md-11">
                             <h4 class="fw-bold text-center twhite">Active Brand</h4>
-                            <h1 class="fw-bold text-center twhite">Subscription</h1>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col d-flex justify-content-center">
-                                <a href="your-target-url.html" class="btn"
-                                    style="background-color: #84c148; color: white; border: solid 2px black;">View</a>
-                            </div>
+                            <h1 class="fw-bold text-center twhite">Subscriptions</h1>
                         </div>
                     </div>
                     @if($recentsubscriptions->isNotEmpty())
@@ -251,10 +251,12 @@
                         </div>
                         @endforeach
                     @else
-                        <div class="col-9 gray recentTaskBox1 p-3">
-                            <h4 class="text-white fw-bold text-center">
-                                <span class="tblack">No Subscription Made</span>
-                            </h4>
+                        <div class="row mt-3 justify-content-center">
+                            <div class="col-9 gray recentTaskBox1 p-3">
+                                <h4 class="text-white fw-bold text-center">
+                                    <span class="tblack">No Subscription Made</span>
+                                </h4>
+                            </div>
                         </div>
                     @endif
                 </div>

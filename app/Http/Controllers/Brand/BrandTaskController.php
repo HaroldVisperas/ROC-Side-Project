@@ -12,9 +12,13 @@ use App\Models\Ticket;
 
 class BrandTaskController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        $tasks = Task::all();
+        $company = $request->session()->get('company');
+        $brand = $request->session()->get('brand');
+
+        $tasks = Task::where('company', $company)->where('brand', $brand)->orderBy('created_at', 'desc')->get();
+                
         return view('brand.brand-task', compact('tasks'));
     }
 

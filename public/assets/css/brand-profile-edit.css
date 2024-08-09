@@ -272,6 +272,10 @@
     color: #84c148;
 }
 
+.tred {
+    color: #d23426;
+}
+
 .borderleft {
     border-left: white 5px solid;
 }
