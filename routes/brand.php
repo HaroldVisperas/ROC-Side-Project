@@ -38,12 +38,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/brand/user/profile/update', [BrandUserProfileController::class, 'update'])->name('brand.user.profile.update');
     Route::post('/brand/user/profile/password/update', [BrandUserProfileController::class, 'update_password'])->name('brand.user.profile.password.update');
 
-    Route::get('/brand/payment-method', [BrandPaymentMethodController::class, 'create'])->name('brand.paymentmethod.create');
-
-    Route::get('/brand/order-confirmation', [BrandPaymentMethodController::class, 'create_order_confirmation'])->name('brand.orderconfirmation.create');
-
-    Route::get('/brand/proof-of-payment', [BrandProofOfPaymentController::class, 'create'])->name('brand.proofofpayment.create');
-
     Route::get('/brand/employees', [BrandEmployeeController::class, 'create'])->name('brand.employees.create');
     Route::post('/brand/employees/update', [BrandEmployeeController::class, 'update_employee'])->name('brand.employees.update');
     Route::post('/brand/employees/delete', [BrandEmployeeController::class, 'delete_employee'])->name('brand.employees.delete');
@@ -57,6 +51,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/brand/tickets/view', [BrandTicketController::class, 'view'])->name('brand.tickets.view');
 
     Route::get('/brand/subscription', [BrandSubscriptionController::class, 'create'])->name('brand.subscription.create');
+    Route::post('/brand/subscription/cart/store', [BrandSubscriptionController::class, 'store_cart'])->name('brand.subscription.cart.store');
+    Route::get('/brand/subscription/order', [BrandSubscriptionController::class, 'create_order'])->name('brand.subscription.payment.create');
 
     Route::get('/brand/cart', [BrandCartController::class, 'create'])->name('brand.cart.create');
+    Route::post('/brand/cart/duration/update', [BrandCartController::class, 'update_duration'])->name('brand.cart.duration.update');
+    Route::post('/brand/cart/delete', [BrandCartController::class, 'delete_cart'])->name('brand.cart.delete');
+
+    Route::get('/brand/payment-method', [BrandPaymentMethodController::class, 'create'])->name('brand.paymentmethod.create');
+    Route::post('/brand/order-confirmation', [BrandPaymentMethodController::class, 'create_order_confirmation'])->name('brand.orderconfirmation.create');
+
+    Route::get('/brand/proof-of-payment', [BrandProofOfPaymentController::class, 'create'])->name('brand.proofofpayment.create');
 });

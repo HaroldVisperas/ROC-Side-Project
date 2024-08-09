@@ -193,11 +193,11 @@
     </div>
     <!-- SideBar -->
 
-    <!-- Main Contents --- WAG PAPALITAAAAAN!! -->
+    <!-- MAIN -->
     <main class="mt-3 text-start tblack main" data-bs-spy="noscroll">
         <div class="container-fluid">
             <div class="row justify-content-center contents">
-            <div class="container mt-5">
+                <div class="container mt-5">
                     <div class="header">
                         <h2>Proof of Payment</h2>
                         <div class="search-bar">
@@ -218,11 +218,11 @@
                         <div class="form-group-inline">
                             <div class="form-group">
                                 <label for="company">Company</label>
-                                <input type="text" id="company" class="form-control" placeholder="Company" value="AMAZON" readonly>
+                                <input type="text" id="company" class="form-control text-uppercase" value="{{ $company }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="brand">Brand</label>
-                                <input type="text" id="brand" class="form-control" placeholder="Brand" value="AMAZON PRIME" readonly>
+                                <input type="text" id="company" class="form-control text-uppercase" value="{{ $brand }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="status">Status</label>
@@ -239,77 +239,46 @@
                     <table class="table table-striped">
                         <thead class="thead-dark">
                             <tr style="background-color: #008EC2;">
-                                <th style="background-color: #008EC2;">Reference ID</th>
-                                <th style="background-color: #008EC2;">Description</th>
-                                <th style="background-color: #008EC2;">Status</th>
-                                <th style="background-color: #008EC2;">Payment Method</th>
-                                <th style="background-color: #008EC2;">Transaction Date</th>
-                                <th style="background-color: #008EC2;">Amount</th>
+                                <th class="text-center" style="background-color: #008EC2;">Reference ID</th>
+                                <th class="text-center" style="background-color: #008EC2;">Subscription</th>
+                                <th class="text-center" style="background-color: #008EC2;">Status</th>
+                                <th class="text-center" style="background-color: #008EC2;">Payment Method</th>
+                                <th class="text-center" style="background-color: #008EC2;">Transaction Date</th>
+                                <th class="text-center" style="background-color: #008EC2;">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- Mock Data --}}
                             @php
-                            $mockPayments = [
-                                (object)[
-                                    'reference_id' => 'F20240710-001',
-                                    'description' => 'Facebook Basic Plan',
-                                    'status' => 'paid',
-                                    'payment_method' => 'PayPal',
-                                    'transaction_date' => '2019-01-05',
-                                    'amount' => 500.00
-                                ],
-                                (object)[
-                                    'reference_id' => 'F20240710-002',
-                                    'description' => 'Twitter Standard Plan',
-                                    'status' => 'processing',
-                                    'payment_method' => 'Gcash',
-                                    'transaction_date' => '2019-01-05',
-                                    'amount' => 1000.00
-                                ],
-                                (object)[
-                                    'reference_id' => 'F20240710-003',
-                                    'description' => 'Tiktok Pro Plan',
-                                    'status' => 'verified',
-                                    'payment_method' => 'Maya',
-                                    'transaction_date' => '2019-01-05',
-                                    'amount' => 3000.00
-                                ],
-                                (object)[
-                                    'reference_id' => 'F20240710-004',
-                                    'description' => 'Youtube Premium Plan',
-                                    'status' => 'not verified',
-                                    'payment_method' => 'BDO',
-                                    'transaction_date' => '2019-01-05',
-                                    'amount' => 3500.00
-                                ],
-                            ];
+                                $searchTerm = request('search');
+                                $filteredPayments = $payments->filter(function($payment) use ($searchTerm) {
+                                    return (!$searchTerm || stripos($payment->reference_id, $searchTerm) !== false || 
+                                            stripos($payment->package_name, $searchTerm) !== false || 
+                                            stripos($payment->status, $searchTerm) !== false || 
+                                            stripos($payment->payment_method, $searchTerm) !== false || 
+                                            stripos($payment->created_at, $searchTerm) !== false || 
+                                            stripos((string) $payment->total_price, $searchTerm) !== false);
+                                });
                             @endphp
 
-                            @foreach($mockPayments as $payment)
+                            @foreach($filteredPayments as $payment)
                                 @if(request('status') && $payment->status != request('status'))
                                     @continue
                                 @endif
-                                @if(request('payment_method') && $payment->payment_method != request('payment_method'))
-                                    @continue
-                                @endif
                                 <tr>
-                                    <td>{{ $payment->reference_id }}</td>
-                                    <td>{{ $payment->description }}</td>
-                                    <td class="status-{{ str_replace(' ', '-', strtolower($payment->status)) }}">{{ ucfirst($payment->status) }}</td>
-                                    <td>{{ $payment->payment_method }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($payment->transaction_date)->format('m - d - y') }}</td>
-                                    <td>PHP {{ number_format($payment->amount, 2) }}</td>
+                                    <td class="text-center">{{ $payment->reference_id }}</td>
+                                    <td class="text-center text-capitalize">{{ $payment->package_name }}</td>
+                                    <td class="text-center status-{{ str_replace(' ', '-', strtolower($payment->status)) }}">{{ ucfirst($payment->status) }}</td>
+                                    <td class="text-center text-capitalize">{{ $payment->payment_method }}</td>
+                                    <td class="text-center">{{ \Carbon\Carbon::parse($payment->created_at)->format('m-d-y') }}</td>
+                                    <td class="text-center">PHP {{ number_format($payment->total_price, 2) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- Pagination Links --}}
                 </div>
             </div>
         </div>
     </main>
-     
 
     <!-- JavaScript -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

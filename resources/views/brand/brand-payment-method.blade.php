@@ -205,68 +205,90 @@
             <div class="container my-4">
                 <div class="title-pay">Payment Method</div>
 
-                <form action="{{ route('brand.orderconfirmation.create') }}" method="GET">
+                <form method="POST" action="{{ route('brand.orderconfirmation.create') }}">
                     @csrf
                     <div class="row">
                         <!-- Left Side -->
                         <div class="col-md-6 left-side">
                             <div class="form-group">
                                 <label for="payment_method"></label>
-                                <select name="payment_method" id="payment_method" class="form-control" placeholder="Choose a Method">
-                                    <option value="maya">Maya</option>
-                                    <option value="gcash">Gcash</option> 
+                                <select name="payment_method" id="payment_method" class="form-control tblue" required>
+                                    <option hidden>Choose a Method</option>
+                                    <option value="Maya">Maya</option>
+                                    <option value="GCash">Gcash</option> 
                                     <option value="BDO">BDO</option>
                                     <option value="BPI">BPI</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="card_number"></label>
-                                <input type="text" name="card_number" id="card_number" class="form-control"
-                                    placeholder="Card Number">
+                                <input type="text" name="card_number" id="card_number" class="form-control tblue" placeholder="Card Number" required>
                             </div>
                             <div class="form-row">
                                 <div class="col-date">
                                     <label for="valid_date_month"></label>
-                                    <input type="text" name="valid_date_month" id="valid_date_month" class="form-control"
-                                        placeholder="MM">
+                                    <input type="text" name="valid_date_month" id="valid_date_month" class="form-control tblue" placeholder="MM" required>
                                 </div>
                                 <div class="col-year">
                                     <label for="valid_date_year"></label>
-                                    <input type="text" name="valid_date_year" id="valid_date_year" class="form-control"
-                                        placeholder="YYYY">
+                                    <input type="text" name="valid_date_year" id="valid_date_year" class="form-control tblue" placeholder="YYYY" required>
                                 </div>
                                 <div class="col-cvv">
                                     <label for="cvv"></label>
-                                    <input type="text" name="cvv" id="cvv" class="form-control" placeholder="CVV">
+                                    <input type="text" name="cvv" id="cvv" class="form-control tblue" placeholder="CVV" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="first_name"></label>
-                                <input type="text" name="first_name" id="first_name" class="form-control"
-                                    placeholder="FIRST NAME SHOULD BE AUTOMATIC">
+                                <input type="text" name="firstname" id="firstname" class="form-control tblue" value="{{ auth()->user()->firstname }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="last_name"></label>
-                                <input type="text" name="last_name" id="last_name" class="form-control"
-                                    placeholder="LAST NAME SHOULD BE AUTOMATIC">
+                                <input type="text" name="lastname" id="lastname" class="form-control tblue" value="{{ auth()->user()->lastname }}" readonly>
                             </div>
                         </div>
 
                         <!-- Right Side -->
-                        <div class="col-md-6 right-side">
-                            <br>
-                            <br>
-                            <p class="powered-by">Powered by: <img id="payment_image" src="#" alt="Payment Image" style="max-width: 100%; max-height: 100%; object-fit: contain;"></p>
-                            <hr class="centered-hr">
-                            <h4>Order Summary</h4>
-                            <hr>
-                            <h7 class="blue-text">Premium <br>Quantity: <b>1 <span class="float-right">PHP 10,000</span></b></h7>
-                            <hr>
-                            <h4>Total Amount <span class="float-right">PHP 10,000</span></h4>
-                            <hr>
-                            <h6>1 Item <span class="float-right">Order Total: PHP 10,000</span></h6>
-                            <button type="submit" class="btn btn-primary mt-3">Place Order</button>
-                        </div>
+                        @if($order_quantity == "single")
+                            <input type="hidden" name="order_quantity" value="single">
+                            <input type="hidden" name="order_package" value="{{ $orders->package_name }}">
+                            <input type="hidden" name="order_price" value="{{ $orders->total_price }}">
+                            <input type="hidden" name="order_duration" value="{{ $orders->duration }}">
+                            <div class="col-md-6 right-side">
+                                <br>
+                                <br>
+                                <p class="powered-by">Powered by: <img id="payment_image" src="#" alt="Payment Image" style="max-width: 150px; max-height: 150px; object-fit: contain;"></p>
+                                <hr class="centered-hr">
+                                <h4>Order Summary</h4>
+                                <hr>
+                                <h7 class="blue-text text-capitalize">{{ $orders->package_name }} <br>Duration: <b>{{ $orders->duration }} Month<span class="float-right">PHP {{ number_format($orders->total_price, 2) }}</span></b></h7>
+                                <hr>
+                                <h4>Total Amount <span class="float-right">PHP {{ number_format($orders->total_price, 2) }}</span></h4>
+                                <hr>
+                                <h6>1 Item <span class="float-right">Order Total: PHP {{ number_format($orders->total_price, 2) }}</span></h6>
+                                <button type="submit" class="btn btn-primary mt-3">Place Order</button>
+                            </div>
+                        @else
+                            <input type="hidden" name="order_quantity" value="multiple">
+                            <div class="col-md-6 right-side">
+                                <br>
+                                <br>
+                                <p class="powered-by">Powered by: <img id="payment_image" src="#" alt="Payment Image" style="max-width: 150px; max-height: 150px; object-fit: contain;"></p>
+                                <hr class="centered-hr">
+                                <h4>Order Summary</h4>
+                                <hr>
+                                @foreach($orders as $order)
+                                    <div>
+                                        <h7 class="blue-text text-capitalize"><b>{{ $order->package_name }}</b> <br>Duration: <b>{{ $order->duration }} Month{{ $order->duration > 1 ? 's' : '' }}<span class="float-right">PHP {{ number_format($order->total_price, 2) }}</span></b></h7>
+                                    </div>
+                                @endforeach
+                                <hr>
+                                <h4>Total Amount <span class="float-right">PHP {{ number_format($total_price, 2) }}</span></h4>
+                                <hr>
+                                <h6>{{ count($orders) }} Item{{ count($orders) > 1 ? 's' : '' }} <span class="float-right">Order Total: PHP {{ number_format($total_price, 2) }}</span></h6>
+                                <button type="submit" class="btn btn-primary mt-3">Place Order</button>
+                            </div>
+                        @endif
                     </div>
                 </form>
             </div>
@@ -281,10 +303,10 @@
                 var selectedMethod = $(this).val();
                 var imageSrc = '';
 
-                if (selectedMethod === 'maya') {
+                if (selectedMethod === 'Maya') {
                     imageSrc = "{{ asset('assets/images/maya.png') }}"; 
                     $('#selected_payment_method').text('Maya');
-                } else if (selectedMethod === 'gcash') {
+                } else if (selectedMethod === 'GCash') {
                     imageSrc = "{{ asset('assets/images/gcash.png') }}"; 
                     $('#selected_payment_method').text('Gcash');
                 } else if (selectedMethod === 'BDO') {

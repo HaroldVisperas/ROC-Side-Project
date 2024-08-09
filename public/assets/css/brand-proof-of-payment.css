@@ -79,16 +79,12 @@
     }
 }
 
-/* Override the offcanvas backdrop color */
 .offcanvas-backdrop {
     background-color: rgba(0, 0, 0, 0.5);
-    /* Adjust opacity as needed */
 }
 
-/* Override the offcanvas background color */
 .offcanvas {
     background-color: #fff;
-    /* Set your desired background color */
 }
 
 /* Main */
@@ -120,7 +116,6 @@
 
 .stripe {
     height: 15px;
-    /* Adjust the height as needed */
     max-width: 100.8%;
 }
 
@@ -194,29 +189,49 @@
 }
 
 
-
-
-
-
  /* Main Content*/
-
-
 
 body {
     font-family: 'Poppins', sans-serif;
+}
+
+.header h2 {
+    color: #534B4B;
+    margin: 0;
+    font-weight: 600;
 }
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
-.header h2 {
-    color: #534B4B;
-    margin: 0;
-    font-weight: 600; /* Bold font weight */
-}
+
 .search-bar {
+    flex-grow: 1;
     max-width: 300px;
+}
+
+.search-bar .input-group {
+    display: flex;
+}
+
+.search-bar .form-control {
+    border-radius: 0.25rem 0 0 0.25rem; 
+}
+
+.search-bar .input-group-append .btn {
+    border-radius: 0 0.25rem 0.25rem 0; 
+    border-color: #ced4da;
+}
+
+.search-bar .form-control, 
+.search-bar .input-group-append .btn {
+    height: 38px; 
+}
+
+.search-bar .form-control {
+    border-right: none;
 }
 .form-group-inline {
     display: flex;
@@ -244,11 +259,11 @@ body {
     vertical-align: middle;
 }
 .table thead {
-    background-color: #008EC2; /* Background color for table header row */
-    color: white; /* Text color for table header row */
+    background-color: #008EC2;
+    color: white;
 }
 .table th {
-    border: none; /* Remove borders for th elements */
+    border: none; 
 }
 .status-paid {
     color: #84C148;

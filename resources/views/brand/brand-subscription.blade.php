@@ -204,7 +204,8 @@
                             <h1 class="text-uppercase fw-bold tblue">Services</h1>
                         </div>
                         <div class="col text-end">
-                            <form id="cart-link" method="GET" action="{{ route('brand.cart.create') }}">
+                            <form method="GET" action="{{ route('brand.cart.create') }}">
+                                @csrf
                                 <button type="submit" class="btn btn-primary rounded-circle">
                                     <i class="bi bi-cart-fill"></i>
                                     <br>
@@ -219,15 +220,27 @@
                                 <div class="card-body">
                                     <h3 class="card-title">FACEBOOK</h3>
                                     <ul class="list-unstyled">
-                                        <li>Up to 4 FB Post with Cross Posting to Instagram per week via VA Lite</li>
+                                        <li>Up to 4 Facebook Post with Cross Posting to Instagram per week via VA Lite</li>
                                         <li>Up to 15 Social Media posts per month with unlimited revisions</li>
                                         <li>3-5 Business Days Turnaround Time</li>
                                         <li>Unlimited 24/7 Project Manager</li>
                                         <li>8/5 Strategy Virtual Consultation</li>
                                         <li>8/5 Project Support via Email Ticket and Chat</li>
                                     </ul>
-                                    <button class="btn btn-success mt-2">Avail</button>
-                                    <button class="btn btn-primary mt-2">Add to cart</button>
+                                    <div class="row justify-content-center">
+                                        @if(auth()->user()->role == 'company_owner')
+                                            <form method="GET" action="{{ route('brand.subscription.payment.create') }}" class="col-3">
+                                                @csrf
+                                                <input type="hidden" name="package_name" value="Facebook Plan">
+                                                <button type="submit" class="btn btn-success mt-2">Avail</button>
+                                            </form>
+                                        @endif
+                                        <form method="POST" action="{{ route('brand.subscription.cart.store') }}" class="col-7">
+                                            @csrf
+                                            <input type="hidden" name="package_name" value="Facebook Plan">
+                                            <button type="submit" class="btn btn-primary mt-2">Add to cart</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -236,32 +249,56 @@
                                 <div class="card-body">
                                     <h3 class="card-title">YOUTUBE</h3>
                                     <ul class="list-unstyled">
-                                        <li>Up to 4 FB Post with Cross Posting to Instagram per week via VA Lite</li>
+                                        <li>Up to 4 Youtube Post with Cross Posting to Instagram per week via VA Lite</li>
                                         <li>Up to 15 Social Media posts per month with unlimited revisions</li>
                                         <li>3-5 Business Days Turnaround Time</li>
                                         <li>Unlimited 24/7 Project Manager</li>
                                         <li>8/5 Strategy Virtual Consultation</li>
                                         <li>8/5 Project Support via Email Ticket and Chat</li>
                                     </ul>
-                                    <button class="btn btn-success mt-2">Avail</button>
-                                    <button class="btn btn-primary mt-2">Add to cart</button>
+                                    <div class="row justify-content-center">
+                                        @if(auth()->user()->role == 'company_owner')
+                                            <form method="GET" action="{{ route('brand.subscription.payment.create') }}" class="col-3">
+                                                @csrf
+                                                <input type="hidden" name="package_name" value="Youtube Plan">
+                                                <button type="submit" class="btn btn-success mt-2">Avail</button>
+                                            </form>
+                                        @endif
+                                        <form method="POST" action="{{ route('brand.subscription.cart.store') }}" class="col-7">
+                                            @csrf
+                                            <input type="hidden" name="package_name" value="Youtube Plan">
+                                            <button type="submit" class="btn btn-primary mt-2">Add to cart</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6 mb-4">
                             <div class="card h-100 text-center border-0 shadow tblue-outline">
                                 <div class="card-body">
-                                    <h3 class="card-title">TWITTER</h3>
+                                    <h3 class="card-title">X</h3>
                                     <ul class="list-unstyled">
-                                        <li>Up to 4 FB Post with Cross Posting to Instagram per week via VA Lite</li>
+                                        <li>Up to 4 X Post with Cross Posting to Instagram per week via VA Lite</li>
                                         <li>Up to 15 Social Media posts per month with unlimited revisions</li>
                                         <li>3-5 Business Days Turnaround Time</li>
                                         <li>Unlimited 24/7 Project Manager</li>
                                         <li>8/5 Strategy Virtual Consultation</li>
                                         <li>8/5 Project Support via Email Ticket and Chat</li>
                                     </ul>
-                                    <button class="btn btn-success mt-2">Avail</button>
-                                    <button class="btn btn-primary mt-2">Add to cart</button>
+                                    <div class="row justify-content-center">
+                                        @if(auth()->user()->role == 'company_owner')
+                                            <form method="GET" action="{{ route('brand.subscription.payment.create') }}" class="col-3">
+                                                @csrf
+                                                <input type="hidden" name="package_name" value="X Plan">
+                                                <button type="submit" class="btn btn-success mt-2">Avail</button>
+                                            </form>
+                                        @endif
+                                        <form method="POST" action="{{ route('brand.subscription.cart.store') }}" class="col-7">
+                                            @csrf
+                                            <input type="hidden" name="package_name" value="X Plan">
+                                            <button type="submit" class="btn btn-primary mt-2">Add to cart</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -270,15 +307,27 @@
                                 <div class="card-body">
                                     <h3 class="card-title">TIKTOK</h3>
                                     <ul class="list-unstyled">
-                                        <li>Up to 4 FB Post with Cross Posting to Instagram per week via VA Lite</li>
+                                        <li>Up to 4 Tiktok Post with Cross Posting to Instagram per week via VA Lite</li>
                                         <li>Up to 15 Social Media posts per month with unlimited revisions</li>
                                         <li>3-5 Business Days Turnaround Time</li>
                                         <li>Unlimited 24/7 Project Manager</li>
                                         <li>8/5 Strategy Virtual Consultation</li>
                                         <li>8/5 Project Support via Email Ticket and Chat</li>
                                     </ul>
-                                    <button class="btn btn-success mt-2">Avail</button>
-                                    <button class="btn btn-primary mt-2">Add to cart</button>
+                                    <div class="row justify-content-center">
+                                        @if(auth()->user()->role == 'company_owner')
+                                            <form method="GET" action="{{ route('brand.subscription.payment.create') }}" class="col-3">
+                                                @csrf
+                                                <input type="hidden" name="package_name" value="Tiktok Plan">
+                                                <button type="submit" class="btn btn-success mt-2">Avail</button>
+                                            </form>
+                                        @endif
+                                        <form method="POST" action="{{ route('brand.subscription.cart.store') }}" class="col-7">
+                                            @csrf
+                                            <input type="hidden" name="package_name" value="Tiktok Plan">
+                                            <button type="submit" class="btn btn-primary mt-2">Add to cart</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -209,7 +209,14 @@
                             <div class="card mt-4">
                                 <div class="card-body">
                                     <h5 class="card-title">Purchase Details:</h5>
-                                    <p class="card-text">Reference Number: F20240710-001</p>
+                                    @if(is_array($reference_ids) && count($reference_ids) > 1)
+                                        <p class="card-text">Reference Numbers:</p>
+                                        @foreach($reference_ids as $reference_id)
+                                            <p class="card-text">{{ $reference_id }}</p>
+                                        @endforeach
+                                    @else
+                                    <p class="card-text">Reference Number: {{ is_array($reference_ids) ? $reference_ids[0] : $reference_ids }}</p>
+                                    @endif
                                     <form method="GET" action="{{ route('brand.proofofpayment.create') }}">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">View Proof of Payment</button>

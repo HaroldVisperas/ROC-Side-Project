@@ -203,71 +203,68 @@
                             <tr>
                                 <th scope="col"><class id="selectAll"> Product</th>
                                 <th scope="col">Unit Price</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Duration</th>
                                 <th scope="col">Total Price</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="checkbox" class="select-item me-2">Facebook</td>
-                                <td>10,000</td>
-                                <td>
-                                    <div class="quantity-control">
-                                        <button class="btn blue twhite btn-decrease">-</button>
-                                        <input type="text" value="1"
-                                            class="form-control mx-2 text-center quantity-input" style="width: 50px;">
-                                        <button class="btn blue twhite btn-increase">+</button>
-                                    </div>
-                                </td>
-                                <td class="total-price">10,000</td>
-                                <td><button class="btn btn-outline-danger btn-delete" data-toggle="modal"
-                                        data-target="#deleteModal"><i class="bi bi-trash-fill"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="select-item me-2">Facebook</td>
-                                <td>10,000</td>
-                                <td>
-                                    <div class="quantity-control">
-                                        <button class="btn blue twhite btn-decrease">-</button>
-                                        <input type="text" value="1"
-                                            class="form-control mx-2 text-center quantity-input" style="width: 50px;">
-                                        <button class="btn blue twhite btn-increase">+</button>
-                                    </div>
-                                </td>
-                                <td class="total-price">10,000</td>
-                                <td><button class="btn btn-outline-danger btn-delete" data-toggle="modal"
-                                        data-target="#deleteModal"><i class="bi bi-trash-fill"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="select-item me-2">Facebook</td>
-                                <td>10,000</td>
-                                <td>
-                                    <div class="quantity-control">
-                                        <button class="btn blue twhite btn-decrease">-</button>
-                                        <input type="text" value="1"
-                                            class="form-control mx-2 text-center quantity-input" style="width: 50px;">
-                                        <button class="btn blue twhite btn-increase">+</button>
-                                    </div>
-                                </td>
-                                <td class="total-price">10,000</td>
-                                <td><button class="btn btn-outline-danger btn-delete" data-toggle="modal"
-                                        data-target="#deleteModal"><i class="bi bi-trash-fill"></i></button></td>
-                            </tr>
-                            <!-- Repeat similar <tr> elements for more items -->
+                            @foreach($carts as $cart)
+                                <tr>
+                                    <td class="text-capitalize">{{ $cart->package_name }}</td>
+                                    <td>{{ $cart->package_price }}</td>
+                                    <td class="row justify-content-center">
+                                        <div class="col-5 quantity-control">
+                                            <form method="POST" action="{{ route('brand.cart.duration.update') }}">
+                                                @csrf
+                                                <input type="hidden" name="cart_id" value="{{ $cart->id }}">
+                                                <input type="hidden" name="duration_action" value="subtract">
+                                                <button type="submit" class="btn blue twhite btn-decrease">-</button>
+                                            </form>
+                                            <input type="text" value="{{ $cart->duration }}" class="form-control mx-2 text-center quantity-input" style="width: 50px;" readonly>
+                                            <form method="POST" action="{{ route('brand.cart.duration.update') }}">
+                                                @csrf
+                                                <input type="hidden" name="cart_id" value="{{ $cart->id }}">
+                                                <input type="hidden" name="duration_action" value="add">
+                                                <button type="submit" class="btn blue twhite btn-increase">+</button>
+                                            </form>
+                                        </div>
+                                        <div class="col-2">
+                                            <p class="mt-2 mb-0 align-self-center">Months</p>
+                                        </div>
+                                    </td>
+                                    <td class="total-price">₱ {{ number_format($cart->total_price, 2) }}</td>
+                                    <td>
+                                        <form method="POST" action="{{ route('brand.cart.delete') }}">
+                                            @csrf
+                                            <input type="hidden" name="cart_id" value="{{ $cart->id }}">
+                                            <button type="submit" class="btn btn-outline-danger btn-delete"><i class="bi bi-trash-fill"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="1"><input type="checkbox" id="selectAllFooter"> Select All</td>
-                                <td colspan="3" class="text-end font-weight-bold">Total Price: ₱10,000</td>
-                                <td><button class="btn blue twhite">Check Out</button></td>
+                                <td colspan="1"></td>
+                                <td colspan="3" class="text-end font-weight-bold">Total Price: ₱ {{ number_format($cart_total, 2) }}</td>
+                                <td>
+                                    @if(auth()->user()->role == 'company_owner')
+                                        <form method="GET" action="{{ route('brand.paymentmethod.create') }}">
+                                            @csrf
+                                            <button type="submit" class="btn blue twhite">Check Out</button>
+                                        </form>
+                                    @endif
+                                </td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
 
                 <!-- Delete Confirmation Modal -->
-                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                <!-- <button class="btn btn-outline-danger btn-delete" data-toggle="modal"
+                data-target="#deleteModal"><i class="bi bi-trash-fill"></i></button> -->
+                <!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -286,64 +283,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
 
-    <script>
-        document.getElementById('selectAll').addEventListener('change', function () {
-            var checkboxes = document.querySelectorAll('.select-item');
-            checkboxes.forEach(function (checkbox) {
-                checkbox.checked = this.checked;
-            }, this);
-        });
-
-        document.getElementById('selectAllFooter').addEventListener('change', function () {
-            var checkboxes = document.querySelectorAll('.select-item');
-            checkboxes.forEach(function (checkbox) {
-                checkbox.checked = this.checked;
-            }, this);
-            document.getElementById('selectAll').checked = this.checked;
-        });
-
-        document.querySelectorAll('.select-item').forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                if (!this.checked) {
-                    document.getElementById('selectAll').checked = false;
-                    document.getElementById('selectAllFooter').checked = false;
-                } else if (document.querySelectorAll('.select-item:checked').length === document.querySelectorAll('.select-item').length) {
-                    document.getElementById('selectAll').checked = true;
-                    document.getElementById('selectAllFooter').checked = true;
-                }
-            });
-        });
-
-        document.querySelectorAll('.btn-increase').forEach(function (button) {
-            button.addEventListener('click', function () {
-                var input = this.closest('.quantity-control').querySelector('.quantity-input');
-                input.value = parseInt(input.value) + 1;
-                updateTotalPrice(this.closest('tr'));
-            });
-        });
-
-        document.querySelectorAll('.btn-decrease').forEach(function (button) {
-            button.addEventListener('click', function () {
-                var input = this.closest('.quantity-control').querySelector('.quantity-input');
-                if (parseInt(input.value) > 1) {
-                    input.value = parseInt(input.value) - 1;
-                    updateTotalPrice(this.closest('tr'));
-                }
-            });
-        });
-
-        function updateTotalPrice(row) {
-            var unitPrice = parseInt(row.querySelector('td:nth-child(2)').innerText.replace(/,/g, ''));
-            var quantity = parseInt(row.querySelector('.quantity-input').value);
-            var totalPriceCell = row.querySelector('.total-price');
-            totalPriceCell.innerText = (unitPrice * quantity).toLocaleString();
-        }
-
+    <!-- <script>
         document.querySelectorAll('.btn-delete').forEach(function (button) {
             button.addEventListener('click', function () {
                 var row = this.closest('tr');
@@ -353,12 +298,8 @@
                 };
             });
         });
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </script> -->
+    
     <script src="{{ asset('assets/js/contenteditable.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
